@@ -1389,7 +1389,7 @@ section { scroll-margin-top: 68px; }
           <div class="lf-title">Nozomi 360 Preliminary Operating Assessment</div>
           <div class="lf-subtitle">Answer 24 operating questions first. Then enter your details to receive your preliminary readout and request an optional assessment review.</div>
           <form id="assessment-form"
-                action="https://formsubmit.co/al_alahmadi@hotmail.com"
+                action="https://formsubmit.co/Info@nozomi.Ai"
                 method="POST"
                 target="formsubmit-frame"
                 novalidate>
@@ -2155,7 +2155,7 @@ section { scroll-margin-top: 68px; }
         <button class="btn-cta-ghost" onclick="openAssessmentReview()">Request Assessment Review</button>
         <button class="btn-cta-ghost" onclick="toggleNozomiChat(true)">Message Nozomi</button>
       </div>
-      <p class="cta-contact"><a href="mailto:assessment@nozomi.ai">assessment@nozomi.ai</a> · Nozomi.ai</p>
+      <p class="cta-contact"><a href="mailto:Info@nozomi.Ai">Info@nozomi.Ai</a> · Nozomi.ai</p>
       <p class="cta-disclaimer">Nozomi does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
     </div>
   </div>
@@ -2185,7 +2185,7 @@ section { scroll-margin-top: 68px; }
     <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
 
     <div class="nozomi-chat-card">
-      <form id="nozomi-chat-form" action="https://formsubmit.co/al_alahmadi@hotmail.com" method="POST" target="nozomi-chat-frame" novalidate>
+      <form id="nozomi-chat-form" action="https://formsubmit.co/Info@nozomi.Ai" method="POST" target="nozomi-chat-frame" novalidate>
         <input type="hidden" name="_subject" value="New Nozomi Assistant Contact Request">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
@@ -2245,7 +2245,7 @@ section { scroll-margin-top: 68px; }
         </div>
         <button class="nozomi-chat-submit" id="nozomi-chat-submit" type="submit">Send Message →</button>
         <div class="nozomi-chat-error" id="nozomi-chat-error">Please complete your name, work email, organization, need, message, and consent before sending.</div>
-        <div class="nozomi-chat-success" id="nozomi-chat-success">Message received. Nozomi will contact you within 24 hours or less. A copy has been routed to assessment@nozomi.ai.</div>
+        <div class="nozomi-chat-success" id="nozomi-chat-success">Message received. Nozomi will contact you within 24 hours or less. A copy has been routed to Info@nozomi.Ai.</div>
         <div class="nozomi-chat-fine">Protected by a basic anti-spam field. Review the <a href="privacy.html">Privacy Notice</a> and <a href="terms.html">Terms</a>.</div>
       </form>
       <iframe name="nozomi-chat-frame" title="Nozomi Assistant message delivery" style="display:none;"></iframe>
@@ -2315,7 +2315,7 @@ section { scroll-margin-top: 68px; }
 
       <div>
         <div class="ft-col-head">Contact</div>
-        <a class="ft-email" href="mailto:assessment@nozomi.ai">assessment@nozomi.ai</a><span class="ft-domain">Nozomi.ai</span>
+        <a class="ft-email" href="mailto:Info@nozomi.Ai">Info@nozomi.Ai</a><span class="ft-domain">Nozomi.ai</span>
       </div>
 
     </div>
@@ -2379,7 +2379,7 @@ function requestAssessmentReview() {
   if (LAST_ASSESSMENT_RESULT) {
     body += '%0D%0AOrganization: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.org || '') + '%0D%0AOperating Score: ' + encodeURIComponent(String(LAST_ASSESSMENT_RESULT.score || '')) + '/100%0D%0ALikely Pattern: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.painPattern || '') + '%0D%0A';
   }
-  window.location.href = 'mailto:assessment@nozomi.ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  window.location.href = 'mailto:Info@nozomi.Ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
 }
 
 /* ── TABS ────────────────────────────────────────────── */
