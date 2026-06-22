@@ -840,6 +840,12 @@ section { scroll-margin-top: 68px; }
 .result-pattern-card { background:rgba(212,175,55,0.07); border:1px solid rgba(212,175,55,0.22); border-radius:10px; padding:13px; }
 .rpc-name { font-size:13.5px; font-weight:700; color:var(--champagne); margin-bottom:5px; font-family:'Manrope',sans-serif; }
 .rpc-desc { font-size:12.5px; color:rgba(255,255,255,0.48); line-height:1.6; }
+.result-insight-card { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:13px; margin-bottom:1rem; text-align:left; }
+.ric-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:7px; }
+.ric-text { font-size:12.5px; color:rgba(255,255,255,0.56); line-height:1.6; margin-bottom:8px; }
+.ric-list { list-style:none; display:grid; gap:5px; margin:0; padding:0; }
+.ric-list li { font-size:12px; color:rgba(255,255,255,0.48); line-height:1.45; padding-left:14px; position:relative; }
+.ric-list li::before { content:''; position:absolute; left:0; top:0.62em; width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.72; }
 .result-dim-section { margin-bottom:1rem; }
 .result-dim-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:7px; }
 .result-dim-row { display:flex; align-items:center; gap:9px; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
@@ -1213,6 +1219,7 @@ section { scroll-margin-top: 68px; }
           <form id="assessment-form"
                 action="https://formsubmit.co/el/lacupu"
                 method="POST"
+                target="formsubmit-frame"
                 novalidate>
 
             <!-- FormSubmit configuration -->
@@ -1437,8 +1444,9 @@ section { scroll-margin-top: 68px; }
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
             <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are preliminary.</p>
           </form>
+          <iframe name="formsubmit-frame" title="Assessment email submission" style="display:none;"></iframe>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — your preliminary results are below and sent to your email</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below</span></div>
             <div class="result-score-card">
               <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
@@ -1452,6 +1460,11 @@ section { scroll-margin-top: 68px; }
             <div class="result-pattern-section">
               <div class="result-pattern-label">Likely Pain Pattern Detected</div>
               <div class="result-pattern-card"><div class="rpc-name" id="r-pattern-name">—</div><div class="rpc-desc" id="r-pattern-desc">—</div></div>
+            </div>
+            <div class="result-insight-card">
+              <div class="ric-label">What this means</div>
+              <p class="ric-text" id="r-score-meaning">—</p>
+              <ul class="ric-list" id="r-action-list"></ul>
             </div>
             <div class="result-dim-section"><div class="result-dim-label">Score by Dimension</div><div class="result-dims" id="r-dims"></div></div>
             <div class="result-next-card">
@@ -2013,6 +2026,46 @@ function getReadinessKey(score) {
   return 'advanced';
 }
 
+function getScoreMeaning(score, sw) {
+  var readiness = getReadinessLevel(score);
+  if (score <= 40) {
+    return 'Your organization is showing signs of fragmentation. The biggest risk is not a single weak area; it is that decisions, workflows, data, and accountability may not be operating as one system. The priority is to stabilize the operating rhythm before adding new tools or transformation initiatives.';
+  }
+  if (score <= 60) {
+    return 'Your organization has enough operating structure to move, but the current system is constrained. The priority gap, ' + sw.weakness + ', is likely limiting execution speed, consistency, and confidence in decisions. This is where a structured diagnosis can produce quick clarity.';
+  }
+  if (score <= 75) {
+    return 'Your organization is developing a workable operating foundation, but some dimensions are still too inconsistent to support reliable scaling. The next step is to validate which gaps are symptoms and which are root causes.';
+  }
+  if (score <= 88) {
+    return 'Your organization appears ready for transformation, but readiness does not mean every system is mature. The opportunity is to convert existing strengths into repeatable capability, better measurement, and a clearer improvement roadmap.';
+  }
+  return 'Your organization appears to have a strong operating base. The opportunity is less about repair and more about optimization: building advantage through continuous improvement, AI readiness, and scalable operating intelligence.';
+}
+
+function getLowestDimensions(limit) {
+  return QUESTIONS_DATA.map(function(q, i) {
+    return { label: q.label, answer: Q_ANSWERS[i] || 0, painPattern: q.painPattern };
+  }).sort(function(a, b) {
+    if (a.answer === b.answer) return a.label.localeCompare(b.label);
+    return a.answer - b.answer;
+  }).slice(0, limit);
+}
+
+function getActionItems(score, sw) {
+  var lowest = getLowestDimensions(3);
+  var items = [];
+  items.push('Start by validating whether "' + sw.weakness + '" is the root cause or a symptom of another operating constraint.');
+  if (lowest[0]) items.push('Review evidence around ' + lowest[0].label + ' first, because it received the lowest self-rating.');
+  if (lowest[1]) items.push('Compare ' + lowest[1].label + ' against leadership cadence, ownership, and workflow handoffs.');
+  if (score <= 60) {
+    items.push('Use a Diagnostic Blueprint before investing in a new tool, AI initiative, or large consulting engagement.');
+  } else {
+    items.push('Use a focused review call to turn the result into a practical improvement roadmap.');
+  }
+  return items;
+}
+
 function getStrengthAndWeakness() {
   var best = null; var worst = null;
   for (var i = 0; i < 12; i++) {
@@ -2061,11 +2114,21 @@ function buildAssessmentSummary(result) {
     'Priority Gap: ' + result.weakness,
     'Likely Pain Pattern: ' + result.painPattern,
     '',
+    'What this means:',
+    result.scoreMeaning || '',
+    '',
     'Recommended Next Step: ' + result.nextStepTitle,
     result.nextStepDesc,
     '',
-    'Score by Dimension:'
+    'Suggested focus areas:'
   ];
+  (result.actionItems || []).forEach(function(item) {
+    lines.push('- ' + item);
+  });
+  lines = lines.concat([
+    '',
+    'Score by Dimension:'
+  ]);
   result.answers.forEach(function(item) {
     lines.push('- ' + item.dimension + ': ' + item.answer + '/5');
   });
@@ -2086,17 +2149,25 @@ function buildAssessmentAutoresponse(result) {
     'Priority Gap: ' + result.weakness,
     'Likely Pain Pattern: ' + result.painPattern,
     '',
+    'What this means:',
+    result.scoreMeaning || '',
+    '',
     'Recommended Next Step: ' + result.nextStepTitle,
     result.nextStepDesc,
     '',
-    'What this means:',
+    'Suggested focus areas:'
+  ].concat((result.actionItems || []).map(function(item) {
+    return '- ' + item;
+  })).concat([
+    '',
+    'Why engage Nozomi:',
     'Your score is a useful first signal, but it is not a final diagnosis. A Nozomi Diagnostic Blueprint validates the findings through leadership interviews, workflow review, evidence analysis, and a practical 30/60/90-day improvement roadmap.',
     '',
     'If you want to move from self-assessment to a structured engagement, reply to this email and ask for a Diagnostic Blueprint review.',
     '',
     'Nozomi',
     'Assessment-first transformation firm'
-  ].join('\n');
+  ]).join('\n');
 }
 
 function copyTextToClipboard(text) {
@@ -2167,6 +2238,14 @@ function showResults(score, sw, org, email) {
   setText('r-pattern-desc',   sw.painDesc);
   setText('r-next-title',     nextStep.title);
   setText('r-next-desc',      nextStep.desc);
+  setText('r-score-meaning',  getScoreMeaning(score, sw));
+
+  var actionList = document.getElementById('r-action-list');
+  if (actionList) {
+    actionList.innerHTML = getActionItems(score, sw).map(function(item) {
+      return '<li>' + item + '</li>';
+    }).join('');
+  }
 
   /* Dimension bars */
   var dimsEl = document.getElementById('r-dims');
@@ -2295,6 +2374,8 @@ if (assessForm) {
       weakness:       sw.weakness,
       painPattern:    sw.painPat,
       painDesc:       sw.painDesc,
+      scoreMeaning:   getScoreMeaning(score, sw),
+      actionItems:    getActionItems(score, sw),
       nextStepTitle:  NEXT_STEPS[nsKey].title,
       nextStepDesc:   NEXT_STEPS[nsKey].desc,
       answers:        QUESTIONS_DATA.map(function(q, i) {
@@ -2307,12 +2388,14 @@ if (assessForm) {
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
-    /* ── 8. Submit to FormSubmit. The user returns here via _next, and results restore from sessionStorage. ── */
+    /* ── 8. Attempt email submission, then show the result immediately. ── */
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
 
     setTimeout(function() {
       assessForm.submit();
+      if (overlay) overlay.classList.remove('show');
+      showResults(score, sw, org, email);
     }, 450);
   });
 
