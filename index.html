@@ -874,6 +874,177 @@ section { scroll-margin-top: 68px; }
 .sending-spinner { width:26px; height:26px; border:2px solid rgba(212,175,55,0.2); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 .sending-text { font-size:13px; color:rgba(255,255,255,0.52); }
+
+
+/* ═══════════════════════════════════
+   NOZOMI ASSISTANT CHATBOT
+═══════════════════════════════════ */
+.nozomi-chat-launcher {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border: 1px solid rgba(212,175,55,0.42);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.24), 0 0 30px rgba(212,175,55,0.20);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nozomi-chat-launcher:hover { transform: translateY(-2px); box-shadow: 0 22px 60px rgba(0,0,0,0.30), 0 0 35px rgba(212,175,55,0.26); }
+.nozomi-chat-dot { width: 8px; height: 8px; border-radius: 50%; background: #2E7D52; box-shadow: 0 0 0 4px rgba(46,125,82,0.16); }
+.nozomi-chat-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 82px;
+  width: min(420px, calc(100vw - 32px));
+  max-height: min(690px, calc(100vh - 110px));
+  z-index: 501;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #06101C;
+  border: 1px solid rgba(212,175,55,0.32);
+  box-shadow: 0 26px 90px rgba(0,0,0,0.46), 0 0 60px rgba(212,175,55,0.08);
+}
+.nozomi-chat-panel.open { display: flex; }
+.nozomi-chat-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 17px;
+  background: linear-gradient(145deg, rgba(11,19,32,0.98), rgba(6,16,28,0.98));
+  border-bottom: 1px solid rgba(212,175,55,0.20);
+}
+.nozomi-chat-title { color: white; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+.nozomi-chat-status { display: flex; align-items: center; gap: 7px; margin-top: 4px; color: rgba(255,255,255,0.42); font-size: 11.5px; line-height: 1.4; }
+.nozomi-chat-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px rgba(212,175,55,0.65); flex-shrink: 0; }
+.nozomi-chat-close {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+.nozomi-chat-close:hover { background: rgba(255,255,255,0.08); color: white; }
+.nozomi-chat-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  background: radial-gradient(ellipse at top right, rgba(212,175,55,0.06), transparent 45%), #06101C;
+}
+.nozomi-chat-msg { display: flex; margin-bottom: 10px; }
+.nozomi-chat-msg.bot { justify-content: flex-start; }
+.nozomi-chat-msg.user { justify-content: flex-end; }
+.nozomi-chat-bubble {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.nozomi-chat-msg.bot .nozomi-chat-bubble { background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.72); border-bottom-left-radius: 4px; }
+.nozomi-chat-msg.user .nozomi-chat-bubble { background: rgba(212,175,55,0.14); border: 1px solid rgba(212,175,55,0.28); color: rgba(255,255,255,0.86); border-bottom-right-radius: 4px; }
+.nozomi-chat-card {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(212,175,55,0.20);
+  background: rgba(255,255,255,0.035);
+}
+.nozomi-chat-field { margin-bottom: 10px; }
+.nozomi-chat-field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.36);
+  margin-bottom: 5px;
+}
+.nozomi-chat-field input,
+.nozomi-chat-field select,
+.nozomi-chat-field textarea {
+  width: 100%;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,0.13);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  font-family: inherit;
+  font-size: 13.5px;
+  padding: 10px 11px;
+  outline: none;
+}
+.nozomi-chat-field textarea { min-height: 86px; resize: vertical; line-height: 1.5; }
+.nozomi-chat-field input:focus,
+.nozomi-chat-field select:focus,
+.nozomi-chat-field textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+.nozomi-chat-field select option { background: var(--navy); color: white; }
+.nozomi-chat-field input::placeholder,
+.nozomi-chat-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+.nozomi-chat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.nozomi-chat-consent { display: flex; gap: 9px; align-items: flex-start; margin: 8px 0 11px; }
+.nozomi-chat-consent input { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); }
+.nozomi-chat-consent label { font-size: 11.5px; color: rgba(255,255,255,0.42); line-height: 1.55; cursor: pointer; }
+.nozomi-chat-submit {
+  width: 100%;
+  border: none;
+  border-radius: 9px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.nozomi-chat-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.nozomi-chat-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.nozomi-chat-error { display: none; margin: 6px 0 0; color: #E05252; font-size: 11.5px; line-height: 1.45; }
+.nozomi-chat-success {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 11px;
+  background: rgba(46,125,82,0.13);
+  border: 1px solid rgba(46,125,82,0.32);
+  color: rgba(255,255,255,0.72);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.nozomi-chat-route {
+  display: none;
+  margin: 10px 0;
+  padding: 10px 11px;
+  border-radius: 10px;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.20);
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.nozomi-chat-fine { margin-top: 10px; font-size: 10.5px; color: rgba(255,255,255,0.24); line-height: 1.5; text-align: center; }
+.nozomi-chat-fine a { color: var(--champagne); }
+@media(max-width:640px) {
+  .nozomi-chat-launcher { right: 16px; bottom: 88px; padding: 12px 15px; }
+  .nozomi-chat-panel { left: 12px; right: 12px; bottom: 150px; width: auto; max-height: calc(100vh - 180px); }
+  .nozomi-chat-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -922,7 +1093,7 @@ section { scroll-margin-top: 68px; }
     </nav>
 
     <div class="hdr-actions">
-      <button class="btn-hdr-ghost" onclick="openCalendly()">Request Review Call</button>
+      <button class="btn-hdr-ghost" onclick="toggleNozomiChat(true)">Contact Nozomi</button>
       <button class="btn-hdr-primary" onclick="goToAssessment()">Take Free Assessment</button>
     </div>
 
@@ -978,11 +1149,11 @@ section { scroll-margin-top: 68px; }
             <span class="sc-badge" id="hero-scorecard-badge">Example Report View</span>
           </div>
           <div class="sc-score-line">
-            <span class="sc-num" id="hero-score">98</span>
+            <span class="sc-num" id="hero-score">67</span>
             <span class="sc-denom">/ 100</span>
           </div>
           <div class="sc-track"><div class="sc-fill" id="sc-bar-fill"></div></div>
-          <p class="sc-status-text" id="hero-readiness-line">Sample Operating Score: <strong>98 / 100</strong></p>
+          <p class="sc-status-text" id="hero-readiness-line">Sample Operating Score: <strong>67 / 100</strong></p>
           <p class="sc-status-text" id="hero-example-note">This is an example of the Nozomi 360 output. Complete the assessment to generate your own preliminary result.</p>
           <div class="sc-section">Example diagnostic outputs</div>
           <div class="sc-patterns">
@@ -992,7 +1163,7 @@ section { scroll-margin-top: 68px; }
           </div>
           <div class="sc-next" id="sc-next">
             <div class="sc-next-label">Recommended next step</div>
-            <div class="sc-next-val" id="hero-next-val">Complete the assessment to generate your preliminary result.</div>
+            <div class="sc-next-val" id="hero-next-val">Diagnostic Blueprint — validate the root causes before investing.</div>
           </div>
           <button class="sc-link" onclick="goToAssessment()">Start the Nozomi 360 Assessment →</button>
         </div>
@@ -1216,7 +1387,7 @@ section { scroll-margin-top: 68px; }
 
         <div class="lead-form-wrap fade-in" style="position:relative;">
           <div class="lf-title">Nozomi 360 Preliminary Operating Assessment</div>
-          <div class="lf-subtitle">Enter your details, answer 24 operating questions, and receive your preliminary operating readout by email.</div>
+          <div class="lf-subtitle">Answer 24 operating questions first. Then enter your details to receive your preliminary readout and request an optional assessment review.</div>
           <form id="assessment-form"
                 action="https://formsubmit.co/al_alahmadi@hotmail.com"
                 method="POST"
@@ -1269,29 +1440,6 @@ section { scroll-margin-top: 68px; }
             <input type="hidden" name="Q24 Future Readiness" id="h-q24">
             <input type="hidden" name="Submission Source" value="Nozomi.ai homepage assessment form">
             <input type="text" name="_honey" style="display:none">
-            <div class="form-row">
-              <div class="ff" id="ff-name"><label for="f-name">First name</label><input type="text" id="f-name" name="Full Name" placeholder="Sarah Chen" required autocomplete="given-name"></div>
-              <div class="ff" id="ff-org"><label for="f-org">Organization</label><input type="text" id="f-org" name="Organization" placeholder="Acme Corp" required autocomplete="organization"></div>
-            </div>
-            <div class="form-row single">
-              <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
-            </div>
-            <div class="form-row single">
-              <div class="ff">
-                <label for="f-role">Your role</label>
-                <select id="f-role" name="Role">
-                  <option value="" disabled selected>Select your role</option>
-                  <option>CEO / Founder / Owner</option>
-                  <option>COO / Operations Leader</option>
-                  <option>Chief Digital / Transformation Officer</option>
-                  <option>Government / Public-Sector Leader</option>
-                  <option>L&D / HR / People Leader</option>
-                  <option>Accelerator / Ecosystem Program Manager</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-
             <!-- ── 24 NOZOMI 360 PRELIMINARY OPERATING ASSESSMENT QUESTIONS ── -->
             <div style="margin-top:1.5rem;margin-bottom:0.25rem;">
               <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomi 360 Preliminary Operating Assessment — Rate each statement 1 to 5</div>
@@ -1612,14 +1760,42 @@ section { scroll-margin-top: 68px; }
               </div>
 
             </div><!-- /assessment-questions -->
+
+            <div style="margin-top:1.75rem;margin-bottom:0.85rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.45rem;">Step 2 — Receive your preliminary readout</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.28);line-height:1.6;">After answering the assessment questions, enter your details so Nozomi can send the score summary and follow up only if you request review.</div>
+            </div>
+            <div class="form-row">
+              <div class="ff" id="ff-name"><label for="f-name">First name</label><input type="text" id="f-name" name="Full Name" placeholder="Sarah Chen" required autocomplete="given-name"></div>
+              <div class="ff" id="ff-org"><label for="f-org">Organization</label><input type="text" id="f-org" name="Organization" placeholder="Acme Corp" required autocomplete="organization"></div>
+            </div>
+            <div class="form-row single">
+              <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
+            </div>
+            <div class="form-row single">
+              <div class="ff">
+                <label for="f-role">Your role</label>
+                <select id="f-role" name="Role">
+                  <option value="" disabled selected>Select your role</option>
+                  <option>CEO / Founder / Owner</option>
+                  <option>COO / Operations Leader</option>
+                  <option>Chief Digital / Transformation Officer</option>
+                  <option>Government / Public-Sector Leader</option>
+                  <option>L&D / HR / People Leader</option>
+                  <option>Accelerator / Ecosystem Program Manager</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
             <p id="assessment-error" class="assessment-error">Please answer all 24 assessment questions before submitting.</p>
             <div class="consent-row">
               <input type="checkbox" id="f-consent" name="Consent">
-              <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services.</label>
+              <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services. I understand the assessment is self-reported and preliminary.</label>
             </div>
             <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
-            <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are self-reported and preliminary.</p>
+            <p class="form-fine">Your preliminary result is emailed to you and shown after submission. Nozomi uses your information only to deliver the assessment result and respond to requested follow-up. Review the <a href="privacy.html" style="color:var(--champagne);">Privacy Notice</a> and <a href="terms.html" style="color:var(--champagne);">Terms</a>.</p>
           </form>
           <iframe name="formsubmit-frame" title="Assessment email delivery" style="display:none;"></iframe>
           <div class="form-success" id="form-success">
@@ -1654,7 +1830,7 @@ section { scroll-margin-top: 68px; }
             </div>
             <div class="result-cta-row">
               <button class="result-btn-primary" onclick="copyAssessmentResult()">Copy Results</button>
-              <button class="result-btn-ghost" onclick="navToTab('advisory')">Explore Advisory</button>
+              <button class="result-btn-ghost" onclick="requestAssessmentReview()">Request Assessment Review</button>
             </div>
             <div class="result-copy-status" id="r-copy-status">Results copied. You can paste them into a message or document.</div>
             <div class="result-email-note" id="r-email-note" style="display:none;">Copy your results or take a screenshot to keep a copy of your preliminary result.</div>
@@ -1743,10 +1919,10 @@ section { scroll-margin-top: 68px; }
 ══════════════════════════════════════════════ -->
 <section id="programs">
   <div class="wrap">
-    <div class="eyebrow">Programs & Investment</div>
+    <div class="eyebrow">Engagement Pathways</div>
     <div class="gold-rule"></div>
-    <h2 class="prog-head fade-in">Structured offers for every stage of readiness.</h2>
-    <p class="prog-sub fade-in">Advisory engagements for organizations. Labs programs for teams and institutions.</p>
+    <h2 class="prog-head fade-in">Clear pathways from preliminary assessment to validated diagnosis.</h2>
+    <p class="prog-sub fade-in">The free assessment comes first. Commercial scope is only proposed after the organization’s priorities, evidence, and readiness are clearer.</p>
 
     <div class="tab-switcher" role="tablist" aria-label="Program types">
       <button class="tab-btn" role="tab" id="tb-advisory" aria-selected="true"  aria-controls="tp-advisory" onclick="switchTab(this,'advisory')">Advisory</button>
@@ -1759,47 +1935,41 @@ section { scroll-margin-top: 68px; }
         <div class="offer-card">
           <div class="oc-phase">Diagnose</div>
           <div class="oc-title">Diagnostic Blueprint</div>
-          <div class="oc-price">$12,500 – $25,000+</div>
+          <div class="oc-price">Starting at $12,500</div>
           <div class="oc-desc">Validated operating score, bottleneck map, pain-pattern diagnosis, improvement roadmap, and executive report.</div>
         </div>
         <div class="offer-card ft">
           <div class="oc-phase">Reset</div>
           <div class="oc-title">Operations Reset</div>
-          <div class="oc-price">$26,000</div>
+          <div class="oc-price">Scoped after diagnosis</div>
           <div class="oc-desc">Urgent operating clarity, leadership alignment, 3-day operations review, and 30-day roadmap.</div>
         </div>
         <div class="offer-card">
           <div class="oc-phase">Transform</div>
           <div class="oc-title">90-Day Transformation</div>
-          <div class="oc-price">$66,000</div>
+          <div class="oc-price">From $66,000</div>
           <div class="oc-desc">Roadmap execution, weekly cadence, KPI tracking, executive reporting, and change management.</div>
         </div>
         <div class="offer-card">
           <div class="oc-phase">Improve</div>
           <div class="oc-title">Ongoing Improvement</div>
-          <div class="oc-price">$8,500 – $18,000+/mo</div>
+          <div class="oc-price">Custom monthly scope</div>
           <div class="oc-desc">Continued assessment, KPI review, operating discipline, and advisory partnership.</div>
         </div>
       </div>
 
       <button class="ladder-trigger" onclick="toggleLadder(this)" aria-expanded="false" aria-controls="full-ladder">
-        <span>View Full Advisory Ladder</span>
+        <span>View Advisory Pathway</span>
         <span class="ladder-chevron" aria-hidden="true">▾</span>
       </button>
-      <div class="full-ladder" id="full-ladder" role="region" aria-label="Full advisory offer ladder">
+      <div class="full-ladder" id="full-ladder" role="region" aria-label="Advisory pathway">
         <div class="l-row l-free"><span class="l-name">Free 360 Assessment</span><span class="l-price">Free</span></div>
-        <div class="l-row l-free"><span class="l-name">Assessment Review Call</span><span class="l-price">Free</span></div>
-        <div class="l-row"><span class="l-name">Focused Diagnostic Snapshot</span><span class="l-price">$7,500</span></div>
-        <div class="l-row"><span class="l-name">Standard Diagnostic Blueprint</span><span class="l-price">$12,500</span></div>
-        <div class="l-row"><span class="l-name">Advanced Diagnostic Blueprint</span><span class="l-price">$18,000 – $25,000+</span></div>
-        <div class="l-row"><span class="l-name">Operations Reset</span><span class="l-price">$26,000</span></div>
-        <div class="l-row"><span class="l-name">90-Day Transformation</span><span class="l-price">$66,000</span></div>
-        <div class="l-row"><span class="l-name">6-Month Transformation</span><span class="l-price">$108,000</span></div>
-        <div class="l-row"><span class="l-name">Ongoing Monitor</span><span class="l-price">$8,500 / mo</span></div>
-        <div class="l-row"><span class="l-name">Ongoing Improve</span><span class="l-price">$12,500 / mo</span></div>
-        <div class="l-row"><span class="l-name">Ongoing Partner</span><span class="l-price">$18,000+ / mo</span></div>
+        <div class="l-row l-free"><span class="l-name">Assessment Review</span><span class="l-price">Optional</span></div>
+        <div class="l-row"><span class="l-name">Diagnostic Blueprint</span><span class="l-price">Starts at $12,500</span></div>
+        <div class="l-row"><span class="l-name">90-Day Transformation</span><span class="l-price">From $66,000</span></div>
+        <div class="l-row"><span class="l-name">Institutional / GCC / Multi-Team Program</span><span class="l-price">Custom scope</span></div>
       </div>
-      <p class="prog-note">Travel, venue, translation, software, third-party specialists, and local compliance requirements are quoted separately unless included in a custom agreement.</p>
+      <p class="prog-note">Nozomi avoids prescribing a large engagement before diagnosis. Final scope depends on organization size, evidence review, stakeholder interviews, travel, workshop design, translation, software, third-party specialists, and local compliance needs.</p>
     </div>
 
     <!-- LABS TAB -->
@@ -1812,7 +1982,7 @@ section { scroll-margin-top: 68px; }
         <div class="labs-card">
           <div class="lc-duration">3 Weeks</div>
           <div class="lc-title">Transformation Readiness Sprint</div>
-          <div class="lc-price">$35,000 – $45,000</div>
+          <div class="lc-price">Scoped by cohort</div>
           <div class="lc-best-label">Best for</div>
           <div class="lc-best">Leadership teams, SME programs, public-sector pilots, and fast readiness and roadmap needs.</div>
           <div class="lc-del-label">Deliverables</div>
@@ -1831,7 +2001,7 @@ section { scroll-margin-top: 68px; }
         <div class="labs-card ft">
           <div class="lc-duration">6 Weeks</div>
           <div class="lc-title">AI & Digital Transformation Program</div>
-          <div class="lc-price">$65,000 – $85,000</div>
+          <div class="lc-price">Scoped by cohort</div>
           <div class="lc-best-label">Best for</div>
           <div class="lc-best">Corporate L&D teams, digital transformation offices, innovation units, mid-size enterprise, and public-sector departments.</div>
           <div class="lc-del-label">Deliverables</div>
@@ -1850,7 +2020,7 @@ section { scroll-margin-top: 68px; }
         <div class="labs-card">
           <div class="lc-duration">9 Weeks</div>
           <div class="lc-title">Institutional Transformation Accelerator</div>
-          <div class="lc-price">$95,000 – $125,000</div>
+          <div class="lc-price">Scoped by cohort</div>
           <div class="lc-best-label">Best for</div>
           <div class="lc-best">Large organizations, public-sector entities, multi-team programs, and GCC institutional buyers.</div>
           <div class="lc-del-label">Deliverables</div>
@@ -1868,7 +2038,7 @@ section { scroll-margin-top: 68px; }
         <div class="labs-card">
           <div class="lc-duration">Custom</div>
           <div class="lc-title">Government / Corporate Program</div>
-          <div class="lc-price">$150,000+</div>
+          <div class="lc-price">Custom institutional scope</div>
           <div class="lc-best-label">Best for</div>
           <div class="lc-best">Ministries, national programs, large enterprise, multi-cohort initiatives, and multi-department programs.</div>
           <div class="lc-del-label">Deliverables</div>
@@ -1910,6 +2080,29 @@ section { scroll-margin-top: 68px; }
       <span class="theme-chip">Startup Readiness</span>
     </div>
 
+    <div class="evidence-cards fade-in" style="margin-bottom:2.5rem;">
+      <div class="ev-card">
+        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-head">AI validation & standards company</div>
+        <div class="ev-body">Advisory exposure around enterprise credibility, standards alignment, and how technical validation can be positioned for larger AI ecosystem buyers.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-head">AI cybersecurity platform</div>
+        <div class="ev-body">Reviewed positioning, buyer pain points, risk framing, and how anomalous-behavior detection could be translated into a clearer market narrative.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-head">Dynamic discounting fintech</div>
+        <div class="ev-body">Supported thinking around GCC growth, enterprise sales readiness, CFO-facing messaging, and the operating discipline needed for scale.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-head">Smart healthtech platform</div>
+        <div class="ev-body">Advisory exposure around product narrative, operating readiness, stakeholder trust, and the path from patented technology to commercial adoption.</div>
+      </div>
+    </div>
+
     <!-- Proof architecture: three methodology pillars -->
     <div class="proof-blocks fade-in">
       <div class="proof-block">
@@ -1930,17 +2123,17 @@ section { scroll-margin-top: 68px; }
     </div>
     <div class="evidence-cards fade-in">
       <div class="ev-card">
-        <div class="ev-source">McKinsey 2025</div>
+        <div class="ev-source">External Signal</div>
         <div class="ev-head">AI value requires workflow redesign</div>
         <div class="ev-body">Organizations capturing measurable AI value are redesigning workflows and placing senior leaders in governance roles — not just adopting tools.</div>
       </div>
       <div class="ev-card">
-        <div class="ev-source">Thomson Reuters 2025</div>
+        <div class="ev-source">External Signal</div>
         <div class="ev-head">GenAI is moving into professional workflows</div>
         <div class="ev-body">GenAI adoption nearly doubled in professional services, with organizations moving from experimentation toward structured workflow integration.</div>
       </div>
       <div class="ev-card">
-        <div class="ev-source">Saudi Vision 2030 / SDAIA</div>
+        <div class="ev-source">Regional Signal</div>
         <div class="ev-head">GCC transformation demand is structural</div>
         <div class="ev-body">Saudi Arabia's national AI strategy is driving institutional modernization, workforce capability building, and AI governance investment across the GCC region.</div>
       </div>
@@ -1959,13 +2152,105 @@ section { scroll-margin-top: 68px; }
       <p class="cta-sub">Before your next consulting engagement, AI initiative, software investment, or transformation program — start with a structured diagnosis of what is actually holding your organization back.</p>
       <div class="cta-btns">
         <button class="btn-cta-primary" onclick="goToAssessment()">Take the Free Assessment</button>
-        <button class="btn-cta-ghost" onclick="openCalendly()">Request a Review Call</button>
+        <button class="btn-cta-ghost" onclick="openAssessmentReview()">Request Assessment Review</button>
+        <button class="btn-cta-ghost" onclick="toggleNozomiChat(true)">Message Nozomi</button>
       </div>
-      <p class="cta-contact">Nozomi.ai</p>
+      <p class="cta-contact"><a href="mailto:assessment@nozomi.ai">assessment@nozomi.ai</a> · Nozomi.ai</p>
       <p class="cta-disclaimer">Nozomi does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
     </div>
   </div>
 </section>
+
+
+
+<!-- ══════════════════════════════════════════════
+     NOZOMI ASSISTANT CHATBOT
+══════════════════════════════════════════════ -->
+<button class="nozomi-chat-launcher" id="nozomi-chat-launcher" type="button" onclick="toggleNozomiChat(true)" aria-controls="nozomi-chat-panel" aria-expanded="false">
+  <span class="nozomi-chat-dot" aria-hidden="true"></span>
+  <span>Ask Nozomi</span>
+</button>
+
+<div class="nozomi-chat-panel" id="nozomi-chat-panel" role="dialog" aria-modal="false" aria-labelledby="nozomi-chat-title">
+  <div class="nozomi-chat-head">
+    <div>
+      <div class="nozomi-chat-title" id="nozomi-chat-title">Nozomi Assistant</div>
+      <div class="nozomi-chat-status">Share your message — we respond within 24 hours or less.</div>
+    </div>
+    <button class="nozomi-chat-close" type="button" onclick="toggleNozomiChat(false)" aria-label="Close Nozomi Assistant">×</button>
+  </div>
+  <div class="nozomi-chat-body" id="nozomi-chat-body">
+    <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">Hello — I can collect your details, understand what you need, and send the message to Nozomi for follow-up within 24 hours or less.</div></div>
+    <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
+
+    <div class="nozomi-chat-card">
+      <form id="nozomi-chat-form" action="https://formsubmit.co/al_alahmadi@hotmail.com" method="POST" target="nozomi-chat-frame" novalidate>
+        <input type="hidden" name="_subject" value="New Nozomi Assistant Contact Request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_replyto" id="chat-replyto">
+        <input type="hidden" name="_cc" id="chat-cc">
+        <input type="hidden" name="Source" value="Nozomi Assistant Chatbot">
+        <input type="hidden" name="AI Suggested Route" id="chat-ai-route">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="nozomi-chat-grid">
+          <div class="nozomi-chat-field">
+            <label for="chat-name">Name</label>
+            <input id="chat-name" name="Full Name" type="text" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="nozomi-chat-field">
+            <label for="chat-email">Work email</label>
+            <input id="chat-email" name="Email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="nozomi-chat-grid">
+          <div class="nozomi-chat-field">
+            <label for="chat-org">Organization</label>
+            <input id="chat-org" name="Organization" type="text" placeholder="Company / institution" autocomplete="organization" required>
+          </div>
+          <div class="nozomi-chat-field">
+            <label for="chat-phone">Phone optional</label>
+            <input id="chat-phone" name="Phone" type="tel" placeholder="Optional" autocomplete="tel">
+          </div>
+        </div>
+        <div class="nozomi-chat-grid">
+          <div class="nozomi-chat-field">
+            <label for="chat-role">Role</label>
+            <input id="chat-role" name="Role" type="text" placeholder="CEO, COO, Director..." autocomplete="organization-title">
+          </div>
+          <div class="nozomi-chat-field">
+            <label for="chat-interest">Need</label>
+            <select id="chat-interest" name="Primary Need" required onchange="updateNozomiChatRoute()">
+              <option value="" disabled selected>Select one</option>
+              <option>Free 360 Assessment</option>
+              <option>Diagnostic Blueprint</option>
+              <option>Operations Reset</option>
+              <option>AI / Digital Transformation Lab</option>
+              <option>GCC / Institutional Program</option>
+              <option>Partnership / Speaking / Workshop</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="nozomi-chat-field">
+          <label for="chat-message">Message</label>
+          <textarea id="chat-message" name="Message" placeholder="Tell us what is happening, what you want to fix, and the best way to contact you." required oninput="updateNozomiChatRoute()"></textarea>
+        </div>
+        <div class="nozomi-chat-route" id="nozomi-chat-route"></div>
+        <div class="nozomi-chat-consent">
+          <input id="chat-consent" name="Consent" type="checkbox" required>
+          <label for="chat-consent">I agree to be contacted by Nozomi about my message. I understand this is not legal, accounting, HR, software, or regulated professional advice.</label>
+        </div>
+        <button class="nozomi-chat-submit" id="nozomi-chat-submit" type="submit">Send Message →</button>
+        <div class="nozomi-chat-error" id="nozomi-chat-error">Please complete your name, work email, organization, need, message, and consent before sending.</div>
+        <div class="nozomi-chat-success" id="nozomi-chat-success">Message received. Nozomi will contact you within 24 hours or less. A copy has been routed to assessment@nozomi.ai.</div>
+        <div class="nozomi-chat-fine">Protected by a basic anti-spam field. Review the <a href="privacy.html">Privacy Notice</a> and <a href="terms.html">Terms</a>.</div>
+      </form>
+      <iframe name="nozomi-chat-frame" title="Nozomi Assistant message delivery" style="display:none;"></iframe>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════
      FOOTER
@@ -2029,12 +2314,16 @@ section { scroll-margin-top: 68px; }
 
       <div>
         <div class="ft-col-head">Contact</div>
-        <span class="ft-domain">Nozomi.ai</span>
+        <a class="ft-email" href="mailto:assessment@nozomi.ai">assessment@nozomi.ai</a><span class="ft-domain">Nozomi.ai</span>
       </div>
 
     </div>
     <div class="ft-bottom">
       <span class="ft-copy">© 2026 Nozomi. All rights reserved.</span>
+      <div class="ft-legal">
+        <a href="privacy.html">Privacy Notice</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -2059,19 +2348,31 @@ function navToTab(tabName) {
 function goToAssessment() {
   navTo('assessment');
   setTimeout(function() {
-    var f = document.getElementById('f-name');
-    if (f) f.focus();
+    var firstOption = document.querySelector('.assessment-question .aq-option');
+    if (firstOption) firstOption.focus();
   }, 650);
 }
 
-function openCalendly() {
+function openAssessmentReview() {
   var reviewField = document.getElementById('h-review-call');
   if (reviewField) reviewField.value = 'Yes';
   goToAssessment();
   setTimeout(function() {
-    var consent = document.getElementById('f-consent');
-    if (consent && !consent.checked) consent.focus();
+    var firstOption = document.querySelector('.assessment-question .aq-option');
+    if (firstOption) firstOption.focus();
   }, 700);
+}
+
+/* Backward-compatible alias for any old CTA markup. */
+function openCalendly() { openAssessmentReview(); }
+
+function requestAssessmentReview() {
+  var subject = 'Nozomi Assessment Review Request';
+  var body = 'Hello Nozomi,%0D%0A%0D%0AI completed the 360 Assessment and would like to request an assessment review.%0D%0A';
+  if (LAST_ASSESSMENT_RESULT) {
+    body += '%0D%0AOrganization: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.org || '') + '%0D%0AOperating Score: ' + encodeURIComponent(String(LAST_ASSESSMENT_RESULT.score || '')) + '/100%0D%0ALikely Pattern: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.painPattern || '') + '%0D%0A';
+  }
+  window.location.href = 'mailto:assessment@nozomi.ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
 }
 
 /* ── TABS ────────────────────────────────────────────── */
@@ -2635,7 +2936,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /* ── HERO SCORECARD ANIMATION ───────────────────────── */
 (function() {
   var bar = document.getElementById('sc-bar-fill');
-  if (bar) bar.style.width = '98%';
+  if (bar) bar.style.width = '67%';
 })();
 
 /* ── FADE IN ON SCROLL ───────────────────────────────── */
@@ -2650,6 +2951,105 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
 })();
+
+
+/* ── NOZOMI ASSISTANT CHATBOT ───────────────────────── */
+function toggleNozomiChat(forceOpen) {
+  var panel = document.getElementById('nozomi-chat-panel');
+  var launcher = document.getElementById('nozomi-chat-launcher');
+  if (!panel || !launcher) return;
+  var shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !panel.classList.contains('open');
+  panel.classList.toggle('open', shouldOpen);
+  launcher.setAttribute('aria-expanded', String(shouldOpen));
+  if (shouldOpen) {
+    setTimeout(function() {
+      var first = document.getElementById('chat-name');
+      if (first) first.focus();
+    }, 80);
+  }
+}
+
+function inferNozomiRoute(interest, message) {
+  var text = ((interest || '') + ' ' + (message || '')).toLowerCase();
+  if (/\b(gcc|government|ministry|public sector|institution|institutional|cohort|training|workshop|arabic|saudi|qatar|oman|uae|riyadh|doha|dubai)\b/.test(text)) {
+    return 'GCC / Institutional Program';
+  }
+  if (/\b(ai|automation|digital|data|workflow redesign|use case|use-case|transformation lab|lab)\b/.test(text)) {
+    return 'AI / Digital Transformation Lab';
+  }
+  if (/\b(operations|process|workflow|bottleneck|execution|accountability|reset|scale|chaos)\b/.test(text)) {
+    return 'Operations Reset';
+  }
+  if (/\b(diagnose|diagnostic|blueprint|roadmap|root cause|root-cause|90 day|90-day)\b/.test(text)) {
+    return 'Diagnostic Blueprint';
+  }
+  if (/\b(assessment|score|360|evaluate|review)\b/.test(text)) {
+    return 'Free 360 Assessment';
+  }
+  return interest || 'General Nozomi Review';
+}
+
+function updateNozomiChatRoute() {
+  var interest = document.getElementById('chat-interest');
+  var message = document.getElementById('chat-message');
+  var routeBox = document.getElementById('nozomi-chat-route');
+  var routeInput = document.getElementById('chat-ai-route');
+  if (!routeBox || !routeInput) return;
+  var route = inferNozomiRoute(interest ? interest.value : '', message ? message.value : '');
+  routeInput.value = route;
+  if ((interest && interest.value) || (message && message.value.trim().length > 12)) {
+    routeBox.style.display = 'block';
+    routeBox.innerHTML = '<strong style="color:var(--champagne);">Suggested route:</strong> ' + route + '<br><span style="color:rgba(255,255,255,0.38);">This helps Nozomi route your message to the right review path.</span>';
+  } else {
+    routeBox.style.display = 'none';
+  }
+}
+
+var nozomiChatForm = document.getElementById('nozomi-chat-form');
+if (nozomiChatForm) {
+  nozomiChatForm.addEventListener('submit', function(e) {
+    var name = document.getElementById('chat-name');
+    var email = document.getElementById('chat-email');
+    var org = document.getElementById('chat-org');
+    var interest = document.getElementById('chat-interest');
+    var message = document.getElementById('chat-message');
+    var consent = document.getElementById('chat-consent');
+    var error = document.getElementById('nozomi-chat-error');
+    var success = document.getElementById('nozomi-chat-success');
+    var submitBtn = document.getElementById('nozomi-chat-submit');
+    var replyTo = document.getElementById('chat-replyto');
+    var chatCc = document.getElementById('chat-cc');
+    updateNozomiChatRoute();
+    var validEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    var isValid = name && name.value.trim() && validEmail && org && org.value.trim() && interest && interest.value && message && message.value.trim() && consent && consent.checked;
+    if (!isValid) {
+      e.preventDefault();
+      if (error) error.style.display = 'block';
+      if (success) success.style.display = 'none';
+      return false;
+    }
+    if (error) error.style.display = 'none';
+    if (replyTo) replyTo.value = email.value.trim();
+    if (chatCc) chatCc.value = email.value.trim();
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+    }
+    setTimeout(function() {
+      if (success) success.style.display = 'block';
+      if (submitBtn) {
+        submitBtn.textContent = 'Message Sent';
+      }
+      var body = document.getElementById('nozomi-chat-body');
+      if (body) body.scrollTop = body.scrollHeight;
+    }, 650);
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') toggleNozomiChat(false);
+});
+
 </script>
 </body>
 </html>
