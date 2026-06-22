@@ -3042,6 +3042,16 @@ if (nozomiChatForm) {
       }
       var body = document.getElementById('nozomi-chat-body');
       if (body) body.scrollTop = body.scrollHeight;
+      setTimeout(function() {
+        toggleNozomiChat(false);
+        if (nozomiChatForm) nozomiChatForm.reset();
+        if (success) success.style.display = 'none';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message →';
+        }
+        updateNozomiChatRoute();
+      }, 3200);
     }, 650);
   });
 }
