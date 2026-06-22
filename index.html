@@ -1226,6 +1226,7 @@ section { scroll-margin-top: 68px; }
             <!-- FormSubmit configuration -->
             <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
             <input type="hidden" name="_replyto" id="h-replyto">
+            <input type="hidden" name="_cc" id="h-cc">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
@@ -2585,6 +2586,7 @@ if (assessForm) {
     var summary = buildAssessmentSummary(result);
     document.getElementById('h-subject').value = 'New Nozomi 360 Assessment Submission — ' + org;
     document.getElementById('h-replyto').value = email;
+    document.getElementById('h-cc').value = email;
     document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(result);
     document.getElementById('h-summary').value = summary;
     document.getElementById('h-score').value = score + '/100';
