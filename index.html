@@ -859,6 +859,8 @@ section { scroll-margin-top: 68px; }
 .result-btn-primary:hover { background:#0F1E35; }
 .result-btn-ghost { flex:1; min-width:130px; padding:11px 16px; background:transparent; color:rgba(255,255,255,0.72); border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-size:13.5px; font-weight:500; cursor:pointer; transition:all 0.2s; font-family:inherit; }
 .result-btn-ghost:hover { border-color:rgba(255,255,255,0.42); background:rgba(255,255,255,0.06); }
+.result-copy-status { display:none; font-size:11.5px; color:rgba(76,175,128,0.9); text-align:center; margin-top:-0.45rem; margin-bottom:0.8rem; }
+.result-copy-status.show { display:block; }
 .result-email-note { font-size:11px; color:rgba(255,255,255,0.28); text-align:center; padding-top:0.65rem; border-top:1px solid rgba(255,255,255,0.07); }
 .result-email-note strong { color:rgba(255,255,255,0.48); }
 .sending-overlay { display:none; position:absolute; inset:0; background:rgba(6,16,28,0.92); border-radius:14px; align-items:center; justify-content:center; flex-direction:column; gap:12px; z-index:10; }
@@ -1457,10 +1459,11 @@ section { scroll-margin-top: 68px; }
               <div class="rnc-disclaimer">This is a preliminary self-assessment. The Diagnostic Blueprint validates findings through leadership interviews, workflow review, and evidence analysis.</div>
             </div>
             <div class="result-cta-row">
-              <button class="result-btn-primary" onclick="openCalendly()">Book a Review Call →</button>
+              <button class="result-btn-primary" onclick="copyAssessmentResult()">Copy Results</button>
               <button class="result-btn-ghost" onclick="navToTab('advisory')">Explore Advisory</button>
             </div>
-            <div class="result-email-note" id="r-email-note" style="display:none;">Save this page or take a screenshot to keep a copy of your preliminary result.</div>
+            <div class="result-copy-status" id="r-copy-status">Results copied. You can paste them into a message or document.</div>
+            <div class="result-email-note" id="r-email-note" style="display:none;">Copy your results or take a screenshot to keep a copy of your preliminary result.</div>
           </div>
         </div>
 
@@ -1964,6 +1967,7 @@ var QUESTIONS_DATA = [
   { id:'h-q12', label:'Strategic Value & Future Readiness',     painPattern:'Strategy–Execution Gap',  painDesc:'Strategy exists at leadership level but does not translate into team priorities, operating discipline, or measurable action.' },
 ];
 var Q_ANSWERS = {};
+var LAST_ASSESSMENT_RESULT = null;
 
 var NEXT_STEPS = {
   critical:    { title:'Operations Reset + Diagnostic Blueprint',           desc:'Your score indicates significant operating gaps across multiple dimensions. We recommend beginning with an Operations Reset to establish immediate clarity, followed by a Diagnostic Blueprint to validate root causes and build a structured improvement roadmap.' },
@@ -2037,6 +2041,82 @@ function animateNum(el, target) {
     el.textContent = n;
     if (n >= target) clearInterval(t);
   }, 22);
+}
+
+function buildAssessmentSummary(result) {
+  if (!result) return '';
+  var lines = [
+    'Nozomi 360 Preliminary Assessment Result',
+    '',
+    'Organization: ' + (result.org || 'Not provided'),
+    'Name: ' + (result.name || 'Not provided'),
+    'Role: ' + (result.role || 'Not provided'),
+    'Email: ' + (result.email || 'Not provided'),
+    '',
+    'Operating Score: ' + result.score + '/100',
+    'Transformation Readiness: ' + result.readiness,
+    'Top Strength: ' + result.strength,
+    'Priority Gap: ' + result.weakness,
+    'Likely Pain Pattern: ' + result.painPattern,
+    '',
+    'Recommended Next Step: ' + result.nextStepTitle,
+    result.nextStepDesc,
+    '',
+    'Score by Dimension:'
+  ];
+  result.answers.forEach(function(item) {
+    lines.push('- ' + item.dimension + ': ' + item.answer + '/5');
+  });
+  lines.push('');
+  lines.push('Note: This is a preliminary self-assessment. A Diagnostic Blueprint validates findings through leadership interviews, workflow review, and evidence analysis.');
+  return lines.join('\n');
+}
+
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise(function(resolve, reject) {
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.left = '-9999px';
+    document.body.appendChild(area);
+    area.select();
+    try {
+      document.execCommand('copy') ? resolve() : reject(new Error('Copy command failed'));
+    } catch (err) {
+      reject(err);
+    } finally {
+      document.body.removeChild(area);
+    }
+  });
+}
+
+function showCopyStatus(message, isError) {
+  var status = document.getElementById('r-copy-status');
+  if (!status) return;
+  status.textContent = message;
+  status.style.color = isError ? '#E8A43C' : 'rgba(76,175,128,0.9)';
+  status.classList.add('show');
+  clearTimeout(showCopyStatus.timer);
+  showCopyStatus.timer = setTimeout(function() {
+    status.classList.remove('show');
+  }, 3200);
+}
+
+function copyAssessmentResult() {
+  var text = buildAssessmentSummary(LAST_ASSESSMENT_RESULT);
+  if (!text) {
+    showCopyStatus('Generate your result first, then copy it.', true);
+    return;
+  }
+  copyTextToClipboard(text).then(function() {
+    showCopyStatus('Results copied. You can paste them into a message or document.', false);
+  }).catch(function() {
+    showCopyStatus('Copy did not work in this browser. Take a screenshot instead.', true);
+  });
 }
 
 function showResults(score, sw, org, email) {
@@ -2176,25 +2256,26 @@ if (assessForm) {
     document.getElementById('h-q11').value = 'Continuous Improvement Culture: '         + Q_ANSWERS[10] + '/5';
     document.getElementById('h-q12').value = 'Strategic Value & Future Readiness: '     + Q_ANSWERS[11] + '/5';
 
-    /* ── 7. Save results to sessionStorage for post-redirect display ── */
+    /* ── 7. Save results for copying and optional post-redirect display ── */
+    var savedResult = {
+      name:           name,
+      email:          email,
+      org:            org,
+      role:           role,
+      score:          score,
+      readiness:      getReadinessLevel(score),
+      strength:       sw.strength,
+      weakness:       sw.weakness,
+      painPattern:    sw.painPat,
+      painDesc:       sw.painDesc,
+      nextStepTitle:  NEXT_STEPS[nsKey].title,
+      nextStepDesc:   NEXT_STEPS[nsKey].desc,
+      answers:        QUESTIONS_DATA.map(function(q, i) {
+        return { dimension: q.label, answer: Q_ANSWERS[i] };
+      })
+    };
+    LAST_ASSESSMENT_RESULT = savedResult;
     try {
-      var savedResult = {
-        name:           name,
-        email:          email,
-        org:            org,
-        role:           role,
-        score:          score,
-        readiness:      getReadinessLevel(score),
-        strength:       sw.strength,
-        weakness:       sw.weakness,
-        painPattern:    sw.painPat,
-        painDesc:       sw.painDesc,
-        nextStepTitle:  NEXT_STEPS[nsKey].title,
-        nextStepDesc:   NEXT_STEPS[nsKey].desc,
-        answers:        QUESTIONS_DATA.map(function(q, i) {
-          return { dimension: q.label, answer: Q_ANSWERS[i] };
-        })
-      };
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
@@ -2225,6 +2306,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try { saved = JSON.parse(sessionStorage.getItem('nozomiAssessmentResult')); } catch(e) {}
 
     if (saved) {
+      LAST_ASSESSMENT_RESULT = saved;
       /* Rebuild sw object from saved data */
       var sw = {
         strength: saved.strength,
