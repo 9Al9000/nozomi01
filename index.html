@@ -1219,35 +1219,38 @@ section { scroll-margin-top: 68px; }
           <form id="assessment-form"
                 action="https://formsubmit.co/al_alahmadi@hotmail.com"
                 method="POST"
+                target="formsubmit-frame"
                 novalidate>
 
             <!-- FormSubmit configuration -->
             <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
             <input type="hidden" name="_replyto" id="h-replyto">
-            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_template" value="box">
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
             <input type="hidden" name="_autoresponse" id="h-autoresponse">
+            <input type="hidden" name="Assessment Summary" id="h-summary">
 
             <!-- Scoring results — populated by JS before submit -->
-            <input type="hidden" name="Operating Score"       id="h-score">
-            <input type="hidden" name="Readiness Level"       id="h-readiness">
-            <input type="hidden" name="Top Strength"          id="h-strength">
-            <input type="hidden" name="Top Weakness"          id="h-weakness">
-            <input type="hidden" name="Likely Pain Pattern"   id="h-pattern">
-            <input type="hidden" name="Recommended Next Step" id="h-nextstep">
-            <input type="hidden" name="Leadership &amp; Decision Rhythm"          id="h-q1">
-            <input type="hidden" name="Customer &amp; Market Quality"             id="h-q2">
-            <input type="hidden" name="Service Delivery &amp; Workflow"           id="h-q3">
-            <input type="hidden" name="People, Capacity &amp; Delegation"         id="h-q4">
-            <input type="hidden" name="Financial Discipline &amp; Revenue"        id="h-q5">
-            <input type="hidden" name="Technology, Data &amp; AI Readiness"       id="h-q6">
-            <input type="hidden" name="Quality, Risk &amp; Compliance"            id="h-q7">
-            <input type="hidden" name="Client / Customer Experience"              id="h-q8">
-            <input type="hidden" name="Measurement &amp; Operating Intelligence"  id="h-q9">
-            <input type="hidden" name="Scalability &amp; Owner Independence"      id="h-q10">
-            <input type="hidden" name="Continuous Improvement Culture"            id="h-q11">
-            <input type="hidden" name="Strategic Value &amp; Future Readiness"    id="h-q12">
+            <input type="hidden" id="h-score">
+            <input type="hidden" id="h-readiness">
+            <input type="hidden" id="h-strength">
+            <input type="hidden" id="h-weakness">
+            <input type="hidden" id="h-pattern">
+            <input type="hidden" id="h-nextstep">
+            <input type="hidden" id="h-q1">
+            <input type="hidden" id="h-q2">
+            <input type="hidden" id="h-q3">
+            <input type="hidden" id="h-q4">
+            <input type="hidden" id="h-q5">
+            <input type="hidden" id="h-q6">
+            <input type="hidden" id="h-q7">
+            <input type="hidden" id="h-q8">
+            <input type="hidden" id="h-q9">
+            <input type="hidden" id="h-q10">
+            <input type="hidden" id="h-q11">
+            <input type="hidden" id="h-q12">
             <input type="hidden" name="Submission Source" value="Nozomi.ai homepage assessment form">
+            <input type="text" name="_honey" style="display:none">
             <div class="form-row">
               <div class="ff" id="ff-name"><label for="f-name">First name</label><input type="text" id="f-name" name="Full Name" placeholder="Sarah Chen" required autocomplete="given-name"></div>
               <div class="ff" id="ff-org"><label for="f-org">Organization</label><input type="text" id="f-org" name="Organization" placeholder="Acme Corp" required autocomplete="organization"></div>
@@ -1443,8 +1446,9 @@ section { scroll-margin-top: 68px; }
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
             <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are preliminary.</p>
           </form>
+          <iframe name="formsubmit-frame" title="Assessment email delivery" style="display:none;"></iframe>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — your preliminary results are below and sent to your email</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below and a copy is being emailed</span></div>
             <div class="result-score-card">
               <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
@@ -2338,28 +2342,6 @@ if (assessForm) {
     var hNext = document.getElementById('h-next');
     if (hNext) hNext.value = window.location.origin + window.location.pathname + '?submitted=1';
 
-    /* Score fields */
-    document.getElementById('h-score').value     = score + '/100';
-    document.getElementById('h-readiness').value = getReadinessLevel(score);
-    document.getElementById('h-strength').value  = sw.strength;
-    document.getElementById('h-weakness').value  = sw.weakness;
-    document.getElementById('h-pattern').value   = sw.painPat + ' — ' + sw.painDesc;
-    document.getElementById('h-nextstep').value  = NEXT_STEPS[nsKey].title;
-
-    /* Individual dimension answers — readable labels */
-    document.getElementById('h-q1').value  = 'Leadership & Decision Rhythm: '           + Q_ANSWERS[0]  + '/5';
-    document.getElementById('h-q2').value  = 'Customer & Market Quality: '              + Q_ANSWERS[1]  + '/5';
-    document.getElementById('h-q3').value  = 'Service Delivery & Workflow: '            + Q_ANSWERS[2]  + '/5';
-    document.getElementById('h-q4').value  = 'People, Capacity & Delegation: '          + Q_ANSWERS[3]  + '/5';
-    document.getElementById('h-q5').value  = 'Financial Discipline & Revenue Leakage: ' + Q_ANSWERS[4]  + '/5';
-    document.getElementById('h-q6').value  = 'Technology, Data & AI Readiness: '        + Q_ANSWERS[5]  + '/5';
-    document.getElementById('h-q7').value  = 'Quality, Risk & Compliance: '             + Q_ANSWERS[6]  + '/5';
-    document.getElementById('h-q8').value  = 'Client / Customer Experience: '           + Q_ANSWERS[7]  + '/5';
-    document.getElementById('h-q9').value  = 'Measurement & Operating Intelligence: '   + Q_ANSWERS[8]  + '/5';
-    document.getElementById('h-q10').value = 'Scalability & Owner Independence: '       + Q_ANSWERS[9]  + '/5';
-    document.getElementById('h-q11').value = 'Continuous Improvement Culture: '         + Q_ANSWERS[10] + '/5';
-    document.getElementById('h-q12').value = 'Strategic Value & Future Readiness: '     + Q_ANSWERS[11] + '/5';
-
     /* ── 7. Save results for copying and optional post-redirect display ── */
     var savedResult = {
       name:           name,
@@ -2381,17 +2363,39 @@ if (assessForm) {
       })
     };
     LAST_ASSESSMENT_RESULT = savedResult;
+    var summary = buildAssessmentSummary(savedResult);
     document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(savedResult);
+    document.getElementById('h-summary').value = summary;
+    document.getElementById('h-score').value     = score + '/100';
+    document.getElementById('h-readiness').value = getReadinessLevel(score);
+    document.getElementById('h-strength').value  = sw.strength;
+    document.getElementById('h-weakness').value  = sw.weakness;
+    document.getElementById('h-pattern').value   = sw.painPat + ' — ' + sw.painDesc;
+    document.getElementById('h-nextstep').value  = NEXT_STEPS[nsKey].title;
+    document.getElementById('h-q1').value  = Q_ANSWERS[0]  + '/5';
+    document.getElementById('h-q2').value  = Q_ANSWERS[1]  + '/5';
+    document.getElementById('h-q3').value  = Q_ANSWERS[2]  + '/5';
+    document.getElementById('h-q4').value  = Q_ANSWERS[3]  + '/5';
+    document.getElementById('h-q5').value  = Q_ANSWERS[4]  + '/5';
+    document.getElementById('h-q6').value  = Q_ANSWERS[5]  + '/5';
+    document.getElementById('h-q7').value  = Q_ANSWERS[6]  + '/5';
+    document.getElementById('h-q8').value  = Q_ANSWERS[7]  + '/5';
+    document.getElementById('h-q9').value  = Q_ANSWERS[8]  + '/5';
+    document.getElementById('h-q10').value = Q_ANSWERS[9]  + '/5';
+    document.getElementById('h-q11').value = Q_ANSWERS[10] + '/5';
+    document.getElementById('h-q12').value = Q_ANSWERS[11] + '/5';
     try {
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
-    /* ── 8. Submit normally to FormSubmit so email delivery and autoresponse can run. ── */
+    /* ── 8. Send email in the background and show the result immediately. ── */
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
 
     setTimeout(function() {
       assessForm.submit();
+      if (overlay) overlay.classList.remove('show');
+      showResults(score, sw, org, email);
     }, 450);
   });
 
