@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nozomi — Assess. Transform. Improve.</title>
+<meta name="description" content="Nozomi is an assessment-first transformation firm helping businesses, teams, and institutions identify what is holding them back and build practical paths to measurable improvement.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nozomi.ai/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nozomi.ai/">
+<meta property="og:title" content="Nozomi — Assess. Transform. Improve.">
+<meta property="og:description" content="Assessment-first transformation firm helping businesses, teams, and institutions identify what is holding them back and build practical paths to measurable improvement.">
+<meta property="og:image" content="https://nozomi.ai/og-image.png">
+<meta property="og:site_name" content="Nozomi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nozomi — Assess. Transform. Improve.">
+<meta name="twitter:description" content="Assessment-first transformation firm. Assess. Transform. Improve.">
+<meta name="twitter:image" content="https://nozomi.ai/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='44' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23F0D468'/%3E%3Cstop offset='100%25' stop-color='%23A8861A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='44' rx='6' fill='%230B1320'/%3E%3Cpolygon points='9,3 17,3 37,41 29,41' fill='url(%23g)'/%3E%3Cpolygon points='9,3 9,41 2,41 2,13' fill='url(%23g)'/%3E%3Cpolygon points='2,3 9,3 2,13' fill='%230B1320'/%3E%3Cpolygon points='29,3 37,3 37,31 29,41' fill='url(%23g)'/%3E%3Cpolygon points='37,31 37,41 29,41' fill='%230B1320'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════
+   TOKENS
+═══════════════════════════════════ */
+:root {
+  --navy:      #0B1320;
+  --midnight:  #06101C;
+  --navy-mid:  #0E1B30;
+  --gold:      #D4AF37;
+  --gold-lt:   #E8C84A;
+  --champagne: #C8A15A;
+  --soft-white:#F7F7F5;
+  --platinum:  #E2E4E7;
+  --charcoal:  #1A1A1A;
+  --muted:     #6B7280;
+  --body-dark: #374151;
+  --gold-glow: rgba(212,175,55,0.12);
+  --gold-rim:  rgba(212,175,55,0.25);
+  --w08:       rgba(255,255,255,0.08);
+  --w05:       rgba(255,255,255,0.05);
+  --w03:       rgba(255,255,255,0.03);
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background: var(--soft-white);
+  color: var(--charcoal);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,h2,h3,h4 {
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+/* ═══════════════════════════════════
+   HEADER
+═══════════════════════════════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 68px;
+  background: rgba(6,16,28,0.96);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--gold-rim);
+  transition: box-shadow 0.35s ease;
+}
+#site-header.scrolled { box-shadow: 0 2px 40px rgba(0,0,0,0.55); }
+.header-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+}
+
+/* Logo */
+.logo-lockup { display: flex; align-items: center; gap: 0; text-decoration: none; flex-shrink: 0; }
+.logo-mark-svg { display: block; flex-shrink: 0; }
+.logo-divider-line {
+  width: 1px; flex-shrink: 0;
+  height: 28px;
+  background: linear-gradient(to bottom, transparent 0%, var(--champagne) 35%, var(--champagne) 65%, transparent 100%);
+  margin: 0 14px;
+  opacity: 0.55;
+}
+.logo-text-block { display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+.logo-wordmark {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.045em;
+  line-height: 1;
+}
+.logo-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  color: var(--champagne);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+/* Desktop nav */
+nav.desk-nav { display: flex; align-items: center; gap: 0; }
+nav.desk-nav a {
+  padding: 7px 13px;
+  font-size: 13.5px; font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+nav.desk-nav a:hover { color: white; background: var(--w08); }
+
+/* Header CTAs */
+.hdr-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.btn-hdr-ghost {
+  padding: 8px 16px; border-radius: 7px; font-size: 13.5px; font-weight: 500;
+  color: rgba(255,255,255,0.72); background: transparent;
+  border: 1px solid rgba(255,255,255,0.16); cursor: pointer; transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-hdr-ghost:hover { color: white; border-color: rgba(255,255,255,0.4); background: var(--w08); }
+.btn-hdr-primary {
+  padding: 9px 19px; border-radius: 7px; font-size: 13.5px; font-weight: 700;
+  color: var(--navy); background: var(--gold); border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.btn-hdr-primary:hover { background: var(--gold-lt); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,175,55,0.35); }
+
+/* Hamburger */
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.menu-toggle span { display: block; width: 21px; height: 2px; background: white; border-radius: 2px; margin: 5px 0; transition: 0.25s; }
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 299;
+  background: #060F1A;
+  border-bottom: 1px solid var(--gold-rim);
+  padding: 0.5rem 1.5rem 1.5rem;
+}
+.mobile-nav.open { display: block; }
+.mobile-nav a {
+  display: block; padding: 13px 0; font-size: 16px; font-weight: 500;
+  color: rgba(255,255,255,0.78); border-bottom: 1px solid var(--w08);
+}
+.mobile-nav a:last-of-type { border-bottom: none; }
+.mobile-nav-cta {
+  display: block; width: 100%; margin-top: 1.25rem; padding: 14px;
+  background: var(--gold); color: var(--navy); font-size: 15px; font-weight: 700;
+  border: none; border-radius: 8px; cursor: pointer; text-align: center;
+}
+
+/* Sticky mobile bottom bar */
+.mobile-bottom-cta {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 298;
+  padding: 10px 1.25rem calc(10px + env(safe-area-inset-bottom));
+  background: rgba(6,16,28,0.97); border-top: 1px solid var(--gold-rim);
+}
+.mobile-bottom-cta button {
+  width: 100%; padding: 14px;
+  background: var(--gold); color: var(--navy); font-size: 15px; font-weight: 700;
+  border: none; border-radius: 8px; cursor: pointer;
+  transition: background 0.2s;
+}
+.mobile-bottom-cta button:hover { background: var(--gold-lt); }
+
+/* ═══════════════════════════════════
+   LAYOUT UTILITIES
+═══════════════════════════════════ */
+section { scroll-margin-top: 68px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+}
+.gold-rule { width: 32px; height: 2px; background: var(--gold); border-radius: 2px; margin-bottom: 1.5rem; }
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+#hero {
+  background: var(--navy);
+  padding: 138px 0 100px;
+  position: relative; overflow: hidden;
+}
+#hero::after {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0; left: 55%;
+  background: radial-gradient(ellipse 80% 70% at 70% 40%, rgba(212,175,55,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 68px; align-items: center; }
+
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(212,175,55,0.1); border: 1px solid var(--gold-rim);
+  padding: 5px 14px; border-radius: 100px; margin-bottom: 2rem;
+}
+.hero-pill-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+.hero-pill span { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.hero-h1 {
+  font-size: clamp(2.1rem, 3.8vw, 3.15rem);
+  font-weight: 800; color: white;
+  margin-bottom: 1.25rem;
+  line-height: 1.12; letter-spacing: -0.03em;
+}
+.hero-h1 em { color: var(--gold); font-style: normal; }
+
+.hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; line-height: 1.72; max-width: 490px; }
+
+.hero-insight {
+  font-size: 0.975rem; font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 1rem; line-height: 1.65;
+  max-width: 490px;
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+}
+.hero-mantra {
+  font-size: 0.8rem; font-weight: 500; color: var(--champagne); letter-spacing: 0.06em;
+  margin-bottom: 2.25rem; opacity: 0.85;
+}
+.hero-mantra span { margin: 0 6px; opacity: 0.4; }
+
+.hero-btns { display: flex; gap: 11px; flex-wrap: wrap; margin-bottom: 2.75rem; }
+.btn-gold {
+  padding: 13px 26px; border-radius: 8px; font-size: 15px; font-weight: 700;
+  color: var(--navy); background: var(--gold); border: none; cursor: pointer; transition: all 0.2s;
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(212,175,55,0.3); }
+.btn-outline-white {
+  padding: 13px 24px; border-radius: 8px; font-size: 15px; font-weight: 500;
+  color: rgba(255,255,255,0.85); background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.5); background: var(--w08); }
+
+.hero-proof { border-top: 1px solid var(--w08); padding-top: 1.75rem; display: flex; flex-direction: column; gap: 9px; }
+.proof-row { display: flex; align-items: flex-start; gap: 10px; }
+.proof-pip { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 8px; flex-shrink: 0; opacity: 0.8; }
+.proof-row span { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* Scorecard */
+.scorecard {
+  background: linear-gradient(145deg, rgba(8,18,34,0.98) 0%, rgba(4,10,20,0.98) 100%);
+  border: 1px solid rgba(212,175,55,0.32);
+  border-radius: 18px; padding: 2rem 2rem 1.75rem;
+  position: relative; overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 24px 80px rgba(0,0,0,0.5),
+    0 0 80px rgba(212,175,55,0.07);
+}
+.scorecard::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(212,175,55,0.11) 0%, rgba(212,175,55,0.02) 50%, transparent 70%);
+  pointer-events: none;
+}
+.scorecard::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+  pointer-events: none;
+}
+.sc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem; }
+.sc-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--champagne); opacity: 0.9; }
+.sc-badge {
+  font-size: 10px; font-weight: 600; color: var(--gold);
+  background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.3);
+  padding: 3px 10px; border-radius: 100px; letter-spacing: 0.04em;
+}
+.sc-score-line { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+.sc-num {
+  font-family: 'Manrope', sans-serif; font-size: 4.5rem; font-weight: 800;
+  color: white; line-height: 1; letter-spacing: -0.05em;
+  text-shadow: 0 0 40px rgba(255,255,255,0.15);
+}
+.sc-denom { font-size: 1.5rem; color: rgba(255,255,255,0.22); font-weight: 400; }
+.sc-track {
+  height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px;
+  margin: 0.85rem 0 0.95rem; overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+.sc-fill {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, #B8962E 0%, var(--champagne) 40%, var(--gold) 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(212,175,55,0.5);
+  transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+}
+.sc-status-text { font-size: 12px; color: rgba(255,255,255,0.38); margin-bottom: 1.75rem; letter-spacing: 0.01em; }
+.sc-status-text strong { color: var(--champagne); font-weight: 600; }
+.sc-section {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.65rem;
+}
+.sc-patterns { display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.5rem; }
+.sc-pattern-row {
+  display: flex; align-items: center; gap: 10px; padding: 10px 13px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px;
+  transition: border-color 0.2s, background 0.2s, opacity 0.45s ease, transform 0.45s ease;
+  opacity: 0; transform: translateX(8px);
+}
+.sc-pattern-row.show { opacity: 1; transform: none; }
+.sc-pattern-row:hover { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.04); }
+.sc-pip { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px rgba(212,175,55,0.6); }
+.sc-pattern-row span { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+.sc-link { background: none; border: none; padding: 0; font-size: 13px; color: var(--gold); font-weight: 600; cursor: pointer; transition: color 0.2s, opacity 0.2s; font-family: inherit; opacity: 0.9; }
+.sc-link:hover { color: var(--gold-lt); opacity: 1; }
+
+/* ── Scorecard recommended next step ── */
+.sc-next {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  margin: 0 0 1.35rem;
+  padding: 12px 13px; border-radius: 10px;
+  background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.18);
+}
+.sc-next.show { opacity: 1; transform: none; }
+.sc-next-label { font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 4px; }
+.sc-next-val   { font-size: 13px; font-weight: 700; color: var(--champagne); }
+
+/* ── Assessment questions ── */
+.assessment-questions { display: flex; flex-direction: column; gap: 12px; margin: 1.5rem 0; }
+.assessment-question {
+  padding: 14px; border-radius: 12px;
+  background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.09);
+}
+.aq-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.aq-num { font-size: 10px; font-weight: 800; color: var(--gold); letter-spacing: 0.1em; }
+.aq-dimension { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+.aq-question { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.55; margin-bottom: 10px; }
+.aq-scale { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; }
+.aq-option {
+  padding: 8px 0; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.13);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.55);
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.18s ease;
+  font-family: inherit;
+}
+.aq-option:hover { border-color: rgba(212,175,55,0.45); color: white; background: rgba(255,255,255,0.07); }
+.aq-option.selected {
+  border-color: var(--gold); background: rgba(212,175,55,0.12);
+  color: var(--gold); box-shadow: 0 0 0 1px rgba(212,175,55,0.08) inset;
+}
+.aq-scale-labels {
+  display: grid; grid-template-columns: repeat(5,1fr); gap: 6px;
+  margin: 6px 0 0; font-size: 9px; color: rgba(255,255,255,0.25); text-align: center;
+}
+.assessment-progress-hint {
+  font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; margin-top: 1.25rem;
+}
+#assessment-error { display: none; font-size: 11.5px; color: #E05252; margin: 6px 0 8px; }
+@media(max-width:640px) {
+  .aq-scale { gap: 5px; }
+  .aq-option { padding: 9px 0; font-size: 13px; }
+  .aq-scale-labels { display: none; }
+}
+
+/* ═══════════════════════════════════
+   PROBLEM SECTION
+═══════════════════════════════════ */
+#problem { background: var(--charcoal); padding: 100px 0; }
+.problem-head { font-size: clamp(1.75rem, 3vw, 2.35rem); color: white; margin-bottom: 1rem; max-width: 560px; }
+.problem-copy { font-size: 0.94rem; color: rgba(255,255,255,0.5); max-width: 620px; margin-bottom: 3rem; line-height: 1.8; }
+.problem-cards {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: rgba(212,175,55,0.18);
+  border: 1px solid rgba(212,175,55,0.18); border-radius: 12px; overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.pc {
+  background: #0F151F; padding: 1.75rem 1.5rem;
+  transition: background 0.25s;
+}
+.pc:hover { background: #141d2c; }
+.pc-num { font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.75rem; font-family: 'Inter', sans-serif; }
+.pc-title { font-size: 0.94rem; font-weight: 700; color: white; margin-bottom: 0.5rem; line-height: 1.3; font-family: 'Manrope', sans-serif; }
+.pc-body { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.6; }
+.problem-callout {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(212,175,55,0.08); border: 1px solid var(--gold-rim);
+  padding: 12px 20px; border-radius: 8px;
+}
+.problem-callout-pip { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+.problem-callout span { font-size: 14px; color: var(--gold); font-weight: 600; }
+
+/* ═══════════════════════════════════
+   WHO WE SERVE
+═══════════════════════════════════ */
+#serve { background: var(--soft-white); padding: 100px 0; }
+.serve-headline { font-size: clamp(1.75rem,3vw,2.35rem); color: var(--navy); margin-bottom: 2.75rem; max-width: 540px; }
+.serve-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--platinum);
+  border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden;
+}
+.serve-card { background: white; padding: 2.25rem 2rem; transition: background 0.2s; }
+.serve-card:hover { background: #FAFAFA; }
+.scard-num { font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+.scard-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; font-family: 'Manrope', sans-serif; }
+.scard-body { font-size: 13.5px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.65; }
+.scard-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9CA3AF; margin-bottom: 0.45rem; font-family: 'Inter', sans-serif; }
+.scard-pains { margin-bottom: 1rem; }
+.scard-pain { font-size: 13px; color: var(--body-dark); padding: 2px 0 2px 14px; position: relative; }
+.scard-pain::before { content: '—'; position: absolute; left: 0; color: #CBD5E1; font-size: 10px; top: 4px; }
+.scard-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { background: #EEF2F8; color: #1E3A5F; padding: 4px 9px; border-radius: 4px; font-size: 11.5px; font-weight: 600; font-family: 'Inter', sans-serif; }
+
+/* ═══════════════════════════════════
+   TWO WAYS
+═══════════════════════════════════ */
+#two-ways { background: var(--navy); padding: 100px 0; }
+.two-ways-intro { margin-bottom: 3rem; }
+.two-ways-head { font-size: clamp(1.75rem,3vw,2.35rem); color: white; margin-bottom: 0.65rem; }
+.two-ways-sub { font-size: 0.95rem; color: rgba(255,255,255,0.48); max-width: 510px; }
+.two-ways-panels {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--gold-rim);
+  border: 1px solid var(--gold-rim); border-radius: 16px; overflow: hidden;
+}
+.panel { padding: 2.75rem; }
+.panel-a { background: var(--midnight); }
+.panel-l { background: #0D182B; }
+.panel-overline { font-size: 9.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; font-family: 'Inter', sans-serif; }
+.panel-badge {
+  display: inline-flex; align-items: center; gap: 0;
+  background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.18);
+  padding: 4px 11px; border-radius: 100px; margin-bottom: 0.9rem;
+}
+.panel-badge span { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; font-family: 'Inter', sans-serif; }
+.panel-title { font-size: 1.35rem; font-weight: 700; color: white; margin-bottom: 0.65rem; font-family: 'Manrope', sans-serif; }
+.panel-body { font-size: 13.5px; color: rgba(255,255,255,0.48); margin-bottom: 1.75rem; line-height: 1.68; }
+.panel-items { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 7px; }
+.panel-items li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: rgba(255,255,255,0.65); }
+.panel-items li::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.panel-cta {
+  display: inline-block; padding: 10px 22px; border-radius: 7px; font-size: 13.5px; font-weight: 600;
+  color: var(--gold); background: rgba(212,175,55,0.08); border: 1px solid var(--gold-rim);
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
+}
+.panel-cta:hover { background: rgba(212,175,55,0.18); border-color: var(--gold); }
+
+/* ═══════════════════════════════════
+   THE NOZOMI MODEL
+═══════════════════════════════════ */
+#model { background: var(--soft-white); padding: 100px 0; }
+.model-head { font-size: clamp(1.75rem,3vw,2.35rem); color: var(--navy); margin-bottom: 4rem; }
+.model-track { display: grid; grid-template-columns: repeat(5,1fr); position: relative; }
+.model-track::before {
+  content: ''; position: absolute; top: 26px; left: 9%; right: 9%; height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(212,175,55,0.2) 100%);
+}
+.model-step { display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
+.model-circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: white; border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 800; color: var(--gold);
+  margin-bottom: 1.25rem; flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.08);
+}
+.model-label { font-size: 11.5px; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.07em; font-family: 'Inter', sans-serif; }
+.model-desc { font-size: 12px; color: var(--muted); line-height: 1.55; padding: 0 0.5rem; }
+
+/* ═══════════════════════════════════
+   ASSESSMENT + LEAD FORM
+═══════════════════════════════════ */
+#assessment { background: var(--navy); padding: 100px 0; }
+.assess-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.assess-head { font-size: clamp(1.75rem,3vw,2.35rem); color: white; margin-bottom: 0.9rem; }
+.assess-sub { font-size: 0.94rem; color: rgba(255,255,255,0.55); margin-bottom: 2rem; line-height: 1.75; }
+
+/* Lead form */
+.lead-form-wrap {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--gold-rim); border-radius: 14px;
+  padding: 1.75rem; margin-bottom: 1.75rem;
+  position: relative; overflow: hidden;
+}
+.lead-form-wrap::before {
+  content: '';
+  position: absolute; top: -30px; right: -30px; width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lf-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); margin-bottom: 1.25rem; letter-spacing: 0.01em; }
+.lf-subtitle { font-size: 11.5px; color: rgba(255,255,255,0.32); margin-bottom: 1.5rem; line-height: 1.6; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form-row.single { grid-template-columns: 1fr; }
+.ff { display: flex; flex-direction: column; gap: 5px; }
+.ff label { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+.ff input, .ff select {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 8px; padding: 10px 13px; font-size: 14px; color: white;
+  font-family: inherit; outline: none; transition: border-color 0.2s, background 0.2s; width: 100%;
+}
+.ff input::placeholder { color: rgba(255,255,255,0.25); }
+.ff input:focus, .ff select:focus { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+.ff select { cursor: pointer; }
+.ff select option { background: var(--navy); color: white; }
+.ff.err input, .ff.err select { border-color: #E05252; }
+.consent-row { display: flex; align-items: flex-start; gap: 10px; margin: 10px 0; }
+.consent-row input[type=checkbox] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); cursor: pointer; }
+.consent-row label { font-size: 11.5px; color: rgba(255,255,255,0.38); line-height: 1.6; cursor: pointer; }
+.btn-form-submit {
+  width: 100%; padding: 13px; background: var(--gold); color: var(--navy);
+  font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; margin-top: 6px; font-family: inherit;
+}
+.btn-form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,175,55,0.3); }
+.form-fine { font-size: 11px; color: rgba(255,255,255,0.24); margin-top: 0.75rem; text-align: center; line-height: 1.6; }
+.form-success { display: none; padding: 2.5rem 1rem; text-align: center; }
+.form-success.show { display: block; }
+.form-success-mark { font-size: 2.5rem; margin-bottom: 0.85rem; }
+.form-success h3 { font-size: 1.1rem; color: white; margin-bottom: 0.5rem; font-family: 'Manrope', sans-serif; }
+.form-success p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+/* 12 dimension chips */
+.dim-eyebrow { font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.7rem; font-family: 'Inter', sans-serif; }
+.dim-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.dim-chip {
+  background: var(--w05); border: 1px solid var(--w08);
+  padding: 5px 11px; border-radius: 100px;
+  font-size: 11.5px; color: rgba(255,255,255,0.55); font-weight: 500;
+  transition: border-color 0.2s, color 0.2s;
+}
+.dim-chip:hover { border-color: var(--gold-rim); color: rgba(255,255,255,0.78); }
+.assess-note { font-size: 11.5px; color: rgba(255,255,255,0.28); margin-top: 1.25rem; line-height: 1.65; }
+.assess-positioning {
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--champagne);
+  margin-bottom: 1.75rem; line-height: 1.65;
+  border-left: 2px solid rgba(212,175,55,0.4);
+  padding-left: 14px;
+  opacity: 0.9;
+}
+
+/* Sample report preview card */
+.report-card {
+  background: rgba(4,10,20,0.95); border: 1px solid var(--gold-rim);
+  border-radius: 14px; padding: 1.6rem;
+  box-shadow: 0 0 40px rgba(212,175,55,0.05);
+}
+.rc-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; font-family: 'Inter', sans-serif; }
+.rc-score { font-family: 'Manrope', sans-serif; font-size: 2.65rem; font-weight: 800; color: white; letter-spacing: -0.04em; }
+.rc-track { height: 4px; background: var(--w08); border-radius: 3px; margin: 0.7rem 0 1rem; overflow: hidden; }
+.rc-fill { height: 100%; width: 67%; background: var(--gold); border-radius: 3px; }
+.rc-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-top: 1px solid var(--w05); }
+.rc-row-k { font-size: 11.5px; color: rgba(255,255,255,0.35); }
+.rc-row-v { font-size: 11.5px; color: rgba(255,255,255,0.75); font-weight: 600; text-align: right; max-width: 55%; }
+
+/* ═══════════════════════════════════
+   PAIN PATTERNS
+═══════════════════════════════════ */
+#patterns { background: white; padding: 100px 0; }
+.patterns-head { font-size: clamp(1.75rem,3vw,2.35rem); color: var(--navy); margin-bottom: 0.65rem; }
+.patterns-sub { font-size: 0.94rem; color: var(--muted); margin-bottom: 3rem; max-width: 600px; line-height: 1.7; }
+.patterns-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--platinum);
+  border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden;
+}
+.pattern-card { background: white; padding: 1.6rem 1.65rem; transition: background 0.2s; }
+.pattern-card:hover { background: var(--soft-white); }
+.pat-num { font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.45rem; font-family: 'Inter', sans-serif; }
+.pat-title { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; font-family: 'Manrope', sans-serif; }
+.pat-desc { font-size: 12.5px; color: var(--muted); line-height: 1.58; }
+
+/* ═══════════════════════════════════
+   PROGRAMS (TABBED)
+═══════════════════════════════════ */
+#programs { background: var(--soft-white); padding: 100px 0; }
+.prog-head { font-size: clamp(1.75rem,3vw,2.35rem); color: var(--navy); margin-bottom: 0.6rem; }
+.prog-sub { font-size: 0.94rem; color: var(--muted); margin-bottom: 2.5rem; }
+
+/* Tab switcher */
+.tab-switcher { display: flex; gap: 2px; background: var(--platinum); padding: 4px; border-radius: 10px; width: fit-content; margin-bottom: 2.75rem; }
+.tab-btn {
+  padding: 9px 24px; border-radius: 7px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.2s;
+  background: transparent; color: var(--muted); font-family: inherit;
+}
+.tab-btn[aria-selected="true"] { background: white; color: var(--navy); box-shadow: 0 1px 5px rgba(0,0,0,0.1); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Offer cards */
+.offer-cards {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--platinum);
+  border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden; margin-bottom: 1.25rem;
+}
+.offer-card { background: white; padding: 1.75rem 1.6rem; transition: background 0.2s; }
+.offer-card:hover { background: #FAFAFA; }
+.offer-card.ft { background: var(--navy); }
+.offer-card.ft:hover { background: #0F1D33; }
+.oc-phase { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; font-family: 'Inter', sans-serif; }
+.oc-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.3; font-family: 'Manrope', sans-serif; }
+.offer-card.ft .oc-title { color: white; }
+.oc-price { font-size: 1.1rem; font-weight: 700; color: var(--gold); margin-bottom: 0.85rem; font-family: 'Manrope', sans-serif; }
+.oc-desc { font-size: 12.5px; color: var(--muted); line-height: 1.62; }
+.offer-card.ft .oc-desc { color: rgba(255,255,255,0.5); }
+
+/* Labs framing */
+.labs-framing {
+  background: var(--navy); border-radius: 12px; padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem; font-size: 13.5px; color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+.labs-framing strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+/* Labs program cards (more detailed) */
+.labs-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--platinum); border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden; margin-bottom: 1.25rem; }
+.labs-card { background: white; padding: 1.75rem 1.6rem; display: flex; flex-direction: column; }
+.labs-card.ft { background: var(--navy); }
+.lc-duration { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+.lc-title { font-size: 0.94rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; font-family: 'Manrope', sans-serif; }
+.labs-card.ft .lc-title { color: white; }
+.lc-price { font-size: 1.05rem; font-weight: 700; color: var(--gold); margin-bottom: 0.8rem; font-family: 'Manrope', sans-serif; }
+.lc-best-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF; margin-bottom: 0.35rem; font-family: 'Inter', sans-serif; }
+.labs-card.ft .lc-best-label { color: rgba(255,255,255,0.35); }
+.lc-best { font-size: 12px; color: var(--muted); margin-bottom: 0.9rem; line-height: 1.55; }
+.labs-card.ft .lc-best { color: rgba(255,255,255,0.48); }
+.lc-del-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF; margin-bottom: 0.4rem; font-family: 'Inter', sans-serif; }
+.labs-card.ft .lc-del-label { color: rgba(255,255,255,0.35); }
+.lc-dels { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.lc-dels li { font-size: 11.5px; color: var(--muted); padding-left: 12px; position: relative; line-height: 1.5; }
+.labs-card.ft .lc-dels li { color: rgba(255,255,255,0.5); }
+.lc-dels li::before { content: '·'; position: absolute; left: 0; color: var(--gold); }
+
+/* Expandable ladder */
+.ladder-trigger {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 13px 18px; background: white;
+  border: 1.5px solid var(--platinum); border-radius: 10px;
+  font-size: 14px; font-weight: 600; color: var(--navy);
+  cursor: pointer; transition: background 0.2s; font-family: inherit;
+}
+.ladder-trigger:hover { background: var(--soft-white); }
+.ladder-chevron { font-size: 16px; color: var(--gold); transition: transform 0.25s; line-height: 1; }
+.ladder-chevron.open { transform: rotate(180deg); }
+.full-ladder { display: none; border: 1.5px solid var(--platinum); border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; margin-bottom: 1rem; }
+.full-ladder.open { display: block; }
+.l-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 18px; background: white; border-top: 1px solid var(--platinum); font-size: 13.5px; }
+.l-row:nth-child(even) { background: var(--soft-white); }
+.l-name { color: var(--navy); font-weight: 500; }
+.l-price { color: var(--gold); font-weight: 700; }
+.l-row.l-free .l-price { color: #2E7D52; }
+.prog-note { font-size: 11.5px; color: var(--muted); margin-top: 1.25rem; line-height: 1.65; }
+
+
+/* ─── Proof architecture blocks (credibility section) ─── */
+.proof-blocks {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--platinum);
+  border: 1px solid var(--platinum); border-radius: 14px; overflow: hidden;
+  margin: 2.5rem 0 3rem;
+}
+.proof-block { background: var(--soft-white); padding: 1.75rem; transition: background 0.2s; }
+.proof-block:hover { background: white; }
+.pb-num {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.pb-title {
+  font-family: 'Manrope', sans-serif; font-size: 0.975rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 0.55rem; line-height: 1.3;
+}
+.pb-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ─── Sample deliverable links (assessment section) ─── */
+.sample-links { margin-top: 1.75rem; }
+.sample-links-label {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); margin-bottom: 0.6rem; font-family: 'Inter', sans-serif;
+}
+.sample-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  font-size: 13px; color: rgba(255,255,255,0.4); cursor: default;
+}
+.sample-link:last-child { border-bottom: none; }
+.sample-link-icon { font-size: 11px; color: rgba(212,175,55,0.35); flex-shrink: 0; }
+.sample-soon {
+  font-size: 10px; color: rgba(255,255,255,0.2); font-style: italic;
+  margin-left: auto; white-space: nowrap; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   CREDIBILITY + EVIDENCE
+═══════════════════════════════════ */
+#credibility { background: white; padding: 100px 0 0; }
+.cred-head { font-size: clamp(1.75rem,3vw,2.35rem); color: var(--navy); margin-bottom: 0.65rem; }
+.cred-copy { font-size: 0.94rem; color: var(--muted); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.72; }
+.theme-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3.5rem; }
+.theme-chip {
+  padding: 7px 14px; border-radius: 6px; font-size: 12.5px; font-weight: 600;
+  background: var(--soft-white); border: 1px solid var(--platinum); color: var(--navy);
+  transition: all 0.2s; cursor: default;
+}
+.theme-chip:hover { border-color: var(--gold); color: var(--gold); }
+.evidence-cards {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--platinum);
+  border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden;
+}
+.ev-card { background: white; padding: 1.75rem; }
+.ev-source { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; }
+.ev-head { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.3; font-family: 'Manrope', sans-serif; }
+.ev-body { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+/* ═══════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════ */
+#final-cta { background: var(--midnight); padding: 100px 0; }
+.cta-center { max-width: 660px; margin: 0 auto; text-align: center; }
+.cta-head { font-size: clamp(2.1rem,4vw,3rem); font-weight: 800; color: white; margin-bottom: 1.1rem; letter-spacing: -0.035em; }
+.cta-head em { color: var(--gold); font-style: normal; }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,0.52); margin-bottom: 2.75rem; line-height: 1.72; max-width: 520px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.btn-cta-primary { padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; color: var(--navy); background: var(--gold); border: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.btn-cta-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,175,55,0.3); }
+.btn-cta-ghost { padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.8); background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.btn-cta-ghost:hover { border-color: rgba(255,255,255,0.45); background: var(--w08); }
+.cta-contact { font-size: 13px; color: rgba(255,255,255,0.26); }
+.cta-contact a { color: var(--champagne); }
+.cta-disclaimer { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 2rem; line-height: 1.65; max-width: 540px; margin-left: auto; margin-right: auto; }
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+#footer { background: var(--midnight); border-top: 1px solid rgba(255,255,255,0.06); padding: 60px 0 36px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+.ft-brand-tag { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; margin-top: 0.65rem; }
+.ft-col-head { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; font-family: 'Inter', sans-serif; }
+.ft-links { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.ft-links li a { font-size: 13px; color: rgba(255,255,255,0.38); transition: color 0.2s; }
+.ft-links li a:hover { color: rgba(255,255,255,0.85); }
+.ft-email { font-size: 13px; color: var(--champagne); display: block; margin-bottom: 3px; }
+.ft-domain { font-size: 13px; color: rgba(255,255,255,0.38); }
+.ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+.ft-legal { display: flex; gap: 1.25rem; }
+.ft-legal a { font-size: 12px; color: rgba(255,255,255,0.22); transition: color 0.2s; }
+.ft-legal a:hover { color: rgba(255,255,255,0.5); }
+.ft-legal-soon { cursor: default !important; }
+.ft-legal-soon:hover { color: rgba(255,255,255,0.22) !important; }
+
+/* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+@media (max-width: 1024px) {
+  .offer-cards { grid-template-columns: 1fr 1fr; }
+  .labs-cards   { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .hero-grid       { grid-template-columns: 1fr; gap: 48px; }
+  .scorecard       { max-width: 440px; }
+  .problem-cards   { grid-template-columns: 1fr 1fr; }
+  .serve-grid      { grid-template-columns: 1fr; }
+  .two-ways-panels { grid-template-columns: 1fr; }
+  .model-track     { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .model-track::before { display: none; }
+  .assess-grid     { grid-template-columns: 1fr; }
+  .form-row        { grid-template-columns: 1fr; }
+  .patterns-grid   { grid-template-columns: 1fr 1fr; }
+  .evidence-cards  { grid-template-columns: 1fr; }
+  .footer-grid     { grid-template-columns: 1fr 1fr; }
+  .ft-bottom       { flex-direction: column; text-align: center; }
+}
+@media (max-width: 640px) {
+  .header-inner { padding: 0 1.25rem; }
+  .wrap         { padding: 0 1.25rem; }
+  nav.desk-nav  { display: none; }
+  .hdr-actions .btn-hdr-ghost { display: none; }
+  .menu-toggle  { display: block; }
+  .logo-tagline { display: none; }
+  section       { padding: 72px 0; }
+  #hero         { padding: 118px 0 72px; }
+  .hero-btns    { flex-direction: column; }
+  .problem-cards { grid-template-columns: 1fr; }
+  .patterns-grid { grid-template-columns: 1fr; }
+  .offer-cards   { grid-template-columns: 1fr; }
+  .labs-cards    { grid-template-columns: 1fr; }
+  .model-track   { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-grid   { grid-template-columns: 1fr; gap: 2rem; }
+  .cta-btns      { flex-direction: column; align-items: center; }
+  .tab-switcher  { width: 100%; }
+  .tab-btn       { flex: 1; font-size: 13px; padding: 9px 12px; }
+  .mobile-bottom-cta { display: block; }
+  body           { padding-bottom: 76px; }
+  .two-ways-panels { gap: 1px; }
+}
+
+/* ── RESULTS PANEL ────────────────────────────────── */
+.result-submitted-bar { display:flex; align-items:center; gap:10px; background:rgba(46,125,82,0.13); border:1px solid rgba(46,125,82,0.32); border-radius:8px; padding:10px 14px; margin-bottom:1.25rem; }
+.result-submitted-check { font-size:15px; color:#4CAF80; flex-shrink:0; }
+.result-submitted-text  { font-size:13px; color:rgba(255,255,255,0.62); font-weight:500; }
+.result-score-card { background:linear-gradient(145deg,rgba(8,18,34,0.98),rgba(4,10,20,0.98)); border:1px solid var(--gold-rim); border-radius:14px; padding:1.4rem; margin-bottom:1rem; box-shadow:0 0 50px rgba(212,175,55,0.06); }
+.rsc-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.85rem; }
+.rsc-eyebrow { font-size:9px; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:var(--champagne); margin-bottom:3px; }
+.rsc-org { font-size:13px; color:rgba(255,255,255,0.5); font-weight:500; }
+.rsc-badge { font-size:10px; font-weight:700; color:var(--gold); background:rgba(212,175,55,0.12); border:1px solid var(--gold-rim); padding:4px 10px; border-radius:100px; white-space:nowrap; flex-shrink:0; margin-left:8px; }
+.rsc-score-row { display:flex; align-items:baseline; gap:4px; margin-bottom:4px; }
+.rsc-score { font-family:'Manrope',sans-serif; font-size:3.2rem; font-weight:800; color:white; line-height:1; letter-spacing:-0.05em; }
+.rsc-score-denom { font-size:1.1rem; color:rgba(255,255,255,0.22); font-weight:400; }
+.rsc-bar-track { height:4px; background:rgba(255,255,255,0.07); border-radius:3px; margin:0.55rem 0 0.65rem; overflow:hidden; }
+.rsc-bar-fill { height:100%; width:0; background:linear-gradient(90deg,#A8861A,var(--gold)); border-radius:3px; transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
+.rsc-readiness { font-size:11.5px; color:rgba(255,255,255,0.38); }
+.result-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:1rem; }
+.result-block { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:11px 13px; }
+.result-block-warn { border-color:rgba(212,175,55,0.22); background:rgba(212,175,55,0.05); }
+.rb-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:5px; }
+.rb-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); line-height:1.4; }
+.result-pattern-section { margin-bottom:1rem; }
+.result-pattern-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:7px; }
+.result-pattern-card { background:rgba(212,175,55,0.07); border:1px solid rgba(212,175,55,0.22); border-radius:10px; padding:13px; }
+.rpc-name { font-size:13.5px; font-weight:700; color:var(--champagne); margin-bottom:5px; font-family:'Manrope',sans-serif; }
+.rpc-desc { font-size:12.5px; color:rgba(255,255,255,0.48); line-height:1.6; }
+.result-dim-section { margin-bottom:1rem; }
+.result-dim-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:7px; }
+.result-dim-row { display:flex; align-items:center; gap:9px; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.result-dim-row:last-child { border-bottom:none; }
+.rdim-name { font-size:11px; color:rgba(255,255,255,0.45); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.rdim-bar-wrap { width:72px; flex-shrink:0; }
+.rdim-bar-track { height:3px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden; }
+.rdim-bar-fill { height:100%; border-radius:2px; }
+.rdim-val { font-size:10.5px; font-weight:700; color:rgba(255,255,255,0.5); width:24px; text-align:right; flex-shrink:0; }
+.result-next-card { background:var(--gold); border-radius:12px; padding:1.35rem; margin-bottom:1rem; }
+.rnc-label { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(11,19,32,0.5); margin-bottom:4px; }
+.rnc-title { font-size:0.975rem; font-weight:800; color:var(--navy); margin-bottom:5px; font-family:'Manrope',sans-serif; }
+.rnc-desc  { font-size:12.5px; color:rgba(11,19,32,0.68); line-height:1.6; margin-bottom:9px; }
+.rnc-disclaimer { font-size:10px; color:rgba(11,19,32,0.4); line-height:1.55; border-top:1px solid rgba(11,19,32,0.14); padding-top:7px; }
+.result-cta-row { display:flex; gap:9px; margin-bottom:1rem; flex-wrap:wrap; }
+.result-btn-primary { flex:1; min-width:130px; padding:11px 16px; background:var(--navy); color:white; border:none; border-radius:8px; font-size:13.5px; font-weight:700; cursor:pointer; transition:background 0.2s; font-family:inherit; }
+.result-btn-primary:hover { background:#0F1E35; }
+.result-btn-ghost { flex:1; min-width:130px; padding:11px 16px; background:transparent; color:rgba(255,255,255,0.72); border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-size:13.5px; font-weight:500; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.result-btn-ghost:hover { border-color:rgba(255,255,255,0.42); background:rgba(255,255,255,0.06); }
+.result-email-note { font-size:11px; color:rgba(255,255,255,0.28); text-align:center; padding-top:0.65rem; border-top:1px solid rgba(255,255,255,0.07); }
+.result-email-note strong { color:rgba(255,255,255,0.48); }
+.sending-overlay { display:none; position:absolute; inset:0; background:rgba(6,16,28,0.92); border-radius:14px; align-items:center; justify-content:center; flex-direction:column; gap:12px; z-index:10; }
+.sending-overlay.show { display:flex; }
+.sending-spinner { width:26px; height:26px; border:2px solid rgba(212,175,55,0.2); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.sending-text { font-size:13px; color:rgba(255,255,255,0.52); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════ -->
+<header id="site-header">
+  <div class="header-inner">
+
+    <a href="/" class="logo-lockup" aria-label="Nozomi — home">
+      <!-- N mark: geometric N with triangular notches, gold gradient -->
+      <svg class="logo-mark-svg" width="36" height="40" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="nG" x1="2" y1="2" x2="38" y2="42" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F5DC6E"/>
+            <stop offset="40%"  stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#9E7715"/>
+          </linearGradient>
+        </defs>
+        <!-- diagonal stroke -->
+        <polygon points="10,1 19,1 39,43 30,43" fill="url(#nG)"/>
+        <!-- left bar -->
+        <polygon points="10,1 10,43 1,43 1,14" fill="url(#nG)"/>
+        <!-- navy notch top-left -->
+        <polygon points="1,1 10,1 1,14" fill="#0B1320"/>
+        <!-- right bar -->
+        <polygon points="30,1 39,1 39,30 30,43" fill="url(#nG)"/>
+        <!-- navy notch bottom-right -->
+        <polygon points="39,30 39,43 30,43" fill="#0B1320"/>
+      </svg>
+      <div class="logo-divider-line" aria-hidden="true"></div>
+      <div class="logo-text-block">
+        <span class="logo-wordmark">Nozomi</span>
+        <span class="logo-tagline">Assess · Transform · Improve</span>
+      </div>
+    </a>
+
+    <!-- 5-item nav: Assessment · Advisory · Labs · Method · Contact -->
+    <nav class="desk-nav" aria-label="Primary navigation">
+      <a href="#assessment" onclick="navTo('assessment')">Assessment</a>
+      <a href="#programs"   onclick="navToTab('advisory')">Advisory</a>
+      <a href="#programs"   onclick="navToTab('labs')">Labs</a>
+      <a href="#model"      onclick="navTo('model')">Method</a>
+      <a href="#final-cta"  onclick="navTo('final-cta')">Contact</a>
+    </nav>
+
+    <div class="hdr-actions">
+      <button class="btn-hdr-ghost" onclick="openCalendly()">Book Review Call</button>
+      <button class="btn-hdr-primary" onclick="goToAssessment()">Take Free Assessment</button>
+    </div>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="#assessment" onclick="closeMobileNav(); navTo('assessment')">Assessment</a>
+  <a href="#programs"   onclick="closeMobileNav(); navToTab('advisory')">Advisory</a>
+  <a href="#programs"   onclick="closeMobileNav(); navToTab('labs')">Labs</a>
+  <a href="#model"      onclick="closeMobileNav(); navTo('model')">Method</a>
+  <a href="#final-cta"  onclick="closeMobileNav(); navTo('final-cta')">Contact</a>
+  <button class="mobile-nav-cta" onclick="closeMobileNav(); goToAssessment()">Take the Free Assessment</button>
+</nav>
+
+<!-- Sticky mobile bottom CTA -->
+<div class="mobile-bottom-cta">
+  <button onclick="goToAssessment()">Take the Free Assessment →</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-pill"><div class="hero-pill-dot"></div><span>Diagnosis Before Transformation</span></div>
+        <h1 class="hero-h1">Find what is <em>really</em> holding your organization back.</h1>
+        <p class="hero-sub">Most organizations invest in tools, consultants, AI programs, and transformation initiatives before understanding what is actually holding them back. Nozomi starts with structured diagnosis.</p>
+        <p class="hero-insight">Nozomi helps leaders understand what to fix before they invest in the next tool, consultant, AI initiative, or transformation program.</p>
+        <p class="hero-mantra">Assessment first<span>·</span>Diagnosis next<span>·</span>Roadmap always<span>·</span>Results measured</p>
+        <div class="hero-btns">
+          <button class="btn-gold" onclick="goToAssessment()">Take the Free 360 Assessment</button>
+          <button class="btn-outline-white" onclick="navToTab('labs')">Explore Transformation Labs</button>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-row"><div class="proof-pip"></div><span>Operating Score, pain-pattern diagnosis, and Diagnostic Blueprint — before any recommendation</span></div>
+          <div class="proof-row"><div class="proof-pip"></div><span>Advisory across AI, fintech, cybersecurity, healthtech, marketplaces, and startup ecosystems</span></div>
+          <div class="proof-row"><div class="proof-pip"></div><span>Nozomi Advisory + Transformation Labs — sharper than generalist firms, deeper than AI tool consultants</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="scorecard">
+          <div class="sc-top">
+            <span class="sc-label">Nozomi 360 Assessment</span>
+            <span class="sc-badge">Sample Report</span>
+          </div>
+          <div class="sc-score-line">
+            <span class="sc-num" id="hero-score">0</span>
+            <span class="sc-denom">/ 100</span>
+          </div>
+          <div class="sc-track"><div class="sc-fill" id="sc-bar-fill"></div></div>
+          <p class="sc-status-text">Transformation Readiness: <strong>Constrained</strong></p>
+          <div class="sc-section">Active pain patterns detected</div>
+          <div class="sc-patterns">
+            <div class="sc-pattern-row"><div class="sc-pip"></div><span>Low Operating Visibility</span></div>
+            <div class="sc-pattern-row"><div class="sc-pip"></div><span>Workflow Chaos</span></div>
+            <div class="sc-pattern-row"><div class="sc-pip"></div><span>AI Readiness Gap</span></div>
+          </div>
+          <div class="sc-next" id="sc-next">
+            <div class="sc-next-label">Recommended next step</div>
+            <div class="sc-next-val">Diagnostic Blueprint</div>
+          </div>
+          <button class="sc-link" onclick="goToAssessment()">See what your score reveals →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PROBLEM
+══════════════════════════════════════════════ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="eyebrow">Why Diagnosis Comes First</div>
+    <div class="gold-rule"></div>
+    <h2 class="problem-head fade-in">Most transformation efforts begin with a solution already in mind.</h2>
+    <p class="problem-copy fade-in">Many transformation efforts begin with a solution already in mind: a consulting engagement, software platform, AI initiative, or training program. Nozomi starts one step earlier — with structured diagnosis of the operating system underneath.</p>
+    <div class="problem-cards fade-in">
+      <div class="pc"><div class="pc-num">01</div><div class="pc-title">Tools without workflow redesign</div><div class="pc-body">Technology is adopted before the operating model is ready to absorb or act on it.</div></div>
+      <div class="pc"><div class="pc-num">02</div><div class="pc-title">AI spend without readiness</div><div class="pc-body">Use cases, governance, and adoption structures are undefined when investment begins.</div></div>
+      <div class="pc"><div class="pc-num">03</div><div class="pc-title">Engagement without validated priorities</div><div class="pc-body">Efforts begin before root causes, bottlenecks, and improvement priorities are confirmed.</div></div>
+      <div class="pc"><div class="pc-num">04</div><div class="pc-title">Growth without operational clarity</div><div class="pc-body">Scaling happens before the systems, workflows, and governance can support it.</div></div>
+    </div>
+    <div class="problem-callout fade-in">
+      <div class="problem-callout-pip"></div>
+      <span>Nozomi diagnoses the operating system before recommending any tool, consultant, AI initiative, or transformation program.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     WHO WE SERVE
+══════════════════════════════════════════════ -->
+<section id="serve">
+  <div class="wrap">
+    <div class="eyebrow">Who We Serve</div>
+    <div class="gold-rule"></div>
+    <h2 class="serve-headline fade-in">Built for organizations ready to assess, transform, and improve.</h2>
+    <div class="serve-grid fade-in">
+
+      <div class="serve-card">
+        <div class="scard-num">01</div>
+        <div class="scard-title">Growth & Operating Businesses</div>
+        <div class="scard-body">Organizations needing stronger systems, workflow clarity, and execution discipline.</div>
+        <div class="scard-label">Pain points</div>
+        <div class="scard-pains">
+          <div class="scard-pain">Leadership bottlenecks</div>
+          <div class="scard-pain">Manual workflows and unclear handoffs</div>
+          <div class="scard-pain">Weak KPI visibility</div>
+          <div class="scard-pain">Growth creating operational chaos</div>
+        </div>
+        <div class="scard-label">Best-fit offers</div>
+        <div class="scard-chips">
+          <span class="chip">Free 360 Assessment</span>
+          <span class="chip">Diagnostic Blueprint</span>
+          <span class="chip">90-Day Transformation</span>
+          <span class="chip">Ongoing Improvement</span>
+        </div>
+      </div>
+
+      <div class="serve-card">
+        <div class="scard-num">02</div>
+        <div class="scard-title">Corporate & Enterprise Teams</div>
+        <div class="scard-body">Leadership, operations, and transformation teams seeking AI readiness and digital operating excellence.</div>
+        <div class="scard-label">Pain points</div>
+        <div class="scard-pains">
+          <div class="scard-pain">AI adoption confusion</div>
+          <div class="scard-pain">Scattered and uncoordinated initiatives</div>
+          <div class="scard-pain">Unclear governance and ownership</div>
+          <div class="scard-pain">Change resistance slowing adoption</div>
+        </div>
+        <div class="scard-label">Best-fit offers</div>
+        <div class="scard-chips">
+          <span class="chip">6-Week AI & Digital Program</span>
+          <span class="chip">Institutional Accelerator</span>
+          <span class="chip">Custom Corporate Program</span>
+        </div>
+      </div>
+
+      <div class="serve-card">
+        <div class="scard-num">03</div>
+        <div class="scard-title">Government & Public-Sector</div>
+        <div class="scard-body">Ministries, agencies, and institutions building AI literacy, digital capability, and transformation readiness.</div>
+        <div class="scard-label">Pain points</div>
+        <div class="scard-pains">
+          <div class="scard-pain">Workforce upskilling at scale</div>
+          <div class="scard-pain">AI literacy and governance gaps</div>
+          <div class="scard-pain">Policy-to-execution disconnect</div>
+          <div class="scard-pain">Service delivery modernization</div>
+        </div>
+        <div class="scard-label">Best-fit offers</div>
+        <div class="scard-chips">
+          <span class="chip">6-Week Program</span>
+          <span class="chip">9-Week Accelerator</span>
+          <span class="chip">Custom Government Program</span>
+        </div>
+      </div>
+
+      <div class="serve-card">
+        <div class="scard-num">04</div>
+        <div class="scard-title">Startup, SME & Innovation Ecosystems</div>
+        <div class="scard-body">Accelerators, chambers, and venture studios seeking structured founder readiness and execution improvement.</div>
+        <div class="scard-label">Pain points</div>
+        <div class="scard-pains">
+          <div class="scard-pain">Weak operating discipline</div>
+          <div class="scard-pain">Business model clarity gaps</div>
+          <div class="scard-pain">Poor investor and scale readiness</div>
+          <div class="scard-pain">Scattered execution without rhythm</div>
+        </div>
+        <div class="scard-label">Best-fit offers</div>
+        <div class="scard-chips">
+          <span class="chip">Cohort Assessments</span>
+          <span class="chip">Founder Readiness Scorecard</span>
+          <span class="chip">SME Readiness Programs</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     TWO WAYS
+══════════════════════════════════════════════ -->
+<section id="two-ways">
+  <div class="wrap">
+    <div class="two-ways-intro">
+      <div class="eyebrow" style="color:var(--gold)">Two Ways to Work With Nozomi</div>
+      <div class="gold-rule" style="opacity:0.4"></div>
+      <h2 class="two-ways-head fade-in">The diagnostic layer before the investment decision.</h2>
+      <p class="two-ways-sub fade-in">Nozomi Advisory diagnoses operating systems and builds execution roadmaps. Nozomi Transformation Labs builds transformation capability in teams and institutions. Both start with assessment.</p>
+    </div>
+    <div class="two-ways-panels fade-in">
+
+      <div class="panel panel-a">
+        <div class="panel-overline">Nozomi Advisory</div>
+        <h3 class="panel-title">Assess. Diagnose. Reset. Transform. Improve.</h3>
+        <p class="panel-body">A structured diagnostic process that produces an Operating Score, pain-pattern diagnosis, Diagnostic Blueprint, and practical roadmap — before recommending tools, consultants, or transformation programs.</p>
+        <ul class="panel-items">
+          <li>Free 360 Assessment</li>
+          <li>Diagnostic Blueprint</li>
+          <li>Operations Reset</li>
+          <li>90-Day Transformation</li>
+          <li>6-Month Transformation</li>
+          <li>Ongoing Improvement</li>
+        </ul>
+        <button class="panel-cta" onclick="navToTab('advisory')">Explore Advisory →</button>
+      </div>
+
+      <div class="panel panel-l">
+        <div class="panel-badge"><span>Corporate · Public-Sector · GCC · Institutional</span></div>
+        <div class="panel-overline">Nozomi Transformation Labs</div>
+        <h3 class="panel-title">Build the capability to transform.</h3>
+        <p class="panel-body">Structured capability-building, AI readiness, and digital transformation programs that begin with assessment and end with a practical roadmap — built for corporate teams, government organizations, and GCC institutional buyers who need more than a training course.</p>
+        <ul class="panel-items">
+          <li>3-Week Transformation Readiness Sprint</li>
+          <li>6-Week AI & Digital Transformation Program</li>
+          <li>9-Week Institutional Transformation Accelerator</li>
+          <li>Custom Government / Corporate Program</li>
+        </ul>
+        <button class="panel-cta" onclick="navToTab('labs')">Explore Labs →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     THE NOZOMI MODEL
+══════════════════════════════════════════════ -->
+<section id="model">
+  <div class="wrap">
+    <div class="eyebrow">The Nozomi Model</div>
+    <div class="gold-rule"></div>
+    <h2 class="model-head fade-in">Assess. Diagnose. Reset. Transform. Improve.</h2>
+    <div class="model-track fade-in">
+      <div class="model-step">
+        <div class="model-circle">01</div>
+        <div class="model-label">Assess</div>
+        <div class="model-desc">The Free 360 Assessment produces an Operating Score, category scores, and active pain patterns across 12 dimensions.</div>
+      </div>
+      <div class="model-step">
+        <div class="model-circle">02</div>
+        <div class="model-label">Diagnose</div>
+        <div class="model-desc">The Diagnostic Blueprint validates root causes, maps bottlenecks, and builds a practical improvement roadmap with 30/60/90-day direction.</div>
+      </div>
+      <div class="model-step">
+        <div class="model-circle">03</div>
+        <div class="model-label">Reset</div>
+        <div class="model-desc">The Operations Reset provides urgent leadership alignment and an immediate operating structure within days, not months.</div>
+      </div>
+      <div class="model-step">
+        <div class="model-circle">04</div>
+        <div class="model-label">Transform</div>
+        <div class="model-desc">Transformation engagements execute the roadmap with weekly rhythm, KPI tracking, and accountability — not just recommendations.</div>
+      </div>
+      <div class="model-step">
+        <div class="model-circle">05</div>
+        <div class="model-label">Improve</div>
+        <div class="model-desc">Ongoing Improvement keeps progress measured, disciplined, and continuously refined through structured review cycles.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ASSESSMENT + LEAD FORM
+══════════════════════════════════════════════ -->
+<section id="assessment">
+  <div class="wrap">
+    <div class="assess-grid">
+
+      <div>
+        <div class="eyebrow" style="color:var(--gold)">Free Nozomi 360 Assessment</div>
+        <div class="gold-rule" style="opacity:0.4"></div>
+        <h2 class="assess-head fade-in">Start your Nozomi 360 Assessment.</h2>
+        <p class="assess-sub fade-in">Answer 12 questions across Nozomi's operating dimensions. Your responses produce an Operating Score, category scores, active pain patterns, and a recommended next step — submitted directly to our team.</p>
+
+        <p class="assess-positioning fade-in">Nozomi helps leaders understand what to fix before they invest in the next tool, consultant, AI initiative, or transformation program.</p>
+
+        <div class="lead-form-wrap fade-in" style="position:relative;">
+          <div class="lf-title">Nozomi 360 Assessment</div>
+          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and submit. We will review your assessment and send next-step instructions within one business day.</div>
+          <form id="assessment-form"
+                action="https://formsubmit.co/Info@Nozomi.ai"
+                method="POST"
+                novalidate>
+
+            <!-- FormSubmit configuration -->
+            <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
+            <input type="hidden" name="_replyto" id="h-replyto">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
+            <!-- TODO: Update _next URL to your actual live domain before launch -->
+            <!-- TODO: First-time FormSubmit use requires clicking verification link sent to Info@Nozomi.ai -->
+
+            <!-- Scoring results — populated by JS before submit -->
+            <input type="hidden" name="Operating Score"       id="h-score">
+            <input type="hidden" name="Readiness Level"       id="h-readiness">
+            <input type="hidden" name="Top Strength"          id="h-strength">
+            <input type="hidden" name="Top Weakness"          id="h-weakness">
+            <input type="hidden" name="Likely Pain Pattern"   id="h-pattern">
+            <input type="hidden" name="Recommended Next Step" id="h-nextstep">
+            <input type="hidden" name="Leadership &amp; Decision Rhythm"          id="h-q1">
+            <input type="hidden" name="Customer &amp; Market Quality"             id="h-q2">
+            <input type="hidden" name="Service Delivery &amp; Workflow"           id="h-q3">
+            <input type="hidden" name="People, Capacity &amp; Delegation"         id="h-q4">
+            <input type="hidden" name="Financial Discipline &amp; Revenue"        id="h-q5">
+            <input type="hidden" name="Technology, Data &amp; AI Readiness"       id="h-q6">
+            <input type="hidden" name="Quality, Risk &amp; Compliance"            id="h-q7">
+            <input type="hidden" name="Client / Customer Experience"              id="h-q8">
+            <input type="hidden" name="Measurement &amp; Operating Intelligence"  id="h-q9">
+            <input type="hidden" name="Scalability &amp; Owner Independence"      id="h-q10">
+            <input type="hidden" name="Continuous Improvement Culture"            id="h-q11">
+            <input type="hidden" name="Strategic Value &amp; Future Readiness"    id="h-q12">
+            <input type="hidden" name="Submission Source" value="Nozomi.ai homepage assessment form">
+            <div class="form-row">
+              <div class="ff" id="ff-name"><label for="f-name">First name</label><input type="text" id="f-name" name="Full Name" placeholder="Sarah Chen" required autocomplete="given-name"></div>
+              <div class="ff" id="ff-org"><label for="f-org">Organization</label><input type="text" id="f-org" name="Organization" placeholder="Acme Corp" required autocomplete="organization"></div>
+            </div>
+            <div class="form-row single">
+              <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="Email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
+            </div>
+            <div class="form-row single">
+              <div class="ff">
+                <label for="f-role">Your role</label>
+                <select id="f-role" name="Role">
+                  <option value="" disabled selected>Select your role</option>
+                  <option>CEO / Founder / Owner</option>
+                  <option>COO / Operations Leader</option>
+                  <option>Chief Digital / Transformation Officer</option>
+                  <option>Government / Public-Sector Leader</option>
+                  <option>L&D / HR / People Leader</option>
+                  <option>Accelerator / Ecosystem Program Manager</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+            <!-- ── 12 NOZOMI 360 ASSESSMENT QUESTIONS ── -->
+            <div style="margin-top:1.5rem;margin-bottom:0.25rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomi 360 Assessment — Rate each statement 1 to 5</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:1rem;">1 = Strongly disagree &nbsp;·&nbsp; 3 = Inconsistent &nbsp;·&nbsp; 5 = Strongly agree</div>
+            </div>
+            <div class="assessment-questions" id="assessment-questions">
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">01</span><span class="aq-dimension">Leadership &amp; Decision Rhythm</span></div>
+                <p class="aq-question">Our leadership team makes decisions with clear ownership, cadence, and follow-through.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Leadership and Decision Rhythm">
+                  <button type="button" class="aq-option" data-q="0" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(0,1)">1</button>
+                  <button type="button" class="aq-option" data-q="0" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(0,2)">2</button>
+                  <button type="button" class="aq-option" data-q="0" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(0,3)">3</button>
+                  <button type="button" class="aq-option" data-q="0" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(0,4)">4</button>
+                  <button type="button" class="aq-option" data-q="0" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(0,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">02</span><span class="aq-dimension">Customer &amp; Market Quality</span></div>
+                <p class="aq-question">We clearly understand our best customers, strongest markets, and highest-value opportunities.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Customer and Market Quality">
+                  <button type="button" class="aq-option" data-q="1" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(1,1)">1</button>
+                  <button type="button" class="aq-option" data-q="1" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(1,2)">2</button>
+                  <button type="button" class="aq-option" data-q="1" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(1,3)">3</button>
+                  <button type="button" class="aq-option" data-q="1" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(1,4)">4</button>
+                  <button type="button" class="aq-option" data-q="1" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(1,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">03</span><span class="aq-dimension">Service Delivery &amp; Workflow</span></div>
+                <p class="aq-question">Our workflows, handoffs, and delivery process are clear, documented, and consistently followed.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Service Delivery and Workflow">
+                  <button type="button" class="aq-option" data-q="2" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(2,1)">1</button>
+                  <button type="button" class="aq-option" data-q="2" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(2,2)">2</button>
+                  <button type="button" class="aq-option" data-q="2" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(2,3)">3</button>
+                  <button type="button" class="aq-option" data-q="2" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(2,4)">4</button>
+                  <button type="button" class="aq-option" data-q="2" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(2,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">04</span><span class="aq-dimension">People, Capacity &amp; Delegation</span></div>
+                <p class="aq-question">The organization is not overly dependent on a few key people to keep work moving.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="People Capacity and Delegation">
+                  <button type="button" class="aq-option" data-q="3" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(3,1)">1</button>
+                  <button type="button" class="aq-option" data-q="3" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(3,2)">2</button>
+                  <button type="button" class="aq-option" data-q="3" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(3,3)">3</button>
+                  <button type="button" class="aq-option" data-q="3" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(3,4)">4</button>
+                  <button type="button" class="aq-option" data-q="3" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(3,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">05</span><span class="aq-dimension">Financial Discipline &amp; Revenue Leakage</span></div>
+                <p class="aq-question">We have clear visibility into profitability, revenue leakage, pricing discipline, and financial performance.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Financial Discipline and Revenue Leakage">
+                  <button type="button" class="aq-option" data-q="4" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(4,1)">1</button>
+                  <button type="button" class="aq-option" data-q="4" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(4,2)">2</button>
+                  <button type="button" class="aq-option" data-q="4" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(4,3)">3</button>
+                  <button type="button" class="aq-option" data-q="4" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(4,4)">4</button>
+                  <button type="button" class="aq-option" data-q="4" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(4,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">06</span><span class="aq-dimension">Technology, Data &amp; AI Readiness</span></div>
+                <p class="aq-question">Our technology, data, and workflows are ready to support meaningful AI or digital transformation.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Technology Data and AI Readiness">
+                  <button type="button" class="aq-option" data-q="5" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(5,1)">1</button>
+                  <button type="button" class="aq-option" data-q="5" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(5,2)">2</button>
+                  <button type="button" class="aq-option" data-q="5" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(5,3)">3</button>
+                  <button type="button" class="aq-option" data-q="5" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(5,4)">4</button>
+                  <button type="button" class="aq-option" data-q="5" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(5,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">07</span><span class="aq-dimension">Quality, Risk &amp; Compliance</span></div>
+                <p class="aq-question">We have reliable controls, quality standards, and risk visibility across important operations.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Quality Risk and Compliance">
+                  <button type="button" class="aq-option" data-q="6" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(6,1)">1</button>
+                  <button type="button" class="aq-option" data-q="6" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(6,2)">2</button>
+                  <button type="button" class="aq-option" data-q="6" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(6,3)">3</button>
+                  <button type="button" class="aq-option" data-q="6" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(6,4)">4</button>
+                  <button type="button" class="aq-option" data-q="6" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(6,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">08</span><span class="aq-dimension">Client / Customer Experience</span></div>
+                <p class="aq-question">Our client or customer experience is consistent, measurable, and not dependent on individual heroics.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Client Customer Experience">
+                  <button type="button" class="aq-option" data-q="7" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(7,1)">1</button>
+                  <button type="button" class="aq-option" data-q="7" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(7,2)">2</button>
+                  <button type="button" class="aq-option" data-q="7" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(7,3)">3</button>
+                  <button type="button" class="aq-option" data-q="7" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(7,4)">4</button>
+                  <button type="button" class="aq-option" data-q="7" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(7,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">09</span><span class="aq-dimension">Measurement &amp; Operating Intelligence</span></div>
+                <p class="aq-question">Leadership has timely visibility into the metrics that matter most.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Measurement and Operating Intelligence">
+                  <button type="button" class="aq-option" data-q="8" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(8,1)">1</button>
+                  <button type="button" class="aq-option" data-q="8" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(8,2)">2</button>
+                  <button type="button" class="aq-option" data-q="8" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(8,3)">3</button>
+                  <button type="button" class="aq-option" data-q="8" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(8,4)">4</button>
+                  <button type="button" class="aq-option" data-q="8" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(8,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">10</span><span class="aq-dimension">Scalability &amp; Owner Independence</span></div>
+                <p class="aq-question">The organization can grow without creating more chaos, bottlenecks, or owner dependence.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Scalability and Owner Independence">
+                  <button type="button" class="aq-option" data-q="9" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(9,1)">1</button>
+                  <button type="button" class="aq-option" data-q="9" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(9,2)">2</button>
+                  <button type="button" class="aq-option" data-q="9" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(9,3)">3</button>
+                  <button type="button" class="aq-option" data-q="9" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(9,4)">4</button>
+                  <button type="button" class="aq-option" data-q="9" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(9,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">11</span><span class="aq-dimension">Continuous Improvement Culture</span></div>
+                <p class="aq-question">Teams regularly identify, prioritize, and act on improvement opportunities.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Continuous Improvement Culture">
+                  <button type="button" class="aq-option" data-q="10" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(10,1)">1</button>
+                  <button type="button" class="aq-option" data-q="10" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(10,2)">2</button>
+                  <button type="button" class="aq-option" data-q="10" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(10,3)">3</button>
+                  <button type="button" class="aq-option" data-q="10" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(10,4)">4</button>
+                  <button type="button" class="aq-option" data-q="10" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(10,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">12</span><span class="aq-dimension">Strategic Value &amp; Future Readiness</span></div>
+                <p class="aq-question">Our current operating model is strong enough to support future growth, transformation, and strategic value creation.</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Strategic Value and Future Readiness">
+                  <button type="button" class="aq-option" data-q="11" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(11,1)">1</button>
+                  <button type="button" class="aq-option" data-q="11" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(11,2)">2</button>
+                  <button type="button" class="aq-option" data-q="11" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(11,3)">3</button>
+                  <button type="button" class="aq-option" data-q="11" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(11,4)">4</button>
+                  <button type="button" class="aq-option" data-q="11" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(11,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+              </div>
+
+            </div><!-- /assessment-questions -->
+            <p id="assessment-error" class="assessment-error">Please answer all 12 assessment questions before submitting.</p>
+            <div class="consent-row">
+              <input type="checkbox" id="f-consent" name="Consent">
+              <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services.</label>
+            </div>
+            <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
+            <button type="submit" class="btn-form-submit">Submit Assessment →</button>
+            <!-- TODO: Replace with real assessment page or form provider before launch.
+                 Recommended: Tally, Typeform, Fillout, HubSpot, Formspree, Airtable/Zapier, or /api/assessment-leads -->
+            <p class="form-fine">Your assessment is submitted directly to Nozomi. No spam. Results are preliminary.</p>
+          </form>
+          <div class="form-success" id="form-success">
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — results are below and sent to your email</span></div>
+            <div class="result-score-card">
+              <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
+              <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
+              <div class="rsc-bar-track"><div class="rsc-bar-fill" id="r-bar-fill"></div></div>
+              <div class="rsc-readiness" id="r-readiness-label">Transformation Readiness: —</div>
+            </div>
+            <div class="result-grid">
+              <div class="result-block"><div class="rb-label">Top Strength</div><div class="rb-value" id="r-strength">—</div></div>
+              <div class="result-block result-block-warn"><div class="rb-label">Priority Gap</div><div class="rb-value" id="r-weakness">—</div></div>
+            </div>
+            <div class="result-pattern-section">
+              <div class="result-pattern-label">Likely Pain Pattern Detected</div>
+              <div class="result-pattern-card"><div class="rpc-name" id="r-pattern-name">—</div><div class="rpc-desc" id="r-pattern-desc">—</div></div>
+            </div>
+            <div class="result-dim-section"><div class="result-dim-label">Score by Dimension</div><div class="result-dims" id="r-dims"></div></div>
+            <div class="result-next-card">
+              <div class="rnc-label">Recommended Next Step</div>
+              <div class="rnc-title" id="r-next-title">—</div>
+              <div class="rnc-desc" id="r-next-desc">—</div>
+              <div class="rnc-disclaimer">This is a preliminary self-assessment. The Diagnostic Blueprint validates findings through leadership interviews, workflow review, and evidence analysis.</div>
+            </div>
+            <div class="result-cta-row">
+              <button class="result-btn-primary" onclick="openCalendly()">Book a Review Call →</button>
+              <button class="result-btn-ghost" onclick="navToTab('advisory')">Explore Advisory</button>
+            </div>
+            <div class="result-email-note" id="r-email-note" style="display:none;">A copy of your results has been sent to <strong id="r-email-display"></strong></div>
+          </div>
+        </div>
+
+        <div class="dim-eyebrow">12 Assessment Dimensions</div>
+        <div class="dim-chips fade-in">
+          <span class="dim-chip">Leadership & Decision Rhythm</span>
+          <span class="dim-chip">Customer & Market Quality</span>
+          <span class="dim-chip">Service Delivery & Workflow</span>
+          <span class="dim-chip">People, Capacity & Delegation</span>
+          <span class="dim-chip">Financial Discipline & Revenue</span>
+          <span class="dim-chip">Technology, Data & AI Readiness</span>
+          <span class="dim-chip">Quality, Risk & Compliance</span>
+          <span class="dim-chip">Client / Customer Experience</span>
+          <span class="dim-chip">Measurement & Operating Intelligence</span>
+          <span class="dim-chip">Scalability & Owner Independence</span>
+          <span class="dim-chip">Continuous Improvement Culture</span>
+          <span class="dim-chip">Strategic Value & Future Readiness</span>
+        </div>
+        <p class="assess-note">The free assessment is a preliminary self-assessment. The paid Diagnostic Blueprint validates the score through interviews, workflow review, evidence gathering, and operating analysis.</p>
+
+        <!-- Sample deliverable links — TODO: link to real PDF/preview files before launch -->
+        <div class="sample-links">
+          <div class="sample-links-label">Sample deliverables</div>
+          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
+            <span class="sample-link-icon">↗</span> View Sample Assessment Report
+            <span class="sample-soon">Preview coming soon</span>
+          </a>
+          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
+            <span class="sample-link-icon">↗</span> View Diagnostic Blueprint Preview
+            <span class="sample-soon">Preview coming soon</span>
+          </a>
+          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
+            <span class="sample-link-icon">↗</span> Explore Transformation Labs Outline
+            <span class="sample-soon">Preview coming soon</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="report-card fade-in">
+          <div class="rc-label">Nozomi 360 — Sample Assessment Report</div>
+          <div class="rc-score">67 / 100</div>
+          <div class="rc-track"><div class="rc-fill"></div></div>
+          <div class="rc-row"><span class="rc-row-k">Operating Maturity</span><span class="rc-row-v">Developing</span></div>
+          <div class="rc-row"><span class="rc-row-k">Top Strength</span><span class="rc-row-v">Strategic Value</span></div>
+          <div class="rc-row"><span class="rc-row-k">Top Pain Pattern</span><span class="rc-row-v">Low Operating Visibility</span></div>
+          <div class="rc-row"><span class="rc-row-k">Recommended Next Step</span><span class="rc-row-v">Diagnostic Blueprint</span></div>
+          <div class="rc-row"><span class="rc-row-k">Transformation Readiness</span><span class="rc-row-v">Constrained — Roadmap Required</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PAIN PATTERNS
+══════════════════════════════════════════════ -->
+<section id="patterns">
+  <div class="wrap">
+    <div class="eyebrow">Pain Pattern Diagnostic</div>
+    <div class="gold-rule"></div>
+    <h2 class="patterns-head fade-in">The assessment translates scores into patterns leaders recognize.</h2>
+    <p class="patterns-sub fade-in">Nozomi identifies the recurring patterns that explain why transformation, growth, or execution may be stuck.</p>
+    <div class="patterns-grid fade-in">
+      <div class="pattern-card"><div class="pat-num">01</div><div class="pat-title">Leadership Bottleneck</div><div class="pat-desc">Decisions depend too heavily on one person or senior leadership.</div></div>
+      <div class="pattern-card"><div class="pat-num">02</div><div class="pat-title">Workflow Chaos</div><div class="pat-desc">Processes are inconsistent, manual, or unclear across teams.</div></div>
+      <div class="pattern-card"><div class="pat-num">03</div><div class="pat-title">Revenue Leakage</div><div class="pat-desc">Value is lost through pricing, follow-up, or billing gaps.</div></div>
+      <div class="pattern-card"><div class="pat-num">04</div><div class="pat-title">Low Operating Visibility</div><div class="pat-desc">Leaders lack dashboards, KPIs, or timely decision data.</div></div>
+      <div class="pattern-card"><div class="pat-num">05</div><div class="pat-title">Technology Drag</div><div class="pat-desc">Tools are underused or misaligned with actual workflows.</div></div>
+      <div class="pattern-card"><div class="pat-num">06</div><div class="pat-title">Team Capacity Breakdown</div><div class="pat-desc">People are stretched without the structure to scale.</div></div>
+      <div class="pattern-card"><div class="pat-num">07</div><div class="pat-title">Weak Client Engine</div><div class="pat-desc">Acquisition, retention, or experience is inconsistent.</div></div>
+      <div class="pattern-card"><div class="pat-num">08</div><div class="pat-title">Scaling Without Systems</div><div class="pat-desc">Growth is outpacing systems, people, and processes.</div></div>
+      <div class="pattern-card"><div class="pat-num">09</div><div class="pat-title">Quality & Risk Exposure</div><div class="pat-desc">Errors or compliance gaps create unmanaged risk.</div></div>
+      <div class="pattern-card"><div class="pat-num">10</div><div class="pat-title">No Improvement Rhythm</div><div class="pat-desc">Problems repeat without structured review or root-cause resolution.</div></div>
+      <div class="pattern-card"><div class="pat-num">11</div><div class="pat-title">AI Readiness Gap</div><div class="pat-desc">AI initiatives lack governance, clarity, or adoption structure.</div></div>
+      <div class="pattern-card"><div class="pat-num">12</div><div class="pat-title">Strategy–Execution Gap</div><div class="pat-desc">Strategy exists but doesn't translate into accountability or action.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PROGRAMS — TABBED
+══════════════════════════════════════════════ -->
+<section id="programs">
+  <div class="wrap">
+    <div class="eyebrow">Programs & Investment</div>
+    <div class="gold-rule"></div>
+    <h2 class="prog-head fade-in">Structured offers for every stage of readiness.</h2>
+    <p class="prog-sub fade-in">Advisory engagements for organizations. Labs programs for teams and institutions.</p>
+
+    <div class="tab-switcher" role="tablist" aria-label="Program types">
+      <button class="tab-btn" role="tab" id="tb-advisory" aria-selected="true"  aria-controls="tp-advisory" onclick="switchTab(this,'advisory')">Advisory</button>
+      <button class="tab-btn" role="tab" id="tb-labs"     aria-selected="false" aria-controls="tp-labs"     onclick="switchTab(this,'labs')">Transformation Labs</button>
+    </div>
+
+    <!-- ADVISORY TAB -->
+    <div class="tab-panel active" id="tp-advisory" role="tabpanel" aria-labelledby="tb-advisory">
+      <div class="offer-cards">
+        <div class="offer-card">
+          <div class="oc-phase">Diagnose</div>
+          <div class="oc-title">Diagnostic Blueprint</div>
+          <div class="oc-price">$12,500 – $25,000+</div>
+          <div class="oc-desc">Validated operating score, bottleneck map, pain-pattern diagnosis, improvement roadmap, and executive report.</div>
+        </div>
+        <div class="offer-card ft">
+          <div class="oc-phase">Reset</div>
+          <div class="oc-title">Operations Reset</div>
+          <div class="oc-price">$26,000</div>
+          <div class="oc-desc">Urgent operating clarity, leadership alignment, 3-day operations review, and 30-day roadmap.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-phase">Transform</div>
+          <div class="oc-title">90-Day Transformation</div>
+          <div class="oc-price">$66,000</div>
+          <div class="oc-desc">Roadmap execution, weekly cadence, KPI tracking, executive reporting, and change management.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-phase">Improve</div>
+          <div class="oc-title">Ongoing Improvement</div>
+          <div class="oc-price">$8,500 – $18,000+/mo</div>
+          <div class="oc-desc">Continued assessment, KPI review, operating discipline, and advisory partnership.</div>
+        </div>
+      </div>
+
+      <button class="ladder-trigger" onclick="toggleLadder(this)" aria-expanded="false" aria-controls="full-ladder">
+        <span>View Full Advisory Ladder</span>
+        <span class="ladder-chevron" aria-hidden="true">▾</span>
+      </button>
+      <div class="full-ladder" id="full-ladder" role="region" aria-label="Full advisory offer ladder">
+        <div class="l-row l-free"><span class="l-name">Free 360 Assessment</span><span class="l-price">Free</span></div>
+        <div class="l-row l-free"><span class="l-name">Assessment Review Call</span><span class="l-price">Free</span></div>
+        <div class="l-row"><span class="l-name">Focused Diagnostic Snapshot</span><span class="l-price">$7,500</span></div>
+        <div class="l-row"><span class="l-name">Standard Diagnostic Blueprint</span><span class="l-price">$12,500</span></div>
+        <div class="l-row"><span class="l-name">Advanced Diagnostic Blueprint</span><span class="l-price">$18,000 – $25,000+</span></div>
+        <div class="l-row"><span class="l-name">Operations Reset</span><span class="l-price">$26,000</span></div>
+        <div class="l-row"><span class="l-name">90-Day Transformation</span><span class="l-price">$66,000</span></div>
+        <div class="l-row"><span class="l-name">6-Month Transformation</span><span class="l-price">$108,000</span></div>
+        <div class="l-row"><span class="l-name">Ongoing Monitor</span><span class="l-price">$8,500 / mo</span></div>
+        <div class="l-row"><span class="l-name">Ongoing Improve</span><span class="l-price">$12,500 / mo</span></div>
+        <div class="l-row"><span class="l-name">Ongoing Partner</span><span class="l-price">$18,000+ / mo</span></div>
+      </div>
+      <p class="prog-note">Travel, venue, translation, software, third-party specialists, and local compliance requirements are quoted separately unless included in a custom agreement.</p>
+    </div>
+
+    <!-- LABS TAB -->
+    <div class="tab-panel" id="tp-labs" role="tabpanel" aria-labelledby="tb-labs">
+      <div class="labs-framing">
+        Structured capability-building programs for <strong>corporate teams, public-sector organizations, GCC institutions, transformation offices, and innovation ecosystems.</strong> Every program begins with assessment and ends with a practical roadmap.
+      </div>
+      <div class="labs-cards">
+
+        <div class="labs-card">
+          <div class="lc-duration">3 Weeks</div>
+          <div class="lc-title">Transformation Readiness Sprint</div>
+          <div class="lc-price">$35,000 – $45,000</div>
+          <div class="lc-best-label">Best for</div>
+          <div class="lc-best">Leadership teams, SME programs, public-sector pilots, and fast readiness and roadmap needs.</div>
+          <div class="lc-del-label">Deliverables</div>
+          <ul class="lc-dels">
+            <li>Pre-program readiness assessment</li>
+            <li>Leadership kickoff session</li>
+            <li>2–3 structured workshops</li>
+            <li>AI / digital readiness review</li>
+            <li>Workflow maturity assessment</li>
+            <li>Use-case prioritization</li>
+            <li>90-day roadmap</li>
+            <li>Executive summary report</li>
+          </ul>
+        </div>
+
+        <div class="labs-card ft">
+          <div class="lc-duration">6 Weeks</div>
+          <div class="lc-title">AI & Digital Transformation Program</div>
+          <div class="lc-price">$65,000 – $85,000</div>
+          <div class="lc-best-label">Best for</div>
+          <div class="lc-best">Corporate L&D teams, digital transformation offices, innovation units, mid-size enterprise, and public-sector departments.</div>
+          <div class="lc-del-label">Deliverables</div>
+          <ul class="lc-dels">
+            <li>Readiness assessment and stakeholder interviews</li>
+            <li>4–6 structured workshops</li>
+            <li>AI readiness and literacy training</li>
+            <li>Digital transformation strategy module</li>
+            <li>Workflow redesign module</li>
+            <li>Change management module</li>
+            <li>Use-case prioritization matrix</li>
+            <li>Implementation roadmap and final report</li>
+          </ul>
+        </div>
+
+        <div class="labs-card">
+          <div class="lc-duration">9 Weeks</div>
+          <div class="lc-title">Institutional Transformation Accelerator</div>
+          <div class="lc-price">$95,000 – $125,000</div>
+          <div class="lc-best-label">Best for</div>
+          <div class="lc-best">Large organizations, public-sector entities, multi-team programs, and GCC institutional buyers.</div>
+          <div class="lc-del-label">Deliverables</div>
+          <ul class="lc-dels">
+            <li>All 6-week program deliverables</li>
+            <li>Department-level maturity mapping</li>
+            <li>Deeper team and stakeholder assessment</li>
+            <li>Leadership alignment sessions</li>
+            <li>Multi-department adoption roadmap</li>
+            <li>Board-style final presentation</li>
+            <li>Institutional improvement plan</li>
+          </ul>
+        </div>
+
+        <div class="labs-card">
+          <div class="lc-duration">Custom</div>
+          <div class="lc-title">Government / Corporate Program</div>
+          <div class="lc-price">$150,000+</div>
+          <div class="lc-best-label">Best for</div>
+          <div class="lc-best">Ministries, national programs, large enterprise, multi-cohort initiatives, and multi-department programs.</div>
+          <div class="lc-del-label">Deliverables</div>
+          <ul class="lc-dels">
+            <li>Fully custom scope and timeline</li>
+            <li>Multi-cohort and multi-site delivery</li>
+            <li>Tailored assessment and diagnostics</li>
+            <li>Arabic-language materials available</li>
+            <li>Custom governance and reporting</li>
+            <li>Embedded facilitator options</li>
+            <li>Long-term partnership structure</li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="prog-note">All Labs programs include a readiness assessment, structured workshops, deliverables package, executive-level final presentation, and post-program implementation roadmap. Travel, venue, translation, software, third-party specialists, and local compliance requirements are quoted separately unless included in a custom agreement.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CREDIBILITY + EVIDENCE
+══════════════════════════════════════════════ -->
+<section id="credibility">
+  <div class="wrap">
+    <div class="eyebrow">Advisory Experience</div>
+    <div class="gold-rule"></div>
+    <h2 class="cred-head fade-in">Sharper diagnostic capability. Broader transformation experience.</h2>
+    <p class="cred-copy fade-in">Nozomi is shaped by advisory exposure across AI validation and governance, cybersecurity, fintech, healthtech, marketplace platforms, startup ecosystems, and operating improvement. That breadth is what makes the diagnosis specific — not generic.</p>
+    <div class="theme-chips fade-in">
+      <span class="theme-chip">AI Validation & Standards</span>
+      <span class="theme-chip">AI Cybersecurity</span>
+      <span class="theme-chip">AI Lead Qualification</span>
+      <span class="theme-chip">Smart Healthtech Platforms</span>
+      <span class="theme-chip">Dynamic Discounting Fintech</span>
+      <span class="theme-chip">Early-Stage Fintech</span>
+      <span class="theme-chip">Marketplace Operations</span>
+      <span class="theme-chip">Startup Readiness</span>
+    </div>
+
+    <!-- Proof architecture: three methodology pillars -->
+    <div class="proof-blocks fade-in">
+      <div class="proof-block">
+        <div class="pb-num">Assessment System</div>
+        <div class="pb-title">Operating Score + Pain Patterns</div>
+        <div class="pb-body">A structured 360 assessment across 12 dimensions that produces an Operating Score, category scores, active pain patterns, top strength, and recommended next step.</div>
+      </div>
+      <div class="proof-block">
+        <div class="pb-num">Diagnostic Blueprint</div>
+        <div class="pb-title">Validated Roadmap + Bottleneck Map</div>
+        <div class="pb-body">A validated diagnosis through interviews, workflow review, and evidence analysis — producing a bottleneck map, executive report, and 30/60/90-day improvement roadmap.</div>
+      </div>
+      <div class="proof-block">
+        <div class="pb-num">Transformation Labs</div>
+        <div class="pb-title">Programs That Start With Assessment</div>
+        <div class="pb-body">Structured capability-building for corporate teams, public-sector organizations, and GCC institutions — AI readiness, workflow redesign, use-case prioritization, and executive roadmap included.</div>
+      </div>
+    </div>
+    <div class="evidence-cards fade-in">
+      <div class="ev-card">
+        <div class="ev-source">McKinsey 2025</div>
+        <div class="ev-head">AI value requires workflow redesign</div>
+        <div class="ev-body">Organizations capturing measurable AI value are redesigning workflows and placing senior leaders in governance roles — not just adopting tools.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-source">Thomson Reuters 2025</div>
+        <div class="ev-head">GenAI is moving into professional workflows</div>
+        <div class="ev-body">GenAI adoption nearly doubled in professional services, with organizations moving from experimentation toward structured workflow integration.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-source">Saudi Vision 2030 / SDAIA</div>
+        <div class="ev-head">GCC transformation demand is structural</div>
+        <div class="ev-body">Saudi Arabia's national AI strategy is driving institutional modernization, workforce capability building, and AI governance investment across the GCC region.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════════════ -->
+<section id="final-cta">
+  <div class="wrap">
+    <div class="cta-center">
+      <div class="eyebrow" style="text-align:center;color:var(--champagne)">Start Here</div>
+      <h2 class="cta-head">Start with <em>clarity.</em></h2>
+      <p class="cta-sub">Before your next consulting engagement, AI initiative, software investment, or transformation program — start with a structured diagnosis of what is actually holding your organization back.</p>
+      <div class="cta-btns">
+        <button class="btn-cta-primary" onclick="goToAssessment()">Take the Free Assessment</button>
+        <!-- PRODUCTION: Replace with actual Calendly URL before launch: window.open('https://calendly.com/nozomi/review-call', '_blank') -->
+        <button class="btn-cta-ghost" onclick="openCalendly()">Book a Review Call</button>
+      </div>
+      <p class="cta-contact">Nozomi.ai &nbsp;·&nbsp; <a href="mailto:Info@Nozomi.ai">Info@Nozomi.ai</a></p>
+      <p class="cta-disclaimer">Nozomi does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div>
+        <a href="/" class="logo-lockup" aria-label="Nozomi home" style="margin-bottom:0.9rem;display:inline-flex;">
+          <svg width="30" height="33" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+            <defs>
+              <linearGradient id="nGf" x1="0" y1="0" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#F2D96A"/>
+                <stop offset="45%"  stop-color="#D4AF37"/>
+                <stop offset="100%" stop-color="#A07C18"/>
+              </linearGradient>
+            </defs>
+            <polygon points="10,1 19,1 39,43 30,43" fill="url(#nGf)"/>
+            <polygon points="10,1 10,43 1,43 1,14"  fill="url(#nGf)"/>
+            <polygon points="1,1 10,1 1,14"          fill="#06101C"/>
+            <polygon points="30,1 39,1 39,30 30,43"  fill="url(#nGf)"/>
+            <polygon points="39,30 39,43 30,43"       fill="#06101C"/>
+          </svg>
+          <div class="logo-divider-line" style="height:24px;margin:0 11px;"></div>
+          <span class="logo-wordmark" style="font-size:16px;">Nozomi</span>
+        </a>
+        <p class="ft-brand-tag">Assessment-first transformation firm.<br>Assess. Transform. Improve.</p>
+      </div>
+
+      <div>
+        <div class="ft-col-head">Advisory</div>
+        <ul class="ft-links">
+          <li><a href="#assessment" onclick="navTo('assessment')">360 Assessment</a></li>
+          <li><a href="#programs"   onclick="navToTab('advisory')">Diagnostic Blueprint</a></li>
+          <li><a href="#programs"   onclick="navToTab('advisory')">Operations Reset</a></li>
+          <li><a href="#programs"   onclick="navToTab('advisory')">90-Day Transformation</a></li>
+          <li><a href="#programs"   onclick="navToTab('advisory')">Ongoing Improvement</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-col-head">Transformation Labs</div>
+        <ul class="ft-links">
+          <li><a href="#programs" onclick="navToTab('labs')">3-Week Sprint</a></li>
+          <li><a href="#programs" onclick="navToTab('labs')">6-Week Program</a></li>
+          <li><a href="#programs" onclick="navToTab('labs')">9-Week Accelerator</a></li>
+          <li><a href="#programs" onclick="navToTab('labs')">Custom Programs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-col-head">Company</div>
+        <ul class="ft-links">
+          <li><a href="#model"       onclick="navTo('model')">Method</a></li>
+          <li><a href="#patterns"    onclick="navTo('patterns')">Pain Patterns</a></li>
+          <li><a href="#credibility" onclick="navTo('credibility')">Advisory Experience</a></li>
+          <li><a href="#final-cta"   onclick="navTo('final-cta')">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-col-head">Contact</div>
+        <a href="mailto:Info@Nozomi.ai" class="ft-email">Info@Nozomi.ai</a>
+        <span class="ft-domain">Nozomi.ai</span>
+      </div>
+
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2026 Nozomi. All rights reserved.</span>
+      <div class="ft-legal">
+        <!-- TODO: Replace href="#" with live page URLs before launch -->
+        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Privacy Policy</a>
+        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Terms</a>
+        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* ── NAVIGATION HELPERS ──────────────────────────────── */
+function navTo(id) {
+  var el = document.getElementById(id);
+  if (el) { setTimeout(function() { el.scrollIntoView({ behavior: 'smooth' }); }, 10); }
+}
+
+function navToTab(tabName) {
+  switchTabByName(tabName);
+  setTimeout(function() {
+    var el = document.getElementById('programs');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 10);
+}
+
+function goToAssessment() {
+  /* PRODUCTION: swap to → window.location.href = '/assessment'; */
+  navTo('assessment');
+  setTimeout(function() {
+    var f = document.getElementById('f-name');
+    if (f) f.focus();
+  }, 650);
+}
+
+function openCalendly() {
+  // TODO: Replace with real booking URL before launch.
+  // window.open('https://calendly.com/nozomi/review-call', '_blank');
+  var bookingUrl = 'https://calendly.com/nozomi/review-call'; /* REPLACE THIS URL before launch */
+  if (bookingUrl && bookingUrl.indexOf('calendly.com/nozomi/') === -1) {
+    window.open(bookingUrl, '_blank', 'noopener noreferrer');
+  } else {
+    /* Fallback to email until real booking URL is confirmed */
+    window.location.href = 'mailto:Info@Nozomi.ai?subject=Book%20a%20Review%20Call&body=Hello%2C%20I%27d%20like%20to%20book%20an%20Assessment%20Review%20Call%20with%20Nozomi.';
+  }
+}
+
+/* ── TABS ────────────────────────────────────────────── */
+function switchTab(btn, name) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  btn.setAttribute('aria-selected', 'true');
+  var panel = document.getElementById('tp-' + name);
+  if (panel) panel.classList.add('active');
+}
+
+function switchTabByName(name) {
+  var btn = document.getElementById('tb-' + name);
+  if (btn) switchTab(btn, name);
+}
+
+/* Keyboard nav: Arrow keys, Home, End */
+var tabList = document.querySelector('[role="tablist"]');
+if (tabList) {
+  tabList.addEventListener('keydown', function(e) {
+    var tabs = Array.from(document.querySelectorAll('.tab-btn'));
+    var idx  = tabs.indexOf(document.activeElement);
+    if (idx === -1) return;
+    var next = -1;
+    if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
+    if (e.key === 'ArrowLeft')  next = (idx - 1 + tabs.length) % tabs.length;
+    if (e.key === 'Home')       next = 0;
+    if (e.key === 'End')        next = tabs.length - 1;
+    if (next !== -1) {
+      e.preventDefault();
+      tabs[next].focus();
+      tabs[next].click();
+    }
+  });
+}
+
+/* ── EXPANDABLE LADDER ───────────────────────────────── */
+function toggleLadder(btn) {
+  var ladder  = document.getElementById('full-ladder');
+  var chevron = btn.querySelector('.ladder-chevron');
+  var isOpen  = ladder.classList.toggle('open');
+  chevron.classList.toggle('open', isOpen);
+  btn.setAttribute('aria-expanded', String(isOpen));
+}
+
+/* ── MOBILE MENU ─────────────────────────────────────── */
+var menuBtn   = document.getElementById('menu-toggle');
+var mobileNav = document.getElementById('mobile-nav');
+
+menuBtn.addEventListener('click', function() {
+  var open = mobileNav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+  mobileNav.setAttribute('aria-hidden',  String(!open));
+});
+
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  mobileNav.setAttribute('aria-hidden', 'true');
+}
+
+document.addEventListener('click', function(e) {
+  if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) closeMobileNav();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeMobileNav(); menuBtn.focus(); }
+});
+
+/* ── STICKY HEADER ───────────────────────────────────── */
+var hdr = document.getElementById('site-header');
+window.addEventListener('scroll', function() {
+  hdr.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ── ASSESSMENT QUESTIONS & SCORING ─────────────────── */
+var QUESTIONS_DATA = [
+  { id:'h-q1',  label:'Leadership & Decision Rhythm',           painPattern:'Leadership Bottleneck',        painDesc:'Decisions depend too heavily on one person. The organization cannot act without leadership approval at every step.' },
+  { id:'h-q2',  label:'Customer & Market Quality',              painPattern:'Weak Client Engine',           painDesc:'Customer acquisition, retention, or revenue quality is inconsistent. Growth depends on referrals and individual relationships.' },
+  { id:'h-q3',  label:'Service Delivery & Workflow',            painPattern:'Workflow Chaos',               painDesc:'Processes are undocumented or inconsistent. Handoffs break, work falls through gaps, and delivery quality varies by person.' },
+  { id:'h-q4',  label:'People, Capacity & Delegation',          painPattern:'Team Capacity Breakdown',      painDesc:'The team is stretched or structurally dependent on key individuals. Scaling creates more burden, not more capacity.' },
+  { id:'h-q5',  label:'Financial Discipline & Revenue Leakage', painPattern:'Revenue Leakage',              painDesc:'Value is leaving through weak pricing, billing gaps, poor follow-up, or unprofitable client relationships.' },
+  { id:'h-q6',  label:'Technology, Data & AI Readiness',        painPattern:'AI Readiness Gap',             painDesc:'AI and digital initiatives lack governance, use-case clarity, workflow integration, or adoption structure to succeed.' },
+  { id:'h-q7',  label:'Quality, Risk & Compliance',             painPattern:'Quality & Risk Exposure',      painDesc:'Quality standards are inconsistently applied. Compliance gaps and operational errors create avoidable risk.' },
+  { id:'h-q8',  label:'Client / Customer Experience',           painPattern:'Weak Client Engine',           painDesc:'The client experience is inconsistent or dependent on individual heroics rather than reliable systems.' },
+  { id:'h-q9',  label:'Measurement & Operating Intelligence',   painPattern:'Low Operating Visibility',     painDesc:'Leadership lacks reliable dashboards or KPIs. Decisions are based on intuition rather than timely operating data.' },
+  { id:'h-q10', label:'Scalability & Owner Independence',       painPattern:'Scaling Without Systems',      painDesc:'Growth is creating chaos rather than compound value. Systems, processes, and people structures are not keeping pace.' },
+  { id:'h-q11', label:'Continuous Improvement Culture',         painPattern:'No Improvement Rhythm',        painDesc:'Problems recur without root-cause analysis. There is no structured cycle for identifying and resolving operating gaps.' },
+  { id:'h-q12', label:'Strategic Value & Future Readiness',     painPattern:'Strategy–Execution Gap',  painDesc:'Strategy exists at leadership level but does not translate into team priorities, operating discipline, or measurable action.' },
+];
+var Q_ANSWERS = {};
+
+var NEXT_STEPS = {
+  critical:    { title:'Operations Reset + Diagnostic Blueprint',           desc:'Your score indicates significant operating gaps across multiple dimensions. We recommend beginning with an Operations Reset to establish immediate clarity, followed by a Diagnostic Blueprint to validate root causes and build a structured improvement roadmap.' },
+  constrained: { title:'Diagnostic Blueprint',                              desc:'Your score shows constrained operating capacity with clear bottleneck patterns. A Diagnostic Blueprint will validate root causes through leadership interviews and workflow review, and produce a practical 30/60/90-day roadmap.' },
+  developing:  { title:'Focused Diagnostic Snapshot or Diagnostic Blueprint',desc:'Your score reveals a developing operating foundation with specific gaps limiting your growth or transformation potential. A Diagnostic Blueprint will identify the highest-priority improvement opportunities.' },
+  ready:       { title:'90-Day Transformation or Transformation Labs',       desc:'Your operating foundation is strong. A 90-Day Transformation engagement or Transformation Labs program can help you build the next layer of capability, AI readiness, or organizational scale.' },
+  advanced:    { title:'Ongoing Improvement or Transformation Labs',         desc:'Your operating systems are mature. An Ongoing Improvement partnership or advanced Transformation Labs program will help you maintain discipline, optimize continuously, and build competitive advantage.' }
+};
+
+function setQAnswer(qIdx, val) {
+  Q_ANSWERS[qIdx] = val;
+  document.querySelectorAll('[data-q="' + qIdx + '"]').forEach(function(btn) {
+    var sel = parseInt(btn.dataset.v, 10) === val;
+    btn.classList.toggle('selected', sel);
+    btn.setAttribute('aria-checked', sel ? 'true' : 'false');
+  });
+  var allAnswered = QUESTIONS_DATA.every(function(_, i) { return Q_ANSWERS[i] !== undefined; });
+  var errEl = document.getElementById('assessment-error');
+  if (allAnswered && errEl) errEl.style.display = 'none';
+}
+
+function calcOperatingScore() {
+  var total = 0;
+  for (var i = 0; i < 12; i++) total += (Q_ANSWERS[i] || 0);
+  return Math.round((total / 60) * 100);
+}
+
+function getReadinessLevel(score) {
+  if (score <= 40) return 'Critical / Fragmented';
+  if (score <= 60) return 'Constrained';
+  if (score <= 75) return 'Developing';
+  if (score <= 88) return 'Ready to Transform';
+  return 'Scalable / Advanced';
+}
+
+function getReadinessKey(score) {
+  if (score <= 40) return 'critical';
+  if (score <= 60) return 'constrained';
+  if (score <= 75) return 'developing';
+  if (score <= 88) return 'ready';
+  return 'advanced';
+}
+
+function getStrengthAndWeakness() {
+  var best = null; var worst = null;
+  for (var i = 0; i < 12; i++) {
+    var v = Q_ANSWERS[i];
+    if (v === undefined) continue;
+    if (best  === null || v > Q_ANSWERS[best])  best  = i;
+    if (worst === null || v < Q_ANSWERS[worst]) worst = i;
+  }
+  return {
+    strength: best  !== null ? QUESTIONS_DATA[best].label        : 'Not determined',
+    weakness: worst !== null ? QUESTIONS_DATA[worst].label       : 'Not determined',
+    painPat:  worst !== null ? QUESTIONS_DATA[worst].painPattern : 'Not determined',
+    painDesc: worst !== null ? QUESTIONS_DATA[worst].painDesc    : ''
+  };
+}
+
+function getDimBarColor(pct) {
+  if (pct <= 40) return '#E05252';
+  if (pct <= 60) return '#E8A43C';
+  if (pct <= 80) return '#D4AF37';
+  return '#4CAF80';
+}
+
+function animateNum(el, target) {
+  var n = 0;
+  var t = setInterval(function() {
+    n = Math.min(n + Math.ceil(target / 30), target);
+    el.textContent = n;
+    if (n >= target) clearInterval(t);
+  }, 22);
+}
+
+function showResults(score, sw, org, email) {
+  var readiness = getReadinessLevel(score);
+  var nsKey     = getReadinessKey(score);
+  var nextStep  = NEXT_STEPS[nsKey];
+
+  var el = document.getElementById('r-score-display');
+  if (el) { el.textContent = '0'; animateNum(el, score); }
+
+  var bar = document.getElementById('r-bar-fill');
+  if (bar) setTimeout(function(){ bar.style.width = score + '%'; }, 120);
+
+  function setText(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; }
+  setText('r-org-name',       org || 'Your Organization');
+  setText('r-readiness-label','Transformation Readiness: ' + readiness);
+  setText('r-readiness-badge',readiness);
+  setText('r-strength',       sw.strength);
+  setText('r-weakness',       sw.weakness);
+  setText('r-pattern-name',   sw.painPat);
+  setText('r-pattern-desc',   sw.painDesc);
+  setText('r-next-title',     nextStep.title);
+  setText('r-next-desc',      nextStep.desc);
+
+  /* Dimension bars */
+  var dimsEl = document.getElementById('r-dims');
+  if (dimsEl) {
+    var html = '';
+    QUESTIONS_DATA.forEach(function(q, i) {
+      var v = Q_ANSWERS[i] || 0;
+      var pct = Math.round((v / 5) * 100);
+      html += '<div class="result-dim-row">';
+      html += '<span class="rdim-name">' + q.label + '</span>';
+      html += '<div class="rdim-bar-wrap"><div class="rdim-bar-track"><div class="rdim-bar-fill" style="width:' + pct + '%;background:' + getDimBarColor(pct) + ';"></div></div></div>';
+      html += '<span class="rdim-val">' + v + '/5</span>';
+      html += '</div>';
+    });
+    dimsEl.innerHTML = html;
+  }
+
+  /* Email note */
+  var emailDisplay = document.getElementById('r-email-display');
+  var emailNote    = document.getElementById('r-email-note');
+  if (email && emailDisplay) {
+    emailDisplay.textContent = email;
+    if (emailNote) emailNote.style.display = 'block';
+  }
+
+  /* Show results panel */
+  var formEl = document.getElementById('assessment-form');
+  var succEl = document.getElementById('form-success');
+  if (formEl) formEl.style.display = 'none';
+  if (succEl) succEl.classList.add('show');
+  setTimeout(function() {
+    var wrap = document.querySelector('.lead-form-wrap');
+    if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 120);
+}
+
+/* ── FORM SUBMISSION — FormSubmit + sessionStorage ───── */
+var assessForm   = document.getElementById('assessment-form');
+var consentErrEl = document.getElementById('consent-error');
+
+if (assessForm) {
+  assessForm.addEventListener('submit', function(e) {
+    e.preventDefault(); /* Hold submission until validation + hidden fields are ready */
+
+    /* ── 1. Read contact fields ── */
+    var name    = document.getElementById('f-name').value.trim();
+    var email   = document.getElementById('f-email').value.trim();
+    var org     = document.getElementById('f-org').value.trim();
+    var role    = document.getElementById('f-role').value;
+    var consent = document.getElementById('f-consent').checked;
+    var valid   = true;
+
+    /* ── 2. Reset all error states ── */
+    ['ff-name','ff-org','ff-email'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.classList.remove('err');
+    });
+    if (consentErrEl) consentErrEl.style.display = 'none';
+    var assessErr = document.getElementById('assessment-error');
+    if (assessErr) assessErr.style.display = 'none';
+
+    /* ── 3. Validate contact fields ── */
+    if (!name)  { var e1 = document.getElementById('ff-name'); if (e1) e1.classList.add('err'); valid = false; }
+    if (!org)   { var e2 = document.getElementById('ff-org');  if (e2) e2.classList.add('err'); valid = false; }
+    if (!email || !email.includes('@')) {
+      var e3 = document.getElementById('ff-email'); if (e3) e3.classList.add('err'); valid = false;
+    }
+    if (!consent) { if (consentErrEl) consentErrEl.style.display = 'block'; valid = false; }
+
+    /* ── 4. Validate all 12 questions answered ── */
+    var allAnswered = QUESTIONS_DATA.every(function(_, i) { return Q_ANSWERS[i] !== undefined; });
+    if (!allAnswered) {
+      if (assessErr) assessErr.style.display = 'block';
+      for (var qi = 0; qi < 12; qi++) {
+        if (Q_ANSWERS[qi] === undefined) {
+          var cards = document.querySelectorAll('.assessment-question');
+          if (cards[qi]) cards[qi].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          break;
+        }
+      }
+      valid = false;
+    }
+
+    if (!valid) return; /* Stop here — do not submit */
+
+    /* ── 5. Calculate score and results ── */
+    var score = calcOperatingScore();
+    var sw    = getStrengthAndWeakness();
+    var nsKey = getReadinessKey(score);
+
+    /* ── 6. Populate all hidden fields with readable values ── */
+    /* FormSubmit config */
+    document.getElementById('h-subject').value =
+      'New Nozomi 360 Assessment Submission — ' + org;
+    document.getElementById('h-replyto').value = email;
+
+    /* Set _next to current page URL so redirect returns here */
+    var hNext = document.getElementById('h-next');
+    if (hNext) hNext.value = window.location.origin + window.location.pathname + '?submitted=1';
+
+    /* Score fields */
+    document.getElementById('h-score').value     = score + '/100';
+    document.getElementById('h-readiness').value = getReadinessLevel(score);
+    document.getElementById('h-strength').value  = sw.strength;
+    document.getElementById('h-weakness').value  = sw.weakness;
+    document.getElementById('h-pattern').value   = sw.painPat + ' — ' + sw.painDesc;
+    document.getElementById('h-nextstep').value  = NEXT_STEPS[nsKey].title;
+
+    /* Individual dimension answers — readable labels */
+    document.getElementById('h-q1').value  = 'Leadership & Decision Rhythm: '           + Q_ANSWERS[0]  + '/5';
+    document.getElementById('h-q2').value  = 'Customer & Market Quality: '              + Q_ANSWERS[1]  + '/5';
+    document.getElementById('h-q3').value  = 'Service Delivery & Workflow: '            + Q_ANSWERS[2]  + '/5';
+    document.getElementById('h-q4').value  = 'People, Capacity & Delegation: '          + Q_ANSWERS[3]  + '/5';
+    document.getElementById('h-q5').value  = 'Financial Discipline & Revenue Leakage: ' + Q_ANSWERS[4]  + '/5';
+    document.getElementById('h-q6').value  = 'Technology, Data & AI Readiness: '        + Q_ANSWERS[5]  + '/5';
+    document.getElementById('h-q7').value  = 'Quality, Risk & Compliance: '             + Q_ANSWERS[6]  + '/5';
+    document.getElementById('h-q8').value  = 'Client / Customer Experience: '           + Q_ANSWERS[7]  + '/5';
+    document.getElementById('h-q9').value  = 'Measurement & Operating Intelligence: '   + Q_ANSWERS[8]  + '/5';
+    document.getElementById('h-q10').value = 'Scalability & Owner Independence: '       + Q_ANSWERS[9]  + '/5';
+    document.getElementById('h-q11').value = 'Continuous Improvement Culture: '         + Q_ANSWERS[10] + '/5';
+    document.getElementById('h-q12').value = 'Strategic Value & Future Readiness: '     + Q_ANSWERS[11] + '/5';
+
+    /* ── 7. Save results to sessionStorage for post-redirect display ── */
+    try {
+      var savedResult = {
+        name:           name,
+        email:          email,
+        org:            org,
+        role:           role,
+        score:          score,
+        readiness:      getReadinessLevel(score),
+        strength:       sw.strength,
+        weakness:       sw.weakness,
+        painPattern:    sw.painPat,
+        painDesc:       sw.painDesc,
+        nextStepTitle:  NEXT_STEPS[nsKey].title,
+        nextStepDesc:   NEXT_STEPS[nsKey].desc,
+        answers:        QUESTIONS_DATA.map(function(q, i) {
+          return { dimension: q.label, answer: Q_ANSWERS[i] };
+        })
+      };
+      sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
+    } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
+
+    /* ── 8. Show sending indicator briefly, then submit to FormSubmit ── */
+    var overlay = document.getElementById('sending-overlay');
+    if (overlay) overlay.classList.add('show');
+
+    setTimeout(function() {
+      /* FormSubmit handles the POST and emails Info@Nozomi.ai.
+         First submission: check Info@Nozomi.ai for a one-time verification email from FormSubmit. */
+      assessForm.submit();
+    }, 600); /* Brief delay so overlay is visible */
+  });
+
+  /* ── Clear field errors on input ── */
+  assessForm.querySelectorAll('input, select').forEach(function(inp) {
+    inp.addEventListener('input', function() {
+      var row = this.closest('.ff'); if (row) row.classList.remove('err');
+      if (this.id === 'f-consent' && consentErrEl) consentErrEl.style.display = 'none';
+    });
+  });
+}
+
+/* ── ON PAGE LOAD: restore results panel if redirected back from FormSubmit ── */
+document.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('submitted') === '1') {
+    var saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem('nozomiAssessmentResult')); } catch(e) {}
+
+    if (saved) {
+      /* Rebuild sw object from saved data */
+      var sw = {
+        strength: saved.strength,
+        weakness: saved.weakness,
+        painPat:  saved.painPattern,
+        painDesc: saved.painDesc
+      };
+      /* Restore Q_ANSWERS so dimension bars render correctly */
+      if (saved.answers) {
+        saved.answers.forEach(function(a, i) { Q_ANSWERS[i] = a.answer; });
+      }
+      showResults(saved.score, sw, saved.org, saved.email);
+      /* Clean up URL without reloading */
+      try {
+        window.history.replaceState({}, '', window.location.pathname);
+      } catch(e) {}
+      /* Scroll to assessment section */
+      setTimeout(function() { navTo('assessment'); }, 200);
+      /* Clear sessionStorage after display */
+      try { sessionStorage.removeItem('nozomiAssessmentResult'); } catch(e) {}
+    } else {
+      /* No saved result (sessionStorage unavailable or expired) — show simple confirmation */
+      var formEl = document.getElementById('assessment-form');
+      var succEl = document.getElementById('form-success');
+      if (formEl) formEl.style.display = 'none';
+      if (succEl) {
+        /* Show just the submitted bar and a simple message */
+        var submitted = succEl.querySelector('.result-submitted-bar');
+        if (submitted) submitted.style.display = 'flex';
+        succEl.classList.add('show');
+      }
+      setTimeout(function() { navTo('assessment'); }, 200);
+    }
+  }
+});
+
+
+/* ── HERO SCORECARD ANIMATION ───────────────────────── */
+(function() {
+  var animated = false;
+  new IntersectionObserver(function(entries, obs) {
+    if (!entries[0].isIntersecting || animated) return;
+    animated = true; obs.disconnect();
+
+    /* Count-up score */
+    var el = document.getElementById('hero-score');
+    if (el) {
+      var n = 0;
+      var t = setInterval(function() { n = Math.min(n + 2, 67); el.textContent = n; if (n >= 67) clearInterval(t); }, 18);
+    }
+
+    /* Animate progress bar */
+    setTimeout(function() {
+      var bar = document.getElementById('sc-bar-fill');
+      if (bar) bar.style.width = '67%';
+    }, 120);
+
+    /* Stagger pain patterns */
+    var pats = document.querySelectorAll('.sc-pattern-row');
+    pats.forEach(function(p, i) {
+      setTimeout(function() { p.classList.add('show'); }, 700 + i * 220);
+    });
+
+    /* Reveal next step */
+    setTimeout(function() {
+      var nx = document.getElementById('sc-next');
+      if (nx) nx.classList.add('show');
+    }, 1500);
+  }, { threshold: 0.4 }).observe(document.getElementById('hero'));
+})();
+
+/* ── FADE IN ON SCROLL ───────────────────────────────── */
+(function() {
+  var obs = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
