@@ -1209,16 +1209,18 @@ section { scroll-margin-top: 68px; }
 
         <div class="lead-form-wrap fade-in" style="position:relative;">
           <div class="lf-title">Nozomi 360 Assessment</div>
-          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and generate your preliminary operating readout.</div>
+          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and receive your preliminary operating readout by email.</div>
           <form id="assessment-form"
+                action="https://formsubmit.co/el/lacupu"
+                method="POST"
                 novalidate>
 
-            <!-- Form provider fields are retained for future lead capture after the Nozomi inbox is active. -->
+            <!-- FormSubmit configuration -->
             <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
             <input type="hidden" name="_replyto" id="h-replyto">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
+            <input type="hidden" name="_autoresponse" id="h-autoresponse">
 
             <!-- Scoring results — populated by JS before submit -->
             <input type="hidden" name="Operating Score"       id="h-score">
@@ -1245,7 +1247,7 @@ section { scroll-margin-top: 68px; }
               <div class="ff" id="ff-org"><label for="f-org">Organization</label><input type="text" id="f-org" name="Organization" placeholder="Acme Corp" required autocomplete="organization"></div>
             </div>
             <div class="form-row single">
-              <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="Email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
+              <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
             </div>
             <div class="form-row single">
               <div class="ff">
@@ -1432,11 +1434,11 @@ section { scroll-margin-top: 68px; }
               <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services.</label>
             </div>
             <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
-            <button type="submit" class="btn-form-submit">Generate Assessment Result →</button>
-            <p class="form-fine">Your preliminary result is generated on this page. No spam. Results are preliminary.</p>
+            <button type="submit" class="btn-form-submit">Submit Assessment →</button>
+            <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are preliminary.</p>
           </form>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — your preliminary results are below and sent to your email</span></div>
             <div class="result-score-card">
               <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
@@ -2072,6 +2074,31 @@ function buildAssessmentSummary(result) {
   return lines.join('\n');
 }
 
+function buildAssessmentAutoresponse(result) {
+  if (!result) return '';
+  return [
+    'Thank you for completing the Nozomi 360 Assessment.',
+    '',
+    'Your preliminary result:',
+    'Operating Score: ' + result.score + '/100',
+    'Transformation Readiness: ' + result.readiness,
+    'Top Strength: ' + result.strength,
+    'Priority Gap: ' + result.weakness,
+    'Likely Pain Pattern: ' + result.painPattern,
+    '',
+    'Recommended Next Step: ' + result.nextStepTitle,
+    result.nextStepDesc,
+    '',
+    'What this means:',
+    'Your score is a useful first signal, but it is not a final diagnosis. A Nozomi Diagnostic Blueprint validates the findings through leadership interviews, workflow review, evidence analysis, and a practical 30/60/90-day improvement roadmap.',
+    '',
+    'If you want to move from self-assessment to a structured engagement, reply to this email and ask for a Diagnostic Blueprint review.',
+    '',
+    'Nozomi',
+    'Assessment-first transformation firm'
+  ].join('\n');
+}
+
 function copyTextToClipboard(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(text);
@@ -2225,7 +2252,7 @@ if (assessForm) {
     var nsKey = getReadinessKey(score);
 
     /* ── 6. Populate all hidden fields with readable values ── */
-    /* Future form provider config */
+    /* FormSubmit config */
     document.getElementById('h-subject').value =
       'New Nozomi 360 Assessment Submission — ' + org;
     document.getElementById('h-replyto').value = email;
@@ -2275,17 +2302,17 @@ if (assessForm) {
       })
     };
     LAST_ASSESSMENT_RESULT = savedResult;
+    document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(savedResult);
     try {
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
-    /* ── 8. Show the result immediately while the email inbox is being prepared. ── */
+    /* ── 8. Submit to FormSubmit. The user returns here via _next, and results restore from sessionStorage. ── */
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
 
     setTimeout(function() {
-      if (overlay) overlay.classList.remove('show');
-      showResults(score, sw, org, email);
+      assessForm.submit();
     }, 450);
   });
 
