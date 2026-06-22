@@ -12,12 +12,20 @@
 <meta property="og:title" content="Nozomi — Assess. Transform. Improve.">
 <meta property="og:description" content="Assessment-first transformation firm helping businesses, teams, and institutions identify what is holding them back and build practical paths to measurable improvement.">
 <meta property="og:image" content="https://nozomi.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nozomi — Assessment-first transformation firm. Assess. Transform. Improve.">
 <meta property="og:site_name" content="Nozomi">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nozomiai">
 <meta name="twitter:title" content="Nozomi — Assess. Transform. Improve.">
 <meta name="twitter:description" content="Assessment-first transformation firm. Assess. Transform. Improve.">
 <meta name="twitter:image" content="https://nozomi.ai/og-image.png">
+<meta name="twitter:image:alt" content="Nozomi — Assessment-first transformation firm">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='44' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23F0D468'/%3E%3Cstop offset='100%25' stop-color='%23A8861A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='44' rx='6' fill='%230B1320'/%3E%3Cpolygon points='9,3 17,3 37,41 29,41' fill='url(%23g)'/%3E%3Cpolygon points='9,3 9,41 2,41 2,13' fill='url(%23g)'/%3E%3Cpolygon points='2,3 9,3 2,13' fill='%230B1320'/%3E%3Cpolygon points='29,3 37,3 37,31 29,41' fill='url(%23g)'/%3E%3Cpolygon points='37,31 37,41 29,41' fill='%230B1320'/%3E%3C/svg%3E">
+<!-- Analytics: replace 'nozomi.ai' with your domain once set up in Plausible dashboard (plausible.io) -->
+<!-- Plausible is cookie-free and GDPR-compliant — appropriate for GCC and B2B audiences -->
+<script defer data-domain="nozomi.ai" src="https://plausible.io/js/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -727,6 +735,9 @@ section { scroll-margin-top: 68px; }
   gap: 1px; background: var(--platinum);
   border: 1px solid var(--platinum); border-radius: 16px; overflow: hidden;
 }
+.evidence-cards.ev-four {
+  grid-template-columns: repeat(2,1fr);
+}
 .ev-card { background: white; padding: 1.75rem; }
 .ev-source { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; }
 .ev-head { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.3; font-family: 'Manrope', sans-serif; }
@@ -1055,7 +1066,7 @@ section { scroll-margin-top: 68px; }
 <header id="site-header">
   <div class="header-inner">
 
-    <a href="./" class="logo-lockup" aria-label="Nozomi — home">
+    <a href="#" class="logo-lockup" aria-label="Nozomi — home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
       <!-- N mark: geometric N with triangular notches, gold gradient -->
       <svg class="logo-mark-svg" width="36" height="40" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -1440,6 +1451,7 @@ section { scroll-margin-top: 68px; }
             <input type="hidden" name="Q24 Future Readiness" id="h-q24">
             <input type="hidden" name="Submission Source" value="Nozomi.ai homepage assessment form">
             <input type="text" name="_honey" style="display:none">
+            <noscript><div style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:14px 18px;margin-bottom:1.25rem;font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65;">The interactive assessment requires JavaScript. Please enable JavaScript in your browser, or email us directly at <a href="mailto:Info@nozomi.Ai" style="color:var(--champagne);">Info@nozomi.Ai</a> to request an assessment review.</div></noscript>
             <!-- ── 24 NOZOMI 360 PRELIMINARY OPERATING ASSESSMENT QUESTIONS ── -->
             <div style="margin-top:1.5rem;margin-bottom:0.25rem;">
               <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomi 360 Preliminary Operating Assessment — Rate each statement 1 to 5</div>
@@ -2080,24 +2092,24 @@ section { scroll-margin-top: 68px; }
       <span class="theme-chip">Startup Readiness</span>
     </div>
 
-    <div class="evidence-cards fade-in" style="margin-bottom:2.5rem;">
+    <div class="evidence-cards ev-four fade-in" style="margin-bottom:2.5rem;">
       <div class="ev-card">
-        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-source">Early-Stage Advisory</div>
         <div class="ev-head">AI validation & standards company</div>
         <div class="ev-body">Advisory exposure around enterprise credibility, standards alignment, and how technical validation can be positioned for larger AI ecosystem buyers.</div>
       </div>
       <div class="ev-card">
-        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-source">Growth-Stage Advisory</div>
         <div class="ev-head">AI cybersecurity platform</div>
         <div class="ev-body">Reviewed positioning, buyer pain points, risk framing, and how anomalous-behavior detection could be translated into a clearer market narrative.</div>
       </div>
       <div class="ev-card">
-        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-source">Scale-Stage Advisory</div>
         <div class="ev-head">Dynamic discounting fintech</div>
         <div class="ev-body">Supported thinking around GCC growth, enterprise sales readiness, CFO-facing messaging, and the operating discipline needed for scale.</div>
       </div>
       <div class="ev-card">
-        <div class="ev-source">Anonymized Advisory Example</div>
+        <div class="ev-source">Pre-Commercial Advisory</div>
         <div class="ev-head">Smart healthtech platform</div>
         <div class="ev-body">Advisory exposure around product narrative, operating readiness, stakeholder trust, and the path from patented technology to commercial adoption.</div>
       </div>
@@ -2246,7 +2258,7 @@ section { scroll-margin-top: 68px; }
         <button class="nozomi-chat-submit" id="nozomi-chat-submit" type="submit">Send Message →</button>
         <div class="nozomi-chat-error" id="nozomi-chat-error">Please complete your name, work email, organization, need, message, and consent before sending.</div>
         <div class="nozomi-chat-success" id="nozomi-chat-success">Message received. Nozomi will contact you within 24 hours or less. A copy has been routed to Info@nozomi.Ai.</div>
-        <div class="nozomi-chat-fine">Protected by a basic anti-spam field. Review the <a href="privacy.html">Privacy Notice</a> and <a href="terms.html">Terms</a>.</div>
+        <div class="nozomi-chat-fine">Protected by a basic anti-spam field. Review the <a href="#privacy-notice" onclick="toggleNozomiChat(false);document.getElementById('privacy-notice').style.display='block';setTimeout(function(){document.getElementById('privacy-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Privacy Notice</a> and <a href="#terms" onclick="toggleNozomiChat(false);document.getElementById('terms-notice').style.display='block';setTimeout(function(){document.getElementById('terms-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Terms</a>.</div>
       </form>
       <iframe name="nozomi-chat-frame" title="Nozomi Assistant message delivery" style="display:none;"></iframe>
     </div>
@@ -2261,7 +2273,7 @@ section { scroll-margin-top: 68px; }
     <div class="footer-grid">
 
       <div>
-        <a href="./" class="logo-lockup" aria-label="Nozomi home" style="margin-bottom:0.9rem;display:inline-flex;">
+        <a href="#" class="logo-lockup" aria-label="Nozomi home" style="margin-bottom:0.9rem;display:inline-flex;" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
           <svg width="30" height="33" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
             <defs>
               <linearGradient id="nGf" x1="0" y1="0" x2="40" y2="44" gradientUnits="userSpaceOnUse">
@@ -2322,8 +2334,8 @@ section { scroll-margin-top: 68px; }
     <div class="ft-bottom">
       <span class="ft-copy">© 2026 Nozomi. All rights reserved.</span>
       <div class="ft-legal">
-        <a href="privacy.html">Privacy Notice</a>
-        <a href="terms.html">Terms</a>
+        <a href="#privacy-notice" onclick="document.getElementById('privacy-notice').style.display='block';document.getElementById('privacy-notice').scrollIntoView({behavior:'smooth'});return false;">Privacy Notice</a>
+        <a href="#terms" onclick="document.getElementById('terms-notice').style.display='block';document.getElementById('terms-notice').scrollIntoView({behavior:'smooth'});return false;">Terms</a>
       </div>
     </div>
   </div>
@@ -3068,5 +3080,72 @@ document.addEventListener('keydown', function(e) {
 });
 
 </script>
+
+<!-- ══════════════════════════════════════════════
+     PRIVACY NOTICE (inline — toggles on click)
+══════════════════════════════════════════════ -->
+<section id="privacy-notice" style="display:none;background:#06101C;border-top:1px solid rgba(212,175,55,0.2);padding:72px 0;">
+  <div class="wrap" style="max-width:760px;">
+    <div class="eyebrow">Privacy Notice</div>
+    <div class="gold-rule"></div>
+    <h2 style="color:white;font-size:1.65rem;margin-bottom:1.5rem;">How Nozomi handles your information</h2>
+    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.85;display:flex;flex-direction:column;gap:1.25rem;">
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">What we collect.</strong> When you complete the 360 Assessment or contact us through the intake assistant, we collect your name, work email address, organization name, role, and the content of your message or assessment responses.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">How we use it.</strong> We use your information solely to deliver your preliminary assessment readout, respond to your message, and — if you request it — to follow up regarding an Assessment Review or advisory engagement. We do not sell, rent, or share your information with third parties for marketing purposes.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Form submission.</strong> Assessment and contact forms are processed through FormSubmit.co, a third-party form delivery service. Your submission data is transmitted to Nozomi via this service. Please review FormSubmit's own privacy policy at formsubmit.co if you have questions about their data handling.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Retention.</strong> We retain your contact information and assessment data only as long as necessary to respond to your inquiry or maintain an active advisory relationship. You may request deletion at any time by emailing <a href="mailto:Info@nozomi.Ai" style="color:var(--champagne);">Info@nozomi.Ai</a>.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Cookies and analytics.</strong> This site may use lightweight analytics to understand page traffic. No advertising or cross-site tracking cookies are used.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Contact.</strong> For any privacy-related questions, write to <a href="mailto:Info@nozomi.Ai" style="color:var(--champagne);">Info@nozomi.Ai</a>.
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.28);border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;">Last updated: June 2026.</div>
+    </div>
+    <button onclick="document.getElementById('privacy-notice').style.display='none';" style="margin-top:2rem;padding:10px 22px;background:transparent;border:1px solid rgba(255,255,255,0.18);border-radius:7px;color:rgba(255,255,255,0.55);font-size:13px;cursor:pointer;font-family:inherit;">Close ↑</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     TERMS (inline — toggles on click)
+══════════════════════════════════════════════ -->
+<section id="terms-notice" style="display:none;background:#06101C;border-top:1px solid rgba(212,175,55,0.2);padding:72px 0;">
+  <div class="wrap" style="max-width:760px;">
+    <div class="eyebrow">Terms of Use</div>
+    <div class="gold-rule"></div>
+    <h2 style="color:white;font-size:1.65rem;margin-bottom:1.5rem;">Terms governing use of this site and Nozomi's services</h2>
+    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.85;display:flex;flex-direction:column;gap:1.25rem;">
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Nature of the assessment.</strong> The Nozomi 360 Preliminary Operating Assessment is a self-reported diagnostic tool. Results are preliminary operating signals, not validated findings. They should not be relied upon as professional advice or as a substitute for the Diagnostic Blueprint or other validated advisory engagement.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">No professional advice.</strong> Nothing on this site constitutes legal, accounting, HR compliance, software development, financial, or regulated professional advice. Nozomi provides operating advisory and transformation services only. Specialist advice in regulated areas requires separately contracted qualified professionals.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Scope of services.</strong> Any engagement with Nozomi beyond the free assessment is subject to a separate written agreement. No commitment to a commercial engagement is created by completing the assessment or submitting a contact form.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Intellectual property.</strong> The Nozomi name, mark, assessment framework, pain-pattern methodology, and all site content are the property of Nozomi. You may not reproduce or distribute them without written permission.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Limitation of liability.</strong> Nozomi's liability in connection with the use of this site or the free assessment is limited to the fullest extent permitted by applicable law.
+      </div>
+      <div>
+        <strong style="color:rgba(255,255,255,0.8);">Governing terms.</strong> These terms are subject to change. For questions, contact <a href="mailto:Info@nozomi.Ai" style="color:var(--champagne);">Info@nozomi.Ai</a>.
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.28);border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;">Last updated: June 2026.</div>
+    </div>
+    <button onclick="document.getElementById('terms-notice').style.display='none';" style="margin-top:2rem;padding:10px 22px;background:transparent;border:1px solid rgba(255,255,255,0.18);border-radius:7px;color:rgba(255,255,255,0.55);font-size:13px;cursor:pointer;font-family:inherit;">Close ↑</button>
+  </div>
+</section>
+
 </body>
 </html>
