@@ -922,7 +922,7 @@ section { scroll-margin-top: 68px; }
     </nav>
 
     <div class="hdr-actions">
-      <button class="btn-hdr-ghost" onclick="openCalendly()">Book Review Call</button>
+      <button class="btn-hdr-ghost" onclick="openCalendly()">Request Review Call</button>
       <button class="btn-hdr-primary" onclick="goToAssessment()">Take Free Assessment</button>
     </div>
 
@@ -1229,6 +1229,7 @@ section { scroll-margin-top: 68px; }
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
             <input type="hidden" name="_autoresponse" id="h-autoresponse">
             <input type="hidden" name="Assessment Summary" id="h-summary">
+            <input type="hidden" name="Review Call Requested" id="h-review-call" value="No">
 
             <!-- Scoring results — populated by JS before submit -->
             <input type="hidden" id="h-score">
@@ -1782,7 +1783,7 @@ section { scroll-margin-top: 68px; }
       <p class="cta-sub">Before your next consulting engagement, AI initiative, software investment, or transformation program — start with a structured diagnosis of what is actually holding your organization back.</p>
       <div class="cta-btns">
         <button class="btn-cta-primary" onclick="goToAssessment()">Take the Free Assessment</button>
-        <button class="btn-cta-ghost" onclick="openCalendly()">Book a Review Call</button>
+        <button class="btn-cta-ghost" onclick="openCalendly()">Request a Review Call</button>
       </div>
       <p class="cta-contact">Nozomi.ai</p>
       <p class="cta-disclaimer">Nozomi does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
@@ -1880,7 +1881,6 @@ function navToTab(tabName) {
 }
 
 function goToAssessment() {
-  /* PRODUCTION: swap to → window.location.href = '/assessment'; */
   navTo('assessment');
   setTimeout(function() {
     var f = document.getElementById('f-name');
@@ -1889,7 +1889,13 @@ function goToAssessment() {
 }
 
 function openCalendly() {
+  var reviewField = document.getElementById('h-review-call');
+  if (reviewField) reviewField.value = 'Yes';
   goToAssessment();
+  setTimeout(function() {
+    var consent = document.getElementById('f-consent');
+    if (consent && !consent.checked) consent.focus();
+  }, 700);
 }
 
 /* ── TABS ────────────────────────────────────────────── */
