@@ -974,15 +974,16 @@ section { scroll-margin-top: 68px; }
       <div>
         <div class="scorecard">
           <div class="sc-top">
-            <span class="sc-label">Nozomi 360 Assessment</span>
-            <span class="sc-badge">Sample Report</span>
+            <span class="sc-label" id="hero-scorecard-label">Nozomi 360 Assessment Preview</span>
+            <span class="sc-badge" id="hero-scorecard-badge">Example Report View</span>
           </div>
           <div class="sc-score-line">
-            <span class="sc-num" id="hero-score">0</span>
+            <span class="sc-num" id="hero-score">98</span>
             <span class="sc-denom">/ 100</span>
           </div>
           <div class="sc-track"><div class="sc-fill" id="sc-bar-fill"></div></div>
-          <p class="sc-status-text">Transformation Readiness: <strong>Constrained</strong></p>
+          <p class="sc-status-text" id="hero-readiness-line">Sample Operating Score: <strong>98 / 100</strong></p>
+          <p class="sc-status-text" id="hero-example-note">This is an example of the Nozomi 360 output. Complete the assessment to generate your own preliminary result.</p>
           <div class="sc-section">Active pain patterns detected</div>
           <div class="sc-patterns">
             <div class="sc-pattern-row"><div class="sc-pip"></div><span>Low Operating Visibility</span></div>
@@ -991,9 +992,9 @@ section { scroll-margin-top: 68px; }
           </div>
           <div class="sc-next" id="sc-next">
             <div class="sc-next-label">Recommended next step</div>
-            <div class="sc-next-val">Diagnostic Blueprint</div>
+            <div class="sc-next-val" id="hero-next-val">Complete the assessment to generate your preliminary result.</div>
           </div>
-          <button class="sc-link" onclick="goToAssessment()">See what your score reveals →</button>
+          <button class="sc-link" onclick="goToAssessment()">Start the Nozomi 360 Assessment →</button>
         </div>
       </div>
 
@@ -1208,14 +1209,14 @@ section { scroll-margin-top: 68px; }
       <div>
         <div class="eyebrow" style="color:var(--gold)">Free Nozomi 360 Assessment</div>
         <div class="gold-rule" style="opacity:0.4"></div>
-        <h2 class="assess-head fade-in">Start your Nozomi 360 Assessment.</h2>
-        <p class="assess-sub fade-in">Answer 12 questions across Nozomi's operating dimensions. Your responses produce an Operating Score, category scores, active pain patterns, and a recommended next step.</p>
+        <h2 class="assess-head fade-in">Start your Nozomi 360 Preliminary Operating Assessment.</h2>
+        <p class="assess-sub fade-in">Answer 24 questions across Nozomi's 12 operating dimensions. Your responses produce a Preliminary Operating Score, dimension averages, likely pain pattern, and recommended next step.</p>
 
         <p class="assess-positioning fade-in">Nozomi helps leaders understand what to fix before they invest in the next tool, consultant, AI initiative, or transformation program.</p>
 
         <div class="lead-form-wrap fade-in" style="position:relative;">
-          <div class="lf-title">Nozomi 360 Assessment</div>
-          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and receive your preliminary operating readout by email.</div>
+          <div class="lf-title">Nozomi 360 Preliminary Operating Assessment</div>
+          <div class="lf-subtitle">Enter your details, answer 24 operating questions, and receive your preliminary operating readout by email.</div>
           <form id="assessment-form"
                 action="https://formsubmit.co/al_alahmadi@hotmail.com"
                 method="POST"
@@ -1225,31 +1226,46 @@ section { scroll-margin-top: 68px; }
             <!-- FormSubmit configuration -->
             <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
             <input type="hidden" name="_replyto" id="h-replyto">
-            <input type="hidden" name="_template" value="box">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
             <input type="hidden" name="_autoresponse" id="h-autoresponse">
             <input type="hidden" name="Assessment Summary" id="h-summary">
+            <input type="hidden" name="Confidence Level" id="h-confidence">
+            <input type="hidden" name="Validation Focus" id="h-validation">
             <input type="hidden" name="Review Call Requested" id="h-review-call" value="No">
 
             <!-- Scoring results — populated by JS before submit -->
-            <input type="hidden" id="h-score">
-            <input type="hidden" id="h-readiness">
-            <input type="hidden" id="h-strength">
-            <input type="hidden" id="h-weakness">
-            <input type="hidden" id="h-pattern">
-            <input type="hidden" id="h-nextstep">
-            <input type="hidden" id="h-q1">
-            <input type="hidden" id="h-q2">
-            <input type="hidden" id="h-q3">
-            <input type="hidden" id="h-q4">
-            <input type="hidden" id="h-q5">
-            <input type="hidden" id="h-q6">
-            <input type="hidden" id="h-q7">
-            <input type="hidden" id="h-q8">
-            <input type="hidden" id="h-q9">
-            <input type="hidden" id="h-q10">
-            <input type="hidden" id="h-q11">
-            <input type="hidden" id="h-q12">
+            <input type="hidden" name="Preliminary Operating Score" id="h-score">
+            <input type="hidden" name="Readiness Level" id="h-readiness">
+            <input type="hidden" name="Top Strength" id="h-strength">
+            <input type="hidden" name="Lowest Dimension" id="h-weakness">
+            <input type="hidden" name="Likely Pain Pattern" id="h-pattern">
+            <input type="hidden" name="Recommended Next Step" id="h-nextstep">
+            <input type="hidden" name="Q1 Leadership Decision Clarity" id="h-q1">
+            <input type="hidden" name="Q2 Leadership Accountability" id="h-q2">
+            <input type="hidden" name="Q3 Customer Market Understanding" id="h-q3">
+            <input type="hidden" name="Q4 Customer Market Evidence" id="h-q4">
+            <input type="hidden" name="Q5 Workflow Definition" id="h-q5">
+            <input type="hidden" name="Q6 Bottleneck Improvement" id="h-q6">
+            <input type="hidden" name="Q7 Role Clarity" id="h-q7">
+            <input type="hidden" name="Q8 Delegation Dependency" id="h-q8">
+            <input type="hidden" name="Q9 Financial Visibility" id="h-q9">
+            <input type="hidden" name="Q10 Financial Review Rhythm" id="h-q10">
+            <input type="hidden" name="Q11 Technology Data Support" id="h-q11">
+            <input type="hidden" name="Q12 AI Automation Readiness" id="h-q12">
+            <input type="hidden" name="Q13 Quality Risk Controls" id="h-q13">
+            <input type="hidden" name="Q14 Risk Issue Tracking" id="h-q14">
+            <input type="hidden" name="Q15 Customer Experience Consistency" id="h-q15">
+            <input type="hidden" name="Q16 Customer Feedback Learning" id="h-q16">
+            <input type="hidden" name="Q17 Operating Metrics Clarity" id="h-q17">
+            <input type="hidden" name="Q18 Metrics Action Rhythm" id="h-q18">
+            <input type="hidden" name="Q19 Process Repeatability" id="h-q19">
+            <input type="hidden" name="Q20 Growth Without Chaos" id="h-q20">
+            <input type="hidden" name="Q21 Improvement Discipline" id="h-q21">
+            <input type="hidden" name="Q22 Team Improvement Culture" id="h-q22">
+            <input type="hidden" name="Q23 Strategic Direction" id="h-q23">
+            <input type="hidden" name="Q24 Future Readiness" id="h-q24">
             <input type="hidden" name="Submission Source" value="Nozomi.ai homepage assessment form">
             <input type="text" name="_honey" style="display:none">
             <div class="form-row">
@@ -1273,208 +1289,367 @@ section { scroll-margin-top: 68px; }
                   <option>Other</option>
                 </select>
               </div>
+            </div>
 
-            <!-- ── 12 NOZOMI 360 ASSESSMENT QUESTIONS ── -->
+            <!-- ── 24 NOZOMI 360 PRELIMINARY OPERATING ASSESSMENT QUESTIONS ── -->
             <div style="margin-top:1.5rem;margin-bottom:0.25rem;">
-              <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomi 360 Assessment — Rate each statement 1 to 5</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:1rem;">1 = Strongly disagree &nbsp;·&nbsp; 3 = Inconsistent &nbsp;·&nbsp; 5 = Strongly agree</div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomi 360 Preliminary Operating Assessment — Rate each statement 1 to 5</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:1rem;">1 = Not in place &nbsp;·&nbsp; 2 = Inconsistent &nbsp;·&nbsp; 3 = Partially in place &nbsp;·&nbsp; 4 = Mostly working &nbsp;·&nbsp; 5 = Strong and repeatable</div>
             </div>
             <div class="assessment-questions" id="assessment-questions">
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">01</span><span class="aq-dimension">Leadership &amp; Decision Rhythm</span></div>
-                <p class="aq-question">Our leadership team makes decisions with clear ownership, cadence, and follow-through.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Leadership and Decision Rhythm">
+                <div class="aq-top"><span class="aq-num">01</span><span class="aq-dimension">Leadership & Decision Rhythm</span></div>
+                <p class="aq-question">How consistently does leadership make clear, timely decisions that move the organization forward?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Leadership & Decision Rhythm question 1">
                   <button type="button" class="aq-option" data-q="0" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(0,1)">1</button>
                   <button type="button" class="aq-option" data-q="0" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(0,2)">2</button>
                   <button type="button" class="aq-option" data-q="0" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(0,3)">3</button>
                   <button type="button" class="aq-option" data-q="0" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(0,4)">4</button>
                   <button type="button" class="aq-option" data-q="0" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(0,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">02</span><span class="aq-dimension">Customer &amp; Market Quality</span></div>
-                <p class="aq-question">We clearly understand our best customers, strongest markets, and highest-value opportunities.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Customer and Market Quality">
+                <div class="aq-top"><span class="aq-num">02</span><span class="aq-dimension">Leadership & Decision Rhythm</span></div>
+                <p class="aq-question">How consistently are decisions translated into owners, deadlines, follow-up, and visible accountability?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Leadership & Decision Rhythm question 2">
                   <button type="button" class="aq-option" data-q="1" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(1,1)">1</button>
                   <button type="button" class="aq-option" data-q="1" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(1,2)">2</button>
                   <button type="button" class="aq-option" data-q="1" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(1,3)">3</button>
                   <button type="button" class="aq-option" data-q="1" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(1,4)">4</button>
                   <button type="button" class="aq-option" data-q="1" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(1,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">03</span><span class="aq-dimension">Service Delivery &amp; Workflow</span></div>
-                <p class="aq-question">Our workflows, handoffs, and delivery process are clear, documented, and consistently followed.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Service Delivery and Workflow">
+                <div class="aq-top"><span class="aq-num">03</span><span class="aq-dimension">Customer & Market Quality</span></div>
+                <p class="aq-question">How clearly does the organization understand its best-fit customers, market position, and sources of profitable demand?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Customer & Market Quality question 1">
                   <button type="button" class="aq-option" data-q="2" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(2,1)">1</button>
                   <button type="button" class="aq-option" data-q="2" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(2,2)">2</button>
                   <button type="button" class="aq-option" data-q="2" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(2,3)">3</button>
                   <button type="button" class="aq-option" data-q="2" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(2,4)">4</button>
                   <button type="button" class="aq-option" data-q="2" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(2,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">04</span><span class="aq-dimension">People, Capacity &amp; Delegation</span></div>
-                <p class="aq-question">The organization is not overly dependent on a few key people to keep work moving.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="People Capacity and Delegation">
+                <div class="aq-top"><span class="aq-num">04</span><span class="aq-dimension">Customer & Market Quality</span></div>
+                <p class="aq-question">How consistently does the organization use customer, market, or sales evidence to guide growth decisions?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Customer & Market Quality question 2">
                   <button type="button" class="aq-option" data-q="3" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(3,1)">1</button>
                   <button type="button" class="aq-option" data-q="3" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(3,2)">2</button>
                   <button type="button" class="aq-option" data-q="3" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(3,3)">3</button>
                   <button type="button" class="aq-option" data-q="3" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(3,4)">4</button>
                   <button type="button" class="aq-option" data-q="3" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(3,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">05</span><span class="aq-dimension">Financial Discipline &amp; Revenue Leakage</span></div>
-                <p class="aq-question">We have clear visibility into profitability, revenue leakage, pricing discipline, and financial performance.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Financial Discipline and Revenue Leakage">
+                <div class="aq-top"><span class="aq-num">05</span><span class="aq-dimension">Service Delivery & Workflow</span></div>
+                <p class="aq-question">How clearly are core workflows defined from customer request to delivery, completion, or follow-up?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Service Delivery & Workflow question 1">
                   <button type="button" class="aq-option" data-q="4" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(4,1)">1</button>
                   <button type="button" class="aq-option" data-q="4" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(4,2)">2</button>
                   <button type="button" class="aq-option" data-q="4" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(4,3)">3</button>
                   <button type="button" class="aq-option" data-q="4" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(4,4)">4</button>
                   <button type="button" class="aq-option" data-q="4" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(4,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">06</span><span class="aq-dimension">Technology, Data &amp; AI Readiness</span></div>
-                <p class="aq-question">Our technology, data, and workflows are ready to support meaningful AI or digital transformation.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Technology Data and AI Readiness">
+                <div class="aq-top"><span class="aq-num">06</span><span class="aq-dimension">Service Delivery & Workflow</span></div>
+                <p class="aq-question">How consistently are bottlenecks, delays, rework, and handoff issues identified and improved?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Service Delivery & Workflow question 2">
                   <button type="button" class="aq-option" data-q="5" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(5,1)">1</button>
                   <button type="button" class="aq-option" data-q="5" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(5,2)">2</button>
                   <button type="button" class="aq-option" data-q="5" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(5,3)">3</button>
                   <button type="button" class="aq-option" data-q="5" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(5,4)">4</button>
                   <button type="button" class="aq-option" data-q="5" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(5,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">07</span><span class="aq-dimension">Quality, Risk &amp; Compliance</span></div>
-                <p class="aq-question">We have reliable controls, quality standards, and risk visibility across important operations.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Quality Risk and Compliance">
+                <div class="aq-top"><span class="aq-num">07</span><span class="aq-dimension">People, Capacity & Delegation</span></div>
+                <p class="aq-question">How clearly are roles, responsibilities, and decision rights assigned across the team?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="People, Capacity & Delegation question 1">
                   <button type="button" class="aq-option" data-q="6" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(6,1)">1</button>
                   <button type="button" class="aq-option" data-q="6" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(6,2)">2</button>
                   <button type="button" class="aq-option" data-q="6" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(6,3)">3</button>
                   <button type="button" class="aq-option" data-q="6" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(6,4)">4</button>
                   <button type="button" class="aq-option" data-q="6" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(6,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">08</span><span class="aq-dimension">Client / Customer Experience</span></div>
-                <p class="aq-question">Our client or customer experience is consistent, measurable, and not dependent on individual heroics.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Client Customer Experience">
+                <div class="aq-top"><span class="aq-num">08</span><span class="aq-dimension">People, Capacity & Delegation</span></div>
+                <p class="aq-question">How effectively can the organization operate without depending too heavily on one owner, founder, partner, or key employee?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="People, Capacity & Delegation question 2">
                   <button type="button" class="aq-option" data-q="7" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(7,1)">1</button>
                   <button type="button" class="aq-option" data-q="7" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(7,2)">2</button>
                   <button type="button" class="aq-option" data-q="7" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(7,3)">3</button>
                   <button type="button" class="aq-option" data-q="7" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(7,4)">4</button>
                   <button type="button" class="aq-option" data-q="7" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(7,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">09</span><span class="aq-dimension">Measurement &amp; Operating Intelligence</span></div>
-                <p class="aq-question">Leadership has timely visibility into the metrics that matter most.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Measurement and Operating Intelligence">
+                <div class="aq-top"><span class="aq-num">09</span><span class="aq-dimension">Financial Discipline & Revenue Leakage</span></div>
+                <p class="aq-question">How clearly does leadership understand revenue, margin, cash flow, cost drivers, and leakage points?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Financial Discipline & Revenue Leakage question 1">
                   <button type="button" class="aq-option" data-q="8" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(8,1)">1</button>
                   <button type="button" class="aq-option" data-q="8" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(8,2)">2</button>
                   <button type="button" class="aq-option" data-q="8" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(8,3)">3</button>
                   <button type="button" class="aq-option" data-q="8" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(8,4)">4</button>
                   <button type="button" class="aq-option" data-q="8" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(8,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">10</span><span class="aq-dimension">Scalability &amp; Owner Independence</span></div>
-                <p class="aq-question">The organization can grow without creating more chaos, bottlenecks, or owner dependence.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Scalability and Owner Independence">
+                <div class="aq-top"><span class="aq-num">10</span><span class="aq-dimension">Financial Discipline & Revenue Leakage</span></div>
+                <p class="aq-question">How consistently does the organization review financial signals and act before problems become urgent?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Financial Discipline & Revenue Leakage question 2">
                   <button type="button" class="aq-option" data-q="9" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(9,1)">1</button>
                   <button type="button" class="aq-option" data-q="9" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(9,2)">2</button>
                   <button type="button" class="aq-option" data-q="9" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(9,3)">3</button>
                   <button type="button" class="aq-option" data-q="9" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(9,4)">4</button>
                   <button type="button" class="aq-option" data-q="9" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(9,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">11</span><span class="aq-dimension">Continuous Improvement Culture</span></div>
-                <p class="aq-question">Teams regularly identify, prioritize, and act on improvement opportunities.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Continuous Improvement Culture">
+                <div class="aq-top"><span class="aq-num">11</span><span class="aq-dimension">Technology, Data & AI Readiness</span></div>
+                <p class="aq-question">How well do current systems, tools, and data support daily operations and management decisions?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Technology, Data & AI Readiness question 1">
                   <button type="button" class="aq-option" data-q="10" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(10,1)">1</button>
                   <button type="button" class="aq-option" data-q="10" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(10,2)">2</button>
                   <button type="button" class="aq-option" data-q="10" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(10,3)">3</button>
                   <button type="button" class="aq-option" data-q="10" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(10,4)">4</button>
                   <button type="button" class="aq-option" data-q="10" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(10,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
               <div class="assessment-question">
-                <div class="aq-top"><span class="aq-num">12</span><span class="aq-dimension">Strategic Value &amp; Future Readiness</span></div>
-                <p class="aq-question">Our current operating model is strong enough to support future growth, transformation, and strategic value creation.</p>
-                <div class="aq-scale" role="radiogroup" aria-label="Strategic Value and Future Readiness">
+                <div class="aq-top"><span class="aq-num">12</span><span class="aq-dimension">Technology, Data & AI Readiness</span></div>
+                <p class="aq-question">How ready is the organization to adopt automation, AI, or digital tools without creating confusion, risk, or wasted spend?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Technology, Data & AI Readiness question 2">
                   <button type="button" class="aq-option" data-q="11" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(11,1)">1</button>
                   <button type="button" class="aq-option" data-q="11" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(11,2)">2</button>
                   <button type="button" class="aq-option" data-q="11" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(11,3)">3</button>
                   <button type="button" class="aq-option" data-q="11" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(11,4)">4</button>
                   <button type="button" class="aq-option" data-q="11" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(11,5)">5</button>
                 </div>
-                <div class="aq-scale-labels"><span>Strongly<br>disagree</span><span>Disagree</span><span>Inconsistent</span><span>Agree</span><span>Strongly<br>agree</span></div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">13</span><span class="aq-dimension">Quality, Risk & Compliance</span></div>
+                <p class="aq-question">How consistently does the organization maintain quality standards, controls, and risk awareness across operations?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Quality, Risk & Compliance question 1">
+                  <button type="button" class="aq-option" data-q="12" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(12,1)">1</button>
+                  <button type="button" class="aq-option" data-q="12" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(12,2)">2</button>
+                  <button type="button" class="aq-option" data-q="12" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(12,3)">3</button>
+                  <button type="button" class="aq-option" data-q="12" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(12,4)">4</button>
+                  <button type="button" class="aq-option" data-q="12" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(12,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">14</span><span class="aq-dimension">Quality, Risk & Compliance</span></div>
+                <p class="aq-question">How clearly are errors, compliance issues, customer complaints, or operational risks tracked and addressed?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Quality, Risk & Compliance question 2">
+                  <button type="button" class="aq-option" data-q="13" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(13,1)">1</button>
+                  <button type="button" class="aq-option" data-q="13" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(13,2)">2</button>
+                  <button type="button" class="aq-option" data-q="13" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(13,3)">3</button>
+                  <button type="button" class="aq-option" data-q="13" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(13,4)">4</button>
+                  <button type="button" class="aq-option" data-q="13" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(13,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">15</span><span class="aq-dimension">Client / Customer Experience</span></div>
+                <p class="aq-question">How consistent and professional is the customer experience from first contact through delivery and follow-up?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Client / Customer Experience question 1">
+                  <button type="button" class="aq-option" data-q="14" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(14,1)">1</button>
+                  <button type="button" class="aq-option" data-q="14" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(14,2)">2</button>
+                  <button type="button" class="aq-option" data-q="14" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(14,3)">3</button>
+                  <button type="button" class="aq-option" data-q="14" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(14,4)">4</button>
+                  <button type="button" class="aq-option" data-q="14" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(14,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">16</span><span class="aq-dimension">Client / Customer Experience</span></div>
+                <p class="aq-question">How effectively does the organization capture, resolve, and learn from customer feedback, complaints, or lost opportunities?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Client / Customer Experience question 2">
+                  <button type="button" class="aq-option" data-q="15" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(15,1)">1</button>
+                  <button type="button" class="aq-option" data-q="15" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(15,2)">2</button>
+                  <button type="button" class="aq-option" data-q="15" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(15,3)">3</button>
+                  <button type="button" class="aq-option" data-q="15" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(15,4)">4</button>
+                  <button type="button" class="aq-option" data-q="15" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(15,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">17</span><span class="aq-dimension">Measurement & Operating Intelligence</span></div>
+                <p class="aq-question">How clearly does leadership track the most important operating metrics needed to run the organization?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Measurement & Operating Intelligence question 1">
+                  <button type="button" class="aq-option" data-q="16" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(16,1)">1</button>
+                  <button type="button" class="aq-option" data-q="16" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(16,2)">2</button>
+                  <button type="button" class="aq-option" data-q="16" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(16,3)">3</button>
+                  <button type="button" class="aq-option" data-q="16" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(16,4)">4</button>
+                  <button type="button" class="aq-option" data-q="16" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(16,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">18</span><span class="aq-dimension">Measurement & Operating Intelligence</span></div>
+                <p class="aq-question">How consistently are metrics connected to meetings, decisions, ownership, and follow-up actions?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Measurement & Operating Intelligence question 2">
+                  <button type="button" class="aq-option" data-q="17" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(17,1)">1</button>
+                  <button type="button" class="aq-option" data-q="17" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(17,2)">2</button>
+                  <button type="button" class="aq-option" data-q="17" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(17,3)">3</button>
+                  <button type="button" class="aq-option" data-q="17" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(17,4)">4</button>
+                  <button type="button" class="aq-option" data-q="17" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(17,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">19</span><span class="aq-dimension">Scalability & Owner Independence</span></div>
+                <p class="aq-question">How repeatable are the organization’s core processes without constant personal supervision from leadership?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Scalability & Owner Independence question 1">
+                  <button type="button" class="aq-option" data-q="18" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(18,1)">1</button>
+                  <button type="button" class="aq-option" data-q="18" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(18,2)">2</button>
+                  <button type="button" class="aq-option" data-q="18" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(18,3)">3</button>
+                  <button type="button" class="aq-option" data-q="18" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(18,4)">4</button>
+                  <button type="button" class="aq-option" data-q="18" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(18,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">20</span><span class="aq-dimension">Scalability & Owner Independence</span></div>
+                <p class="aq-question">How prepared is the organization to grow without increasing chaos, dependency, or operational strain?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Scalability & Owner Independence question 2">
+                  <button type="button" class="aq-option" data-q="19" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(19,1)">1</button>
+                  <button type="button" class="aq-option" data-q="19" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(19,2)">2</button>
+                  <button type="button" class="aq-option" data-q="19" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(19,3)">3</button>
+                  <button type="button" class="aq-option" data-q="19" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(19,4)">4</button>
+                  <button type="button" class="aq-option" data-q="19" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(19,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">21</span><span class="aq-dimension">Continuous Improvement Culture</span></div>
+                <p class="aq-question">How consistently does the organization identify problems, learn from them, and improve the way work gets done?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Continuous Improvement Culture question 1">
+                  <button type="button" class="aq-option" data-q="20" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(20,1)">1</button>
+                  <button type="button" class="aq-option" data-q="20" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(20,2)">2</button>
+                  <button type="button" class="aq-option" data-q="20" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(20,3)">3</button>
+                  <button type="button" class="aq-option" data-q="20" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(20,4)">4</button>
+                  <button type="button" class="aq-option" data-q="20" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(20,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">22</span><span class="aq-dimension">Continuous Improvement Culture</span></div>
+                <p class="aq-question">How comfortable are team members raising issues, suggesting improvements, and owning change?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Continuous Improvement Culture question 2">
+                  <button type="button" class="aq-option" data-q="21" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(21,1)">1</button>
+                  <button type="button" class="aq-option" data-q="21" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(21,2)">2</button>
+                  <button type="button" class="aq-option" data-q="21" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(21,3)">3</button>
+                  <button type="button" class="aq-option" data-q="21" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(21,4)">4</button>
+                  <button type="button" class="aq-option" data-q="21" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(21,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">23</span><span class="aq-dimension">Strategic Value & Future Readiness</span></div>
+                <p class="aq-question">How clear is the organization’s strategic direction for the next stage of growth or transformation?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Strategic Value & Future Readiness question 1">
+                  <button type="button" class="aq-option" data-q="22" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(22,1)">1</button>
+                  <button type="button" class="aq-option" data-q="22" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(22,2)">2</button>
+                  <button type="button" class="aq-option" data-q="22" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(22,3)">3</button>
+                  <button type="button" class="aq-option" data-q="22" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(22,4)">4</button>
+                  <button type="button" class="aq-option" data-q="22" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(22,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
+              </div>
+
+              <div class="assessment-question">
+                <div class="aq-top"><span class="aq-num">24</span><span class="aq-dimension">Strategic Value & Future Readiness</span></div>
+                <p class="aq-question">How prepared is the organization for future market, technology, customer, regulatory, or competitive changes?</p>
+                <div class="aq-scale" role="radiogroup" aria-label="Strategic Value & Future Readiness question 2">
+                  <button type="button" class="aq-option" data-q="23" data-v="1" role="radio" aria-checked="false" onclick="setQAnswer(23,1)">1</button>
+                  <button type="button" class="aq-option" data-q="23" data-v="2" role="radio" aria-checked="false" onclick="setQAnswer(23,2)">2</button>
+                  <button type="button" class="aq-option" data-q="23" data-v="3" role="radio" aria-checked="false" onclick="setQAnswer(23,3)">3</button>
+                  <button type="button" class="aq-option" data-q="23" data-v="4" role="radio" aria-checked="false" onclick="setQAnswer(23,4)">4</button>
+                  <button type="button" class="aq-option" data-q="23" data-v="5" role="radio" aria-checked="false" onclick="setQAnswer(23,5)">5</button>
+                </div>
+                <div class="aq-scale-labels"><span>Not in<br>place</span><span>Inconsistent</span><span>Partially<br>in place</span><span>Mostly<br>working</span><span>Strong and<br>repeatable</span></div>
               </div>
 
             </div><!-- /assessment-questions -->
-            <p id="assessment-error" class="assessment-error">Please answer all 12 assessment questions before submitting.</p>
+            <p id="assessment-error" class="assessment-error">Please answer all 24 assessment questions before submitting.</p>
             <div class="consent-row">
               <input type="checkbox" id="f-consent" name="Consent">
               <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services.</label>
             </div>
             <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
-            <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are preliminary.</p>
+            <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are self-reported and preliminary.</p>
           </form>
           <iframe name="formsubmit-frame" title="Assessment email delivery" style="display:none;"></iframe>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below and a copy is being emailed</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted successfully — your preliminary operating result is below and a copy is being emailed</span></div>
             <div class="result-score-card">
-              <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
+              <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Operating Score</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
               <div class="rsc-bar-track"><div class="rsc-bar-fill" id="r-bar-fill"></div></div>
               <div class="rsc-readiness" id="r-readiness-label">Transformation Readiness: —</div>
+              <div class="rsc-readiness" id="r-confidence-label">Confidence Level: Self-reported / preliminary</div>
             </div>
             <div class="result-grid">
               <div class="result-block"><div class="rb-label">Top Strength</div><div class="rb-value" id="r-strength">—</div></div>
-              <div class="result-block result-block-warn"><div class="rb-label">Priority Gap</div><div class="rb-value" id="r-weakness">—</div></div>
+              <div class="result-block result-block-warn"><div class="rb-label">Lowest Dimension</div><div class="rb-value" id="r-weakness">—</div></div>
             </div>
             <div class="result-pattern-section">
-              <div class="result-pattern-label">Likely Pain Pattern Detected</div>
+              <div class="result-pattern-label">Likely Pain Pattern</div>
               <div class="result-pattern-card"><div class="rpc-name" id="r-pattern-name">—</div><div class="rpc-desc" id="r-pattern-desc">—</div></div>
             </div>
             <div class="result-insight-card">
-              <div class="ric-label">What this means</div>
+              <div class="ric-label">Why this pattern may matter</div>
               <p class="ric-text" id="r-score-meaning">—</p>
+              <div class="ric-label" style="margin-top:10px;">What Nozomi would validate next</div>
               <ul class="ric-list" id="r-action-list"></ul>
             </div>
-            <div class="result-dim-section"><div class="result-dim-label">Score by Dimension</div><div class="result-dims" id="r-dims"></div></div>
+            <div class="result-dim-section"><div class="result-dim-label">Dimension Averages</div><div class="result-dims" id="r-dims"></div></div>
             <div class="result-next-card">
               <div class="rnc-label">Recommended Next Step</div>
               <div class="rnc-title" id="r-next-title">—</div>
               <div class="rnc-desc" id="r-next-desc">—</div>
-              <div class="rnc-disclaimer">This is a preliminary self-assessment. The Diagnostic Blueprint validates findings through leadership interviews, workflow review, and evidence analysis.</div>
+              <div class="rnc-disclaimer">This result is based on self-reported responses and should be treated as a preliminary operating signal. The Diagnostic Blueprint validates findings through interviews, workflow review, metrics review, document review, and operating evidence.</div>
             </div>
             <div class="result-cta-row">
               <button class="result-btn-primary" onclick="copyAssessmentResult()">Copy Results</button>
@@ -1485,7 +1660,7 @@ section { scroll-margin-top: 68px; }
           </div>
         </div>
 
-        <div class="dim-eyebrow">12 Assessment Dimensions</div>
+        <div class="dim-eyebrow">12 Dimensions / 24 Questions</div>
         <div class="dim-chips fade-in">
           <span class="dim-chip">Leadership & Decision Rhythm</span>
           <span class="dim-chip">Customer & Market Quality</span>
@@ -1975,29 +2150,163 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 
 /* ── ASSESSMENT QUESTIONS & SCORING ─────────────────── */
-var QUESTIONS_DATA = [
-  { id:'h-q1',  label:'Leadership & Decision Rhythm',           painPattern:'Leadership Bottleneck',        painDesc:'Decisions depend too heavily on one person. The organization cannot act without leadership approval at every step.' },
-  { id:'h-q2',  label:'Customer & Market Quality',              painPattern:'Weak Client Engine',           painDesc:'Customer acquisition, retention, or revenue quality is inconsistent. Growth depends on referrals and individual relationships.' },
-  { id:'h-q3',  label:'Service Delivery & Workflow',            painPattern:'Workflow Chaos',               painDesc:'Processes are undocumented or inconsistent. Handoffs break, work falls through gaps, and delivery quality varies by person.' },
-  { id:'h-q4',  label:'People, Capacity & Delegation',          painPattern:'Team Capacity Breakdown',      painDesc:'The team is stretched or structurally dependent on key individuals. Scaling creates more burden, not more capacity.' },
-  { id:'h-q5',  label:'Financial Discipline & Revenue Leakage', painPattern:'Revenue Leakage',              painDesc:'Value is leaving through weak pricing, billing gaps, poor follow-up, or unprofitable client relationships.' },
-  { id:'h-q6',  label:'Technology, Data & AI Readiness',        painPattern:'AI Readiness Gap',             painDesc:'AI and digital initiatives lack governance, use-case clarity, workflow integration, or adoption structure to succeed.' },
-  { id:'h-q7',  label:'Quality, Risk & Compliance',             painPattern:'Quality & Risk Exposure',      painDesc:'Quality standards are inconsistently applied. Compliance gaps and operational errors create avoidable risk.' },
-  { id:'h-q8',  label:'Client / Customer Experience',           painPattern:'Weak Client Engine',           painDesc:'The client experience is inconsistent or dependent on individual heroics rather than reliable systems.' },
-  { id:'h-q9',  label:'Measurement & Operating Intelligence',   painPattern:'Low Operating Visibility',     painDesc:'Leadership lacks reliable dashboards or KPIs. Decisions are based on intuition rather than timely operating data.' },
-  { id:'h-q10', label:'Scalability & Owner Independence',       painPattern:'Scaling Without Systems',      painDesc:'Growth is creating chaos rather than compound value. Systems, processes, and people structures are not keeping pace.' },
-  { id:'h-q11', label:'Continuous Improvement Culture',         painPattern:'No Improvement Rhythm',        painDesc:'Problems recur without root-cause analysis. There is no structured cycle for identifying and resolving operating gaps.' },
-  { id:'h-q12', label:'Strategic Value & Future Readiness',     painPattern:'Strategy–Execution Gap',  painDesc:'Strategy exists at leadership level but does not translate into team priorities, operating discipline, or measurable action.' },
+var DIMENSIONS = [
+  {
+    "label": "Leadership & Decision Rhythm",
+    "pattern": "Leadership Bottleneck",
+    "validation": "decision cadence, accountability records, meeting rhythm, and follow-through discipline",
+    "desc": "Decisions may depend too heavily on a few leaders, or may not consistently turn into owners, deadlines, and visible follow-up.",
+    "questions": [
+      "How consistently does leadership make clear, timely decisions that move the organization forward?",
+      "How consistently are decisions translated into owners, deadlines, follow-up, and visible accountability?"
+    ]
+  },
+  {
+    "label": "Customer & Market Quality",
+    "pattern": "Strategy–Market Gap",
+    "validation": "customer segments, sales evidence, profitable demand sources, and market-position assumptions",
+    "desc": "The organization may not have enough evidence about best-fit customers, market position, or profitable growth opportunities.",
+    "questions": [
+      "How clearly does the organization understand its best-fit customers, market position, and sources of profitable demand?",
+      "How consistently does the organization use customer, market, or sales evidence to guide growth decisions?"
+    ]
+  },
+  {
+    "label": "Service Delivery & Workflow",
+    "pattern": "Delivery Friction",
+    "validation": "workflow maps, handoffs, bottlenecks, rework, delays, and service delivery evidence",
+    "desc": "Core workflows may be unclear, inconsistent, or vulnerable to handoff issues that create delay, rework, and variable quality.",
+    "questions": [
+      "How clearly are core workflows defined from customer request to delivery, completion, or follow-up?",
+      "How consistently are bottlenecks, delays, rework, and handoff issues identified and improved?"
+    ]
+  },
+  {
+    "label": "People, Capacity & Delegation",
+    "pattern": "Capacity Breakdown",
+    "validation": "role clarity, decision rights, delegation, capacity constraints, and owner/key-person dependency",
+    "desc": "The team may be stretched, unclear on ownership, or too dependent on one owner, founder, partner, or key employee.",
+    "questions": [
+      "How clearly are roles, responsibilities, and decision rights assigned across the team?",
+      "How effectively can the organization operate without depending too heavily on one owner, founder, partner, or key employee?"
+    ]
+  },
+  {
+    "label": "Financial Discipline & Revenue Leakage",
+    "pattern": "Revenue Leakage",
+    "validation": "revenue quality, margin, cash flow, cost drivers, billing discipline, pricing, and leakage points",
+    "desc": "Value may be leaking through weak financial visibility, poor pricing discipline, cash-flow blind spots, or delayed action on financial signals.",
+    "questions": [
+      "How clearly does leadership understand revenue, margin, cash flow, cost drivers, and leakage points?",
+      "How consistently does the organization review financial signals and act before problems become urgent?"
+    ]
+  },
+  {
+    "label": "Technology, Data & AI Readiness",
+    "pattern": "Low Operating Visibility",
+    "validation": "systems, data quality, tool adoption, automation readiness, AI use cases, and governance risks",
+    "desc": "Tools, data, and digital systems may not yet support reliable management decisions or safe adoption of automation and AI.",
+    "questions": [
+      "How well do current systems, tools, and data support daily operations and management decisions?",
+      "How ready is the organization to adopt automation, AI, or digital tools without creating confusion, risk, or wasted spend?"
+    ]
+  },
+  {
+    "label": "Quality, Risk & Compliance",
+    "pattern": "Quality / Control Exposure",
+    "validation": "quality standards, controls, risk logs, compliance issues, complaints, and corrective-action discipline",
+    "desc": "Quality, control, or risk issues may be inconsistently tracked and addressed, exposing the organization to avoidable operational risk.",
+    "questions": [
+      "How consistently does the organization maintain quality standards, controls, and risk awareness across operations?",
+      "How clearly are errors, compliance issues, customer complaints, or operational risks tracked and addressed?"
+    ]
+  },
+  {
+    "label": "Client / Customer Experience",
+    "pattern": "Delivery Friction",
+    "validation": "customer journey consistency, feedback, complaints, lost opportunities, and follow-up discipline",
+    "desc": "Customer experience may depend on individual effort rather than repeatable systems for feedback, resolution, and learning.",
+    "questions": [
+      "How consistent and professional is the customer experience from first contact through delivery and follow-up?",
+      "How effectively does the organization capture, resolve, and learn from customer feedback, complaints, or lost opportunities?"
+    ]
+  },
+  {
+    "label": "Measurement & Operating Intelligence",
+    "pattern": "Low Operating Visibility",
+    "validation": "KPI definitions, dashboards, meeting cadence, ownership, and decision follow-up from metrics",
+    "desc": "Leadership may lack timely operating intelligence or a consistent rhythm that connects metrics to decisions and accountability.",
+    "questions": [
+      "How clearly does leadership track the most important operating metrics needed to run the organization?",
+      "How consistently are metrics connected to meetings, decisions, ownership, and follow-up actions?"
+    ]
+  },
+  {
+    "label": "Scalability & Owner Independence",
+    "pattern": "Owner Dependency",
+    "validation": "process repeatability, leadership dependency, scaling constraints, supervision load, and operating strain under growth",
+    "desc": "Growth may increase dependency, bottlenecks, and operational strain instead of creating scalable repeatability.",
+    "questions": [
+      "How repeatable are the organization’s core processes without constant personal supervision from leadership?",
+      "How prepared is the organization to grow without increasing chaos, dependency, or operational strain?"
+    ]
+  },
+  {
+    "label": "Continuous Improvement Culture",
+    "pattern": "Capacity Breakdown",
+    "validation": "issue escalation, root-cause learning, team participation, improvement ownership, and change discipline",
+    "desc": "Problems may recur because the organization lacks a consistent culture and mechanism for learning, raising issues, and owning improvement.",
+    "questions": [
+      "How consistently does the organization identify problems, learn from them, and improve the way work gets done?",
+      "How comfortable are team members raising issues, suggesting improvements, and owning change?"
+    ]
+  },
+  {
+    "label": "Strategic Value & Future Readiness",
+    "pattern": "Strategy–Market Gap",
+    "validation": "strategic direction, future-readiness assumptions, market shifts, technology changes, regulatory exposure, and competitive threats",
+    "desc": "The organization may need sharper direction and readiness for future market, technology, customer, regulatory, or competitive changes.",
+    "questions": [
+      "How clear is the organization’s strategic direction for the next stage of growth or transformation?",
+      "How prepared is the organization for future market, technology, customer, regulatory, or competitive changes?"
+    ]
+  }
 ];
-var Q_ANSWERS = {};
+var QUESTIONS_DATA = [];
+DIMENSIONS.forEach(function(dim, dimIdx) {
+  dim.questions.forEach(function(question, qIdx) {
+    QUESTIONS_DATA.push({
+      id: dimIdx * 2 + qIdx,
+      dimensionIndex: dimIdx,
+      label: dim.label,
+      question: question,
+      painPattern: dim.pattern,
+      painDesc: dim.desc,
+      validation: dim.validation
+    });
+  });
+});
+var Q_ANSWERS = new Array(QUESTIONS_DATA.length);
 var LAST_ASSESSMENT_RESULT = null;
+var CONFIDENCE_LABEL = 'Self-reported / preliminary';
 
 var NEXT_STEPS = {
-  critical:    { title:'Operations Reset + Diagnostic Blueprint',           desc:'Your score indicates significant operating gaps across multiple dimensions. We recommend beginning with an Operations Reset to establish immediate clarity, followed by a Diagnostic Blueprint to validate root causes and build a structured improvement roadmap.' },
-  constrained: { title:'Diagnostic Blueprint',                              desc:'Your score shows constrained operating capacity with clear bottleneck patterns. A Diagnostic Blueprint will validate root causes through leadership interviews and workflow review, and produce a practical 30/60/90-day roadmap.' },
-  developing:  { title:'Focused Diagnostic Snapshot or Diagnostic Blueprint',desc:'Your score reveals a developing operating foundation with specific gaps limiting your growth or transformation potential. A Diagnostic Blueprint will identify the highest-priority improvement opportunities.' },
-  ready:       { title:'90-Day Transformation or Transformation Labs',       desc:'Your operating foundation is strong. A 90-Day Transformation engagement or Transformation Labs program can help you build the next layer of capability, AI readiness, or organizational scale.' },
-  advanced:    { title:'Ongoing Improvement or Transformation Labs',         desc:'Your operating systems are mature. An Ongoing Improvement partnership or advanced Transformation Labs program will help you maintain discipline, optimize continuously, and build competitive advantage.' }
+  critical:    { title:'Operating Stabilization Review', desc:'The organization may need to stabilize decision rhythm, visibility, workflows, and accountability before larger transformation work begins.' },
+  constrained: { title:'Diagnostic Blueprint', desc:'The organization has meaningful constraints that should be validated through interviews, workflow review, evidence gathering, and operating analysis.' },
+  developing:  { title:'90-Day Transformation Roadmap', desc:'The organization appears to have a workable foundation but needs a focused roadmap to improve execution, visibility, and scalable operating discipline.' },
+  ready:       { title:'Growth / AI Readiness Sprint', desc:'The organization appears ready for targeted transformation, digital improvement, automation, or AI-readiness work once key assumptions are validated.' },
+  advanced:    { title:'Strategic Scaling Review', desc:'The organization appears advanced and may benefit from a strategic review focused on scale, resilience, future readiness, and higher-value transformation opportunities.' }
+};
+
+var PAIN_PATTERNS = {
+  leadership: { name:'Leadership Bottleneck', desc:'Decision rhythm and delegation may be constraining execution. Work can slow down when clarity, ownership, or follow-up depends too heavily on a few leaders.', validation:'Nozomi would validate decision cadence, ownership records, meeting follow-up, and whether decisions consistently become accountable action.' },
+  delivery: { name:'Delivery Friction', desc:'Workflow and customer experience may be weakened by bottlenecks, handoff gaps, rework, or inconsistent service delivery.', validation:'Nozomi would validate the customer-to-delivery workflow, handoffs, delay points, rework, and feedback loops.' },
+  revenue: { name:'Revenue Leakage', desc:'Financial visibility and operating metrics may not be strong enough to detect leakage, margin pressure, or urgent financial signals early.', validation:'Nozomi would validate revenue quality, margin, cash flow, pricing discipline, billing follow-up, and financial review rhythm.' },
+  visibility: { name:'Low Operating Visibility', desc:'Technology, data, and measurement may not give leadership the timely visibility needed for confident decisions.', validation:'Nozomi would validate systems, dashboards, data quality, AI readiness, KPI ownership, and meeting-to-action rhythm.' },
+  capacity: { name:'Capacity Breakdown', desc:'Team capacity and improvement culture may not yet support repeatable growth. Problems can recur because ownership, escalation, and learning rhythms are weak.', validation:'Nozomi would validate role clarity, delegation, team capacity, recurring issues, root-cause learning, and improvement ownership.' },
+  strategy: { name:'Strategy–Market Gap', desc:'Strategic direction and market/customer evidence may not be aligned strongly enough to guide the next stage of growth.', validation:'Nozomi would validate market position, best-fit customer evidence, strategic priorities, demand quality, and future-readiness assumptions.' },
+  quality: { name:'Quality / Control Exposure', desc:'Quality, risk, and workflow controls may be exposing the organization to avoidable errors, complaints, compliance gaps, or inconsistent outcomes.', validation:'Nozomi would validate standards, controls, risk logs, complaint handling, corrective actions, and workflow quality evidence.' },
+  owner: { name:'Owner Dependency', desc:'The organization may still depend too heavily on leadership supervision or key individuals, making growth harder to scale reliably.', validation:'Nozomi would validate process repeatability, owner dependence, delegation, decision rights, and growth strain.' }
 };
 
 function setQAnswer(qIdx, val) {
@@ -2013,9 +2322,8 @@ function setQAnswer(qIdx, val) {
 }
 
 function calcOperatingScore() {
-  var total = 0;
-  for (var i = 0; i < 12; i++) total += (Q_ANSWERS[i] || 0);
-  return Math.round((total / 60) * 100);
+  var total = Q_ANSWERS.reduce(function(sum, val) { return sum + Number(val || 0); }, 0);
+  return Math.round((total / 120) * 100);
 }
 
 function getReadinessLevel(score) {
@@ -2034,60 +2342,44 @@ function getReadinessKey(score) {
   return 'advanced';
 }
 
-function getScoreMeaning(score, sw) {
-  var readiness = getReadinessLevel(score);
-  if (score <= 40) {
-    return 'Your organization is showing signs of fragmentation. The biggest risk is not a single weak area; it is that decisions, workflows, data, and accountability may not be operating as one system. The priority is to stabilize the operating rhythm before adding new tools or transformation initiatives.';
-  }
-  if (score <= 60) {
-    return 'Your organization has enough operating structure to move, but the current system is constrained. The priority gap, ' + sw.weakness + ', is likely limiting execution speed, consistency, and confidence in decisions. This is where a structured diagnosis can produce quick clarity.';
-  }
-  if (score <= 75) {
-    return 'Your organization is developing a workable operating foundation, but some dimensions are still too inconsistent to support reliable scaling. The next step is to validate which gaps are symptoms and which are root causes.';
-  }
-  if (score <= 88) {
-    return 'Your organization appears ready for transformation, but readiness does not mean every system is mature. The opportunity is to convert existing strengths into repeatable capability, better measurement, and a clearer improvement roadmap.';
-  }
-  return 'Your organization appears to have a strong operating base. The opportunity is less about repair and more about optimization: building advantage through continuous improvement, AI readiness, and scalable operating intelligence.';
-}
-
-function getLowestDimensions(limit) {
-  return QUESTIONS_DATA.map(function(q, i) {
-    return { label: q.label, answer: Q_ANSWERS[i] || 0, painPattern: q.painPattern };
-  }).sort(function(a, b) {
-    if (a.answer === b.answer) return a.label.localeCompare(b.label);
-    return a.answer - b.answer;
-  }).slice(0, limit);
-}
-
-function getActionItems(score, sw) {
-  var lowest = getLowestDimensions(3);
-  var items = [];
-  items.push('Start by validating whether "' + sw.weakness + '" is the root cause or a symptom of another operating constraint.');
-  if (lowest[0]) items.push('Review evidence around ' + lowest[0].label + ' first, because it received the lowest self-rating.');
-  if (lowest[1]) items.push('Compare ' + lowest[1].label + ' against leadership cadence, ownership, and workflow handoffs.');
-  if (score <= 60) {
-    items.push('Use a Diagnostic Blueprint before investing in a new tool, AI initiative, or large consulting engagement.');
-  } else {
-    items.push('Use a focused review call to turn the result into a practical improvement roadmap.');
-  }
-  return items;
+function calculateDimensionScores() {
+  return DIMENSIONS.map(function(dim, i) {
+    var a = Number(Q_ANSWERS[i * 2] || 0);
+    var b = Number(Q_ANSWERS[i * 2 + 1] || 0);
+    return { label: dim.label, average: (a + b) / 2, answers: [a, b], pattern: dim.pattern, desc: dim.desc, validation: dim.validation };
+  });
 }
 
 function getStrengthAndWeakness() {
-  var best = null; var worst = null;
-  for (var i = 0; i < 12; i++) {
-    var v = Q_ANSWERS[i];
-    if (v === undefined) continue;
-    if (best  === null || v > Q_ANSWERS[best])  best  = i;
-    if (worst === null || v < Q_ANSWERS[worst]) worst = i;
+  var scores = calculateDimensionScores();
+  var best = scores[0];
+  var worst = scores[0];
+  scores.forEach(function(item) {
+    if (item.average > best.average) best = item;
+    if (item.average < worst.average) worst = item;
+  });
+  return { strength: best.label, weakness: worst.label, best: best, worst: worst, dimensionScores: scores };
+}
+
+function isLow(map, label) { return map[label] !== undefined && map[label] <= 2.75; }
+function getPainPattern(sw) {
+  var map = {};
+  sw.dimensionScores.forEach(function(item) { map[item.label] = item.average; });
+  var pairs = [
+    ['leadership', 'Leadership & Decision Rhythm', 'People, Capacity & Delegation'],
+    ['delivery', 'Service Delivery & Workflow', 'Client / Customer Experience'],
+    ['revenue', 'Financial Discipline & Revenue Leakage', 'Measurement & Operating Intelligence'],
+    ['visibility', 'Technology, Data & AI Readiness', 'Measurement & Operating Intelligence'],
+    ['capacity', 'People, Capacity & Delegation', 'Continuous Improvement Culture'],
+    ['strategy', 'Strategic Value & Future Readiness', 'Customer & Market Quality'],
+    ['quality', 'Quality, Risk & Compliance', 'Service Delivery & Workflow'],
+    ['owner', 'Scalability & Owner Independence', 'People, Capacity & Delegation']
+  ];
+  for (var i = 0; i < pairs.length; i++) {
+    if (isLow(map, pairs[i][1]) && isLow(map, pairs[i][2])) return PAIN_PATTERNS[pairs[i][0]];
   }
-  return {
-    strength: best  !== null ? QUESTIONS_DATA[best].label        : 'Not determined',
-    weakness: worst !== null ? QUESTIONS_DATA[worst].label       : 'Not determined',
-    painPat:  worst !== null ? QUESTIONS_DATA[worst].painPattern : 'Not determined',
-    painDesc: worst !== null ? QUESTIONS_DATA[worst].painDesc    : ''
-  };
+  var fallback = Object.keys(PAIN_PATTERNS).find(function(key) { return PAIN_PATTERNS[key].name === sw.worst.pattern; });
+  return PAIN_PATTERNS[fallback] || { name: sw.worst.pattern, desc: sw.worst.desc, validation: 'Nozomi would validate the evidence behind the lowest-scoring operating dimension and test whether it is a root cause or a symptom.' };
 }
 
 function getDimBarColor(pct) {
@@ -2106,82 +2398,64 @@ function animateNum(el, target) {
   }, 22);
 }
 
+function getScoreMeaning(score, sw, pain) {
+  if (score <= 40) return 'Your organization is showing signs of operating fragmentation. The immediate priority is stabilizing decision rhythm, workflow visibility, accountability, and evidence before larger transformation work begins.';
+  if (score <= 60) return 'Your organization has meaningful constraints. The lowest dimension, ' + sw.weakness + ', and the likely pain pattern, ' + pain.name + ', should be validated before investing in tools or large transformation work.';
+  if (score <= 75) return 'Your organization has a workable foundation, but several operating dimensions may still be inconsistent. The next step is a focused roadmap that identifies which gaps are root causes and which are symptoms.';
+  if (score <= 88) return 'Your organization appears ready for targeted transformation. The opportunity is to validate key assumptions, strengthen weaker dimensions, and turn readiness into a practical improvement sprint.';
+  return 'Your organization appears advanced. The opportunity is a strategic scaling review focused on resilience, future readiness, and higher-value transformation opportunities.';
+}
+
 function buildAssessmentSummary(result) {
   if (!result) return '';
   var lines = [
-    'Nozomi 360 Preliminary Assessment Result',
-    '',
+    'Nozomi 360 Preliminary Operating Assessment', '',
     'Organization: ' + (result.org || 'Not provided'),
     'Name: ' + (result.name || 'Not provided'),
     'Role: ' + (result.role || 'Not provided'),
     'Email: ' + (result.email || 'Not provided'),
-    '',
-    'Operating Score: ' + result.score + '/100',
-    'Transformation Readiness: ' + result.readiness,
+    'Review Call Requested: ' + (result.reviewCall || 'No'), '',
+    'Preliminary Operating Score: ' + result.score + '/100',
+    'Readiness Level: ' + result.readiness,
+    'Confidence Level: ' + CONFIDENCE_LABEL,
     'Top Strength: ' + result.strength,
-    'Priority Gap: ' + result.weakness,
-    'Likely Pain Pattern: ' + result.painPattern,
-    '',
-    'What this means:',
-    result.scoreMeaning || '',
-    '',
+    'Lowest Dimension: ' + result.weakness,
+    'Likely Pain Pattern: ' + result.painPattern, '',
+    'Why this pattern may matter:', result.scoreMeaning || '', '',
     'Recommended Next Step: ' + result.nextStepTitle,
-    result.nextStepDesc,
-    '',
-    'Suggested focus areas:'
+    result.nextStepDesc, '',
+    'What Nozomi would validate next:', result.validationFocus, '',
+    'Dimension Averages:'
   ];
-  (result.actionItems || []).forEach(function(item) {
-    lines.push('- ' + item);
-  });
-  lines = lines.concat([
-    '',
-    'Score by Dimension:'
-  ]);
-  result.answers.forEach(function(item) {
-    lines.push('- ' + item.dimension + ': ' + item.answer + '/5');
-  });
-  lines.push('');
-  lines.push('Note: This is a preliminary self-assessment. A Diagnostic Blueprint validates findings through leadership interviews, workflow review, and evidence analysis.');
+  result.dimensionScores.forEach(function(item) { lines.push('- ' + item.label + ': ' + item.average.toFixed(1) + '/5'); });
+  lines.push('', 'All 24 Answers:');
+  result.answers.forEach(function(item, i) { lines.push('Q' + (i + 1) + '. ' + item.question + ' — ' + item.answer + '/5'); });
+  lines.push('', 'Disclaimer: This result is based on self-reported responses and should be treated as a preliminary operating signal. The Diagnostic Blueprint validates findings through interviews, workflow review, metrics review, document review, and operating evidence.');
   return lines.join('\n');
 }
 
 function buildAssessmentAutoresponse(result) {
   if (!result) return '';
   return [
-    'Thank you for completing the Nozomi 360 Assessment.',
-    '',
+    'Thank you for completing the Nozomi 360 Preliminary Operating Assessment.', '',
     'Your preliminary result:',
-    'Operating Score: ' + result.score + '/100',
-    'Transformation Readiness: ' + result.readiness,
+    'Preliminary Operating Score: ' + result.score + '/100',
+    'Readiness Level: ' + result.readiness,
+    'Confidence Level: ' + CONFIDENCE_LABEL,
     'Top Strength: ' + result.strength,
-    'Priority Gap: ' + result.weakness,
-    'Likely Pain Pattern: ' + result.painPattern,
-    '',
-    'What this means:',
-    result.scoreMeaning || '',
-    '',
+    'Lowest Dimension: ' + result.weakness,
+    'Likely Pain Pattern: ' + result.painPattern, '',
+    'Why this pattern may matter:', result.scoreMeaning, '',
     'Recommended Next Step: ' + result.nextStepTitle,
-    result.nextStepDesc,
-    '',
-    'Suggested focus areas:'
-  ].concat((result.actionItems || []).map(function(item) {
-    return '- ' + item;
-  })).concat([
-    '',
-    'Why engage Nozomi:',
-    'Your score is a useful first signal, but it is not a final diagnosis. A Nozomi Diagnostic Blueprint validates the findings through leadership interviews, workflow review, evidence analysis, and a practical 30/60/90-day improvement roadmap.',
-    '',
-    'If you want to move from self-assessment to a structured engagement, reply to this email and ask for a Diagnostic Blueprint review.',
-    '',
-    'Nozomi',
-    'Assessment-first transformation firm'
-  ]).join('\n');
+    result.nextStepDesc, '',
+    'What Nozomi would validate next:', result.validationFocus, '',
+    'This is a preliminary self-reported signal, not a final diagnosis. If you want to move from self-assessment to evidence-based diagnosis, reply and ask for a Diagnostic Blueprint review.', '',
+    'Nozomi', 'Assessment-first transformation firm'
+  ].join('\n');
 }
 
 function copyTextToClipboard(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    return navigator.clipboard.writeText(text);
-  }
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
   return new Promise(function(resolve, reject) {
     var area = document.createElement('textarea');
     area.value = text;
@@ -2190,13 +2464,9 @@ function copyTextToClipboard(text) {
     area.style.left = '-9999px';
     document.body.appendChild(area);
     area.select();
-    try {
-      document.execCommand('copy') ? resolve() : reject(new Error('Copy command failed'));
-    } catch (err) {
-      reject(err);
-    } finally {
-      document.body.removeChild(area);
-    }
+    try { document.execCommand('copy') ? resolve() : reject(new Error('Copy command failed')); }
+    catch (err) { reject(err); }
+    finally { document.body.removeChild(area); }
   });
 }
 
@@ -2207,291 +2477,163 @@ function showCopyStatus(message, isError) {
   status.style.color = isError ? '#E8A43C' : 'rgba(76,175,128,0.9)';
   status.classList.add('show');
   clearTimeout(showCopyStatus.timer);
-  showCopyStatus.timer = setTimeout(function() {
-    status.classList.remove('show');
-  }, 3200);
+  showCopyStatus.timer = setTimeout(function() { status.classList.remove('show'); }, 3200);
 }
 
 function copyAssessmentResult() {
   var text = buildAssessmentSummary(LAST_ASSESSMENT_RESULT);
-  if (!text) {
-    showCopyStatus('Generate your result first, then copy it.', true);
-    return;
-  }
-  copyTextToClipboard(text).then(function() {
-    showCopyStatus('Results copied. You can paste them into a message or document.', false);
-  }).catch(function() {
-    showCopyStatus('Copy did not work in this browser. Take a screenshot instead.', true);
-  });
+  if (!text) { showCopyStatus('Generate your result first, then copy it.', true); return; }
+  copyTextToClipboard(text).then(function() { showCopyStatus('Results copied. You can paste them into a message or document.', false); })
+    .catch(function() { showCopyStatus('Copy did not work in this browser. Take a screenshot instead.', true); });
 }
 
-function showResults(score, sw, org, email) {
-  var readiness = getReadinessLevel(score);
-  var nsKey     = getReadinessKey(score);
-  var nextStep  = NEXT_STEPS[nsKey];
-
-  var el = document.getElementById('r-score-display');
-  if (el) { el.textContent = '0'; animateNum(el, score); }
-
-  var bar = document.getElementById('r-bar-fill');
-  if (bar) setTimeout(function(){ bar.style.width = score + '%'; }, 120);
-
+function updateHeroScorecardAfterAssessment(result) {
   function setText(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; }
-  setText('r-org-name',       org || 'Your Organization');
-  setText('r-readiness-label','Transformation Readiness: ' + readiness);
-  setText('r-readiness-badge',readiness);
-  setText('r-strength',       sw.strength);
-  setText('r-weakness',       sw.weakness);
-  setText('r-pattern-name',   sw.painPat);
-  setText('r-pattern-desc',   sw.painDesc);
-  setText('r-next-title',     nextStep.title);
-  setText('r-next-desc',      nextStep.desc);
-  setText('r-score-meaning',  getScoreMeaning(score, sw));
+  setText('hero-scorecard-label', 'Nozomi 360 Assessment Result');
+  setText('hero-scorecard-badge', 'Your Preliminary Score');
+  setText('hero-score', result.score);
+  var line = document.getElementById('hero-readiness-line');
+  if (line) line.innerHTML = 'Readiness Level: <strong>' + result.readiness + '</strong>';
+  setText('hero-example-note', 'This is your self-reported preliminary result.');
+  var bar = document.getElementById('sc-bar-fill');
+  if (bar) bar.style.width = result.score + '%';
+  setText('hero-next-val', result.nextStepTitle);
+}
 
+function showResults(result) {
+  LAST_ASSESSMENT_RESULT = result;
+  var el = document.getElementById('r-score-display');
+  if (el) { el.textContent = '0'; animateNum(el, result.score); }
+  var bar = document.getElementById('r-bar-fill');
+  if (bar) setTimeout(function(){ bar.style.width = result.score + '%'; }, 120);
+  function setText(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; }
+  setText('r-org-name', result.org || 'Your Organization');
+  setText('r-readiness-label','Readiness Level: ' + result.readiness);
+  setText('r-confidence-label','Confidence Level: ' + CONFIDENCE_LABEL);
+  setText('r-readiness-badge', result.readiness);
+  setText('r-strength', result.strength);
+  setText('r-weakness', result.weakness);
+  setText('r-pattern-name', result.painPattern);
+  setText('r-pattern-desc', result.painDesc);
+  setText('r-next-title', result.nextStepTitle);
+  setText('r-next-desc', result.nextStepDesc);
+  setText('r-score-meaning', result.scoreMeaning);
   var actionList = document.getElementById('r-action-list');
-  if (actionList) {
-    actionList.innerHTML = getActionItems(score, sw).map(function(item) {
-      return '<li>' + item + '</li>';
-    }).join('');
-  }
-
-  /* Dimension bars */
+  if (actionList) actionList.innerHTML = '<li>' + result.validationFocus + '</li>';
   var dimsEl = document.getElementById('r-dims');
   if (dimsEl) {
-    var html = '';
-    QUESTIONS_DATA.forEach(function(q, i) {
-      var v = Q_ANSWERS[i] || 0;
-      var pct = Math.round((v / 5) * 100);
-      html += '<div class="result-dim-row">';
-      html += '<span class="rdim-name">' + q.label + '</span>';
-      html += '<div class="rdim-bar-wrap"><div class="rdim-bar-track"><div class="rdim-bar-fill" style="width:' + pct + '%;background:' + getDimBarColor(pct) + ';"></div></div></div>';
-      html += '<span class="rdim-val">' + v + '/5</span>';
-      html += '</div>';
-    });
-    dimsEl.innerHTML = html;
+    dimsEl.innerHTML = result.dimensionScores.map(function(item) {
+      var pct = Math.round((item.average / 5) * 100);
+      var col = getDimBarColor(pct);
+      return '<div class="result-dim-row"><span class="rdim-name">' + item.label + '</span><div class="rdim-bar-wrap"><div class="rdim-bar-track"><div class="rdim-bar-fill" style="width:' + pct + '%;background:' + col + ';"></div></div></div><span class="rdim-val">' + item.average.toFixed(1) + '/5</span></div>';
+    }).join('');
   }
-
   var emailNote = document.getElementById('r-email-note');
   if (emailNote) emailNote.style.display = 'block';
-
-  /* Show results panel */
   var formEl = document.getElementById('assessment-form');
   var succEl = document.getElementById('form-success');
   if (formEl) formEl.style.display = 'none';
   if (succEl) succEl.classList.add('show');
-  setTimeout(function() {
-    var wrap = document.querySelector('.lead-form-wrap');
-    if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'start' });
-  }, 120);
+  updateHeroScorecardAfterAssessment(result);
+  setTimeout(function() { var wrap = document.querySelector('.lead-form-wrap'); if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'start' }); }, 120);
 }
 
-/* ── FORM SUBMISSION — instant assessment result ───── */
 var assessForm   = document.getElementById('assessment-form');
 var consentErrEl = document.getElementById('consent-error');
 
 if (assessForm) {
   assessForm.addEventListener('submit', function(e) {
-    e.preventDefault(); /* Hold submission until validation + hidden fields are ready */
-
-    /* ── 1. Read contact fields ── */
+    e.preventDefault();
     var name    = document.getElementById('f-name').value.trim();
     var email   = document.getElementById('f-email').value.trim();
     var org     = document.getElementById('f-org').value.trim();
     var role    = document.getElementById('f-role').value;
     var consent = document.getElementById('f-consent').checked;
     var valid   = true;
-
-    /* ── 2. Reset all error states ── */
-    ['ff-name','ff-org','ff-email'].forEach(function(id) {
-      var el = document.getElementById(id); if (el) el.classList.remove('err');
-    });
+    ['ff-name','ff-org','ff-email'].forEach(function(id) { var el = document.getElementById(id); if (el) el.classList.remove('err'); });
     if (consentErrEl) consentErrEl.style.display = 'none';
     var assessErr = document.getElementById('assessment-error');
     if (assessErr) assessErr.style.display = 'none';
-
-    /* ── 3. Validate contact fields ── */
     if (!name)  { var e1 = document.getElementById('ff-name'); if (e1) e1.classList.add('err'); valid = false; }
     if (!org)   { var e2 = document.getElementById('ff-org');  if (e2) e2.classList.add('err'); valid = false; }
-    if (!email || !email.includes('@')) {
-      var e3 = document.getElementById('ff-email'); if (e3) e3.classList.add('err'); valid = false;
-    }
+    if (!email || !email.includes('@')) { var e3 = document.getElementById('ff-email'); if (e3) e3.classList.add('err'); valid = false; }
     if (!consent) { if (consentErrEl) consentErrEl.style.display = 'block'; valid = false; }
-
-    /* ── 4. Validate all 12 questions answered ── */
     var allAnswered = QUESTIONS_DATA.every(function(_, i) { return Q_ANSWERS[i] !== undefined; });
     if (!allAnswered) {
       if (assessErr) assessErr.style.display = 'block';
-      for (var qi = 0; qi < 12; qi++) {
-        if (Q_ANSWERS[qi] === undefined) {
-          var cards = document.querySelectorAll('.assessment-question');
-          if (cards[qi]) cards[qi].scrollIntoView({ behavior: 'smooth', block: 'center' });
-          break;
-        }
+      for (var qi = 0; qi < QUESTIONS_DATA.length; qi++) {
+        if (Q_ANSWERS[qi] === undefined) { var cards = document.querySelectorAll('.assessment-question'); if (cards[qi]) cards[qi].scrollIntoView({ behavior: 'smooth', block: 'center' }); break; }
       }
       valid = false;
     }
-
-    if (!valid) return; /* Stop here — do not submit */
-
-    /* ── 5. Calculate score and results ── */
+    if (!valid) return;
     var score = calcOperatingScore();
-    var sw    = getStrengthAndWeakness();
+    var sw = getStrengthAndWeakness();
+    var pain = getPainPattern(sw);
     var nsKey = getReadinessKey(score);
-
-    /* ── 6. Populate all hidden fields with readable values ── */
-    /* FormSubmit config */
-    document.getElementById('h-subject').value =
-      'New Nozomi 360 Assessment Submission — ' + org;
-    document.getElementById('h-replyto').value = email;
-
-    /* Set _next to current page URL so redirect returns here */
-    var hNext = document.getElementById('h-next');
-    if (hNext) hNext.value = window.location.origin + window.location.pathname + '?submitted=1';
-
-    /* ── 7. Save results for copying and optional post-redirect display ── */
-    var savedResult = {
-      name:           name,
-      email:          email,
-      org:            org,
-      role:           role,
-      score:          score,
-      readiness:      getReadinessLevel(score),
-      strength:       sw.strength,
-      weakness:       sw.weakness,
-      painPattern:    sw.painPat,
-      painDesc:       sw.painDesc,
-      scoreMeaning:   getScoreMeaning(score, sw),
-      actionItems:    getActionItems(score, sw),
-      nextStepTitle:  NEXT_STEPS[nsKey].title,
-      nextStepDesc:   NEXT_STEPS[nsKey].desc,
-      answers:        QUESTIONS_DATA.map(function(q, i) {
-        return { dimension: q.label, answer: Q_ANSWERS[i] };
-      })
+    var nextStep = NEXT_STEPS[nsKey];
+    var result = {
+      name: name, email: email, org: org, role: role, reviewCall: (document.getElementById('h-review-call') || {}).value || 'No',
+      score: score, readiness: getReadinessLevel(score), confidence: CONFIDENCE_LABEL,
+      strength: sw.strength, weakness: sw.weakness, painPattern: pain.name, painDesc: pain.desc,
+      validationFocus: pain.validation, scoreMeaning: getScoreMeaning(score, sw, pain),
+      nextStepTitle: nextStep.title, nextStepDesc: nextStep.desc,
+      dimensionScores: sw.dimensionScores,
+      answers: QUESTIONS_DATA.map(function(q, i) { return { question: q.question, dimension: q.label, answer: Q_ANSWERS[i] }; })
     };
-    LAST_ASSESSMENT_RESULT = savedResult;
-    var summary = buildAssessmentSummary(savedResult);
-    document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(savedResult);
+    LAST_ASSESSMENT_RESULT = result;
+    var summary = buildAssessmentSummary(result);
+    document.getElementById('h-subject').value = 'New Nozomi 360 Assessment Submission — ' + org;
+    document.getElementById('h-replyto').value = email;
+    document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(result);
     document.getElementById('h-summary').value = summary;
-    document.getElementById('h-score').value     = score + '/100';
-    document.getElementById('h-readiness').value = getReadinessLevel(score);
-    document.getElementById('h-strength').value  = sw.strength;
-    document.getElementById('h-weakness').value  = sw.weakness;
-    document.getElementById('h-pattern').value   = sw.painPat + ' — ' + sw.painDesc;
-    document.getElementById('h-nextstep').value  = NEXT_STEPS[nsKey].title;
-    document.getElementById('h-q1').value  = Q_ANSWERS[0]  + '/5';
-    document.getElementById('h-q2').value  = Q_ANSWERS[1]  + '/5';
-    document.getElementById('h-q3').value  = Q_ANSWERS[2]  + '/5';
-    document.getElementById('h-q4').value  = Q_ANSWERS[3]  + '/5';
-    document.getElementById('h-q5').value  = Q_ANSWERS[4]  + '/5';
-    document.getElementById('h-q6').value  = Q_ANSWERS[5]  + '/5';
-    document.getElementById('h-q7').value  = Q_ANSWERS[6]  + '/5';
-    document.getElementById('h-q8').value  = Q_ANSWERS[7]  + '/5';
-    document.getElementById('h-q9').value  = Q_ANSWERS[8]  + '/5';
-    document.getElementById('h-q10').value = Q_ANSWERS[9]  + '/5';
-    document.getElementById('h-q11').value = Q_ANSWERS[10] + '/5';
-    document.getElementById('h-q12').value = Q_ANSWERS[11] + '/5';
-    try {
-      sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
-    } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
-
-    /* ── 8. Send email in the background and show the result immediately. ── */
+    document.getElementById('h-score').value = score + '/100';
+    document.getElementById('h-readiness').value = result.readiness;
+    document.getElementById('h-confidence').value = CONFIDENCE_LABEL;
+    document.getElementById('h-strength').value = result.strength;
+    document.getElementById('h-weakness').value = result.weakness;
+    document.getElementById('h-pattern').value = pain.name + ' — ' + pain.desc;
+    document.getElementById('h-nextstep').value = nextStep.title;
+    document.getElementById('h-validation').value = pain.validation;
+    for (var i = 0; i < 24; i++) { var h = document.getElementById('h-q' + (i + 1)); if (h) h.value = Q_ANSWERS[i] + '/5 — ' + QUESTIONS_DATA[i].question; }
+    var nextField = document.getElementById('h-next');
+    if (nextField) nextField.value = window.location.origin + window.location.pathname + '?submitted=1#assessment';
+    try { sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(result)); } catch(err) {}
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
-
-    setTimeout(function() {
-      assessForm.submit();
-      if (overlay) overlay.classList.remove('show');
-      showResults(score, sw, org, email);
-    }, 450);
+    showResults(result);
+    setTimeout(function() { assessForm.submit(); }, 600);
   });
-
-  /* ── Clear field errors on input ── */
   assessForm.querySelectorAll('input, select').forEach(function(inp) {
-    inp.addEventListener('input', function() {
-      var row = this.closest('.ff'); if (row) row.classList.remove('err');
-      if (this.id === 'f-consent' && consentErrEl) consentErrEl.style.display = 'none';
-    });
+    inp.addEventListener('input', function() { var row = this.closest('.ff'); if (row) row.classList.remove('err'); if (this.id === 'f-consent' && consentErrEl) consentErrEl.style.display = 'none'; });
   });
 }
 
-/* ── ON PAGE LOAD: restore results panel if returning with a submitted flag ── */
 document.addEventListener('DOMContentLoaded', function() {
   var params = new URLSearchParams(window.location.search);
   if (params.get('submitted') === '1') {
     var saved = null;
     try { saved = JSON.parse(sessionStorage.getItem('nozomiAssessmentResult')); } catch(e) {}
-
     if (saved) {
       LAST_ASSESSMENT_RESULT = saved;
-      /* Rebuild sw object from saved data */
-      var sw = {
-        strength: saved.strength,
-        weakness: saved.weakness,
-        painPat:  saved.painPattern,
-        painDesc: saved.painDesc
-      };
-      /* Restore Q_ANSWERS so dimension bars render correctly */
-      if (saved.answers) {
-        saved.answers.forEach(function(a, i) { Q_ANSWERS[i] = a.answer; });
-      }
-      showResults(saved.score, sw, saved.org, saved.email);
-      /* Clean up URL without reloading */
-      try {
-        window.history.replaceState({}, '', window.location.pathname);
-      } catch(e) {}
-      /* Scroll to assessment section */
+      if (saved.answers) saved.answers.forEach(function(a, i) { Q_ANSWERS[i] = a.answer; });
+      showResults(saved);
+      try { window.history.replaceState({}, '', window.location.pathname + '#assessment'); } catch(e) {}
       setTimeout(function() { navTo('assessment'); }, 200);
-      /* Clear sessionStorage after display */
-      try { sessionStorage.removeItem('nozomiAssessmentResult'); } catch(e) {}
     } else {
-      /* No saved result (sessionStorage unavailable or expired) — show simple confirmation */
       var formEl = document.getElementById('assessment-form');
       var succEl = document.getElementById('form-success');
       if (formEl) formEl.style.display = 'none';
-      if (succEl) {
-        /* Show just the submitted bar and a simple message */
-        var submitted = succEl.querySelector('.result-submitted-bar');
-        if (submitted) submitted.style.display = 'flex';
-        succEl.classList.add('show');
-      }
+      if (succEl) succEl.classList.add('show');
       setTimeout(function() { navTo('assessment'); }, 200);
     }
   }
 });
 
-
 /* ── HERO SCORECARD ANIMATION ───────────────────────── */
 (function() {
-  var animated = false;
-  new IntersectionObserver(function(entries, obs) {
-    if (!entries[0].isIntersecting || animated) return;
-    animated = true; obs.disconnect();
-
-    /* Count-up score */
-    var el = document.getElementById('hero-score');
-    if (el) {
-      var n = 0;
-      var t = setInterval(function() { n = Math.min(n + 2, 67); el.textContent = n; if (n >= 67) clearInterval(t); }, 18);
-    }
-
-    /* Animate progress bar */
-    setTimeout(function() {
-      var bar = document.getElementById('sc-bar-fill');
-      if (bar) bar.style.width = '67%';
-    }, 120);
-
-    /* Stagger pain patterns */
-    var pats = document.querySelectorAll('.sc-pattern-row');
-    pats.forEach(function(p, i) {
-      setTimeout(function() { p.classList.add('show'); }, 700 + i * 220);
-    });
-
-    /* Reveal next step */
-    setTimeout(function() {
-      var nx = document.getElementById('sc-next');
-      if (nx) nx.classList.add('show');
-    }, 1500);
-  }, { threshold: 0.4 }).observe(document.getElementById('hero'));
+  var bar = document.getElementById('sc-bar-fill');
+  if (bar) bar.style.width = '98%';
 })();
 
 /* ── FADE IN ON SCROLL ───────────────────────────────── */
