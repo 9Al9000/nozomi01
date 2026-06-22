@@ -2164,7 +2164,7 @@ section { scroll-margin-top: 68px; }
 
 
 <!-- ══════════════════════════════════════════════
-     NOZOMI ASSISTANT CHATBOT
+     NOZOMI SMART INTAKE ASSISTANT
 ══════════════════════════════════════════════ -->
 <button class="nozomi-chat-launcher" id="nozomi-chat-launcher" type="button" onclick="toggleNozomiChat(true)" aria-controls="nozomi-chat-panel" aria-expanded="false">
   <span class="nozomi-chat-dot" aria-hidden="true"></span>
@@ -2181,6 +2181,7 @@ section { scroll-margin-top: 68px; }
   </div>
   <div class="nozomi-chat-body" id="nozomi-chat-body">
     <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">Hello — I can collect your details, understand what you need, and send the message to Nozomi for follow-up within 24 hours or less.</div></div>
+    <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">This assistant collects your message and routes it to Nozomi. A member of the team will respond within 24 hours or less.</div></div>
     <div class="nozomi-chat-msg bot"><div class="nozomi-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
 
     <div class="nozomi-chat-card">
@@ -2190,7 +2191,7 @@ section { scroll-margin-top: 68px; }
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_replyto" id="chat-replyto">
         <input type="hidden" name="_cc" id="chat-cc">
-        <input type="hidden" name="Source" value="Nozomi Assistant Chatbot">
+        <input type="hidden" name="Source" value="Nozomi Smart Intake Assistant">
         <input type="hidden" name="AI Suggested Route" id="chat-ai-route">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -2366,7 +2367,13 @@ function openAssessmentReview() {
 /* Backward-compatible alias for any old CTA markup. */
 function openCalendly() { openAssessmentReview(); }
 
+var NOZOMI_REVIEW_CALENDAR_URL = '';
+
 function requestAssessmentReview() {
+  if (NOZOMI_REVIEW_CALENDAR_URL) {
+    window.open(NOZOMI_REVIEW_CALENDAR_URL, '_blank', 'noopener');
+    return;
+  }
   var subject = 'Nozomi Assessment Review Request';
   var body = 'Hello Nozomi,%0D%0A%0D%0AI completed the 360 Assessment and would like to request an assessment review.%0D%0A';
   if (LAST_ASSESSMENT_RESULT) {
@@ -2953,7 +2960,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-/* ── NOZOMI ASSISTANT CHATBOT ───────────────────────── */
+/* ── NOZOMI SMART INTAKE ASSISTANT ───────────────────────── */
 function toggleNozomiChat(forceOpen) {
   var panel = document.getElementById('nozomi-chat-panel');
   var launcher = document.getElementById('nozomi-chat-launcher');
