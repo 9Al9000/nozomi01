@@ -876,7 +876,7 @@ section { scroll-margin-top: 68px; }
 <header id="site-header">
   <div class="header-inner">
 
-    <a href="/" class="logo-lockup" aria-label="Nozomi — home">
+    <a href="./" class="logo-lockup" aria-label="Nozomi — home">
       <!-- N mark: geometric N with triangular notches, gold gradient -->
       <svg class="logo-mark-svg" width="36" height="40" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -1201,26 +1201,22 @@ section { scroll-margin-top: 68px; }
         <div class="eyebrow" style="color:var(--gold)">Free Nozomi 360 Assessment</div>
         <div class="gold-rule" style="opacity:0.4"></div>
         <h2 class="assess-head fade-in">Start your Nozomi 360 Assessment.</h2>
-        <p class="assess-sub fade-in">Answer 12 questions across Nozomi's operating dimensions. Your responses produce an Operating Score, category scores, active pain patterns, and a recommended next step — submitted directly to our team.</p>
+        <p class="assess-sub fade-in">Answer 12 questions across Nozomi's operating dimensions. Your responses produce an Operating Score, category scores, active pain patterns, and a recommended next step.</p>
 
         <p class="assess-positioning fade-in">Nozomi helps leaders understand what to fix before they invest in the next tool, consultant, AI initiative, or transformation program.</p>
 
         <div class="lead-form-wrap fade-in" style="position:relative;">
           <div class="lf-title">Nozomi 360 Assessment</div>
-          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and submit. We will review your assessment and send next-step instructions within one business day.</div>
+          <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and generate your preliminary operating readout.</div>
           <form id="assessment-form"
-                action="https://formsubmit.co/Info@Nozomi.ai"
-                method="POST"
                 novalidate>
 
-            <!-- FormSubmit configuration -->
+            <!-- Form provider fields are retained for future lead capture after the Nozomi inbox is active. -->
             <input type="hidden" name="_subject" id="h-subject" value="New Nozomi 360 Assessment Submission">
             <input type="hidden" name="_replyto" id="h-replyto">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" id="h-next" value="https://nozomi.ai/?submitted=1">
-            <!-- TODO: Update _next URL to your actual live domain before launch -->
-            <!-- TODO: First-time FormSubmit use requires clicking verification link sent to Info@Nozomi.ai -->
 
             <!-- Scoring results — populated by JS before submit -->
             <input type="hidden" name="Operating Score"       id="h-score">
@@ -1434,13 +1430,11 @@ section { scroll-margin-top: 68px; }
               <label for="f-consent">I agree to be contacted by Nozomi about my assessment and related advisory services.</label>
             </div>
             <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
-            <button type="submit" class="btn-form-submit">Submit Assessment →</button>
-            <!-- TODO: Replace with real assessment page or form provider before launch.
-                 Recommended: Tally, Typeform, Fillout, HubSpot, Formspree, Airtable/Zapier, or /api/assessment-leads -->
-            <p class="form-fine">Your assessment is submitted directly to Nozomi. No spam. Results are preliminary.</p>
+            <button type="submit" class="btn-form-submit">Generate Assessment Result →</button>
+            <p class="form-fine">Your preliminary result is generated on this page. No spam. Results are preliminary.</p>
           </form>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — results are below and sent to your email</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below</span></div>
             <div class="result-score-card">
               <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
@@ -1466,7 +1460,7 @@ section { scroll-margin-top: 68px; }
               <button class="result-btn-primary" onclick="openCalendly()">Book a Review Call →</button>
               <button class="result-btn-ghost" onclick="navToTab('advisory')">Explore Advisory</button>
             </div>
-            <div class="result-email-note" id="r-email-note" style="display:none;">A copy of your results has been sent to <strong id="r-email-display"></strong></div>
+            <div class="result-email-note" id="r-email-note" style="display:none;">Save this page or take a screenshot to keep a copy of your preliminary result.</div>
           </div>
         </div>
 
@@ -1487,20 +1481,19 @@ section { scroll-margin-top: 68px; }
         </div>
         <p class="assess-note">The free assessment is a preliminary self-assessment. The paid Diagnostic Blueprint validates the score through interviews, workflow review, evidence gathering, and operating analysis.</p>
 
-        <!-- Sample deliverable links — TODO: link to real PDF/preview files before launch -->
         <div class="sample-links">
           <div class="sample-links-label">Sample deliverables</div>
-          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
-            <span class="sample-link-icon">↗</span> View Sample Assessment Report
-            <span class="sample-soon">Preview coming soon</span>
+          <a href="#assessment" class="sample-link" onclick="navTo('assessment')">
+            <span class="sample-link-icon">↗</span> Generate Assessment Report
+            <span class="sample-soon">Instant readout</span>
           </a>
-          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
-            <span class="sample-link-icon">↗</span> View Diagnostic Blueprint Preview
-            <span class="sample-soon">Preview coming soon</span>
+          <a href="#programs" class="sample-link" onclick="navToTab('advisory')">
+            <span class="sample-link-icon">↗</span> View Diagnostic Blueprint
+            <span class="sample-soon">Advisory track</span>
           </a>
-          <a href="#" aria-disabled="true" class="sample-link" onclick="return false;" title="Preview coming soon">
+          <a href="#programs" class="sample-link" onclick="navToTab('labs')">
             <span class="sample-link-icon">↗</span> Explore Transformation Labs Outline
-            <span class="sample-soon">Preview coming soon</span>
+            <span class="sample-soon">Program options</span>
           </a>
         </div>
       </div>
@@ -1769,10 +1762,9 @@ section { scroll-margin-top: 68px; }
       <p class="cta-sub">Before your next consulting engagement, AI initiative, software investment, or transformation program — start with a structured diagnosis of what is actually holding your organization back.</p>
       <div class="cta-btns">
         <button class="btn-cta-primary" onclick="goToAssessment()">Take the Free Assessment</button>
-        <!-- PRODUCTION: Replace with actual Calendly URL before launch: window.open('https://calendly.com/nozomi/review-call', '_blank') -->
         <button class="btn-cta-ghost" onclick="openCalendly()">Book a Review Call</button>
       </div>
-      <p class="cta-contact">Nozomi.ai &nbsp;·&nbsp; <a href="mailto:Info@Nozomi.ai">Info@Nozomi.ai</a></p>
+      <p class="cta-contact">Nozomi.ai</p>
       <p class="cta-disclaimer">Nozomi does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
     </div>
   </div>
@@ -1786,7 +1778,7 @@ section { scroll-margin-top: 68px; }
     <div class="footer-grid">
 
       <div>
-        <a href="/" class="logo-lockup" aria-label="Nozomi home" style="margin-bottom:0.9rem;display:inline-flex;">
+        <a href="./" class="logo-lockup" aria-label="Nozomi home" style="margin-bottom:0.9rem;display:inline-flex;">
           <svg width="30" height="33" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
             <defs>
               <linearGradient id="nGf" x1="0" y1="0" x2="40" y2="44" gradientUnits="userSpaceOnUse">
@@ -1840,19 +1832,12 @@ section { scroll-margin-top: 68px; }
 
       <div>
         <div class="ft-col-head">Contact</div>
-        <a href="mailto:Info@Nozomi.ai" class="ft-email">Info@Nozomi.ai</a>
         <span class="ft-domain">Nozomi.ai</span>
       </div>
 
     </div>
     <div class="ft-bottom">
       <span class="ft-copy">© 2026 Nozomi. All rights reserved.</span>
-      <div class="ft-legal">
-        <!-- TODO: Replace href="#" with live page URLs before launch -->
-        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Privacy Policy</a>
-        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Terms</a>
-        <a href="#" onclick="return false;" title="Coming soon" class="ft-legal-soon">Disclaimer</a>
-      </div>
     </div>
   </div>
 </footer>
@@ -1884,15 +1869,7 @@ function goToAssessment() {
 }
 
 function openCalendly() {
-  // TODO: Replace with real booking URL before launch.
-  // window.open('https://calendly.com/nozomi/review-call', '_blank');
-  var bookingUrl = 'https://calendly.com/nozomi/review-call'; /* REPLACE THIS URL before launch */
-  if (bookingUrl && bookingUrl.indexOf('calendly.com/nozomi/') === -1) {
-    window.open(bookingUrl, '_blank', 'noopener noreferrer');
-  } else {
-    /* Fallback to email until real booking URL is confirmed */
-    window.location.href = 'mailto:Info@Nozomi.ai?subject=Book%20a%20Review%20Call&body=Hello%2C%20I%27d%20like%20to%20book%20an%20Assessment%20Review%20Call%20with%20Nozomi.';
-  }
+  goToAssessment();
 }
 
 /* ── TABS ────────────────────────────────────────────── */
@@ -2100,13 +2077,8 @@ function showResults(score, sw, org, email) {
     dimsEl.innerHTML = html;
   }
 
-  /* Email note */
-  var emailDisplay = document.getElementById('r-email-display');
-  var emailNote    = document.getElementById('r-email-note');
-  if (email && emailDisplay) {
-    emailDisplay.textContent = email;
-    if (emailNote) emailNote.style.display = 'block';
-  }
+  var emailNote = document.getElementById('r-email-note');
+  if (emailNote) emailNote.style.display = 'block';
 
   /* Show results panel */
   var formEl = document.getElementById('assessment-form');
@@ -2119,7 +2091,7 @@ function showResults(score, sw, org, email) {
   }, 120);
 }
 
-/* ── FORM SUBMISSION — FormSubmit + sessionStorage ───── */
+/* ── FORM SUBMISSION — instant assessment result ───── */
 var assessForm   = document.getElementById('assessment-form');
 var consentErrEl = document.getElementById('consent-error');
 
@@ -2173,7 +2145,7 @@ if (assessForm) {
     var nsKey = getReadinessKey(score);
 
     /* ── 6. Populate all hidden fields with readable values ── */
-    /* FormSubmit config */
+    /* Future form provider config */
     document.getElementById('h-subject').value =
       'New Nozomi 360 Assessment Submission — ' + org;
     document.getElementById('h-replyto').value = email;
@@ -2226,15 +2198,14 @@ if (assessForm) {
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
-    /* ── 8. Show sending indicator briefly, then submit to FormSubmit ── */
+    /* ── 8. Show the result immediately while the email inbox is being prepared. ── */
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
 
     setTimeout(function() {
-      /* FormSubmit handles the POST and emails Info@Nozomi.ai.
-         First submission: check Info@Nozomi.ai for a one-time verification email from FormSubmit. */
-      assessForm.submit();
-    }, 600); /* Brief delay so overlay is visible */
+      if (overlay) overlay.classList.remove('show');
+      showResults(score, sw, org, email);
+    }, 450);
   });
 
   /* ── Clear field errors on input ── */
@@ -2246,7 +2217,7 @@ if (assessForm) {
   });
 }
 
-/* ── ON PAGE LOAD: restore results panel if redirected back from FormSubmit ── */
+/* ── ON PAGE LOAD: restore results panel if returning with a submitted flag ── */
 document.addEventListener('DOMContentLoaded', function() {
   var params = new URLSearchParams(window.location.search);
   if (params.get('submitted') === '1') {
