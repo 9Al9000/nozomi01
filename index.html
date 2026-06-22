@@ -1217,9 +1217,8 @@ section { scroll-margin-top: 68px; }
           <div class="lf-title">Nozomi 360 Assessment</div>
           <div class="lf-subtitle">Enter your details, rate each of the 12 dimensions, and receive your preliminary operating readout by email.</div>
           <form id="assessment-form"
-                action="https://formsubmit.co/el/lacupu"
+                action="https://formsubmit.co/al_alahmadi@hotmail.com"
                 method="POST"
-                target="formsubmit-frame"
                 novalidate>
 
             <!-- FormSubmit configuration -->
@@ -1444,9 +1443,8 @@ section { scroll-margin-top: 68px; }
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
             <p class="form-fine">Your preliminary result is emailed to you and shown after submission. No spam. Results are preliminary.</p>
           </form>
-          <iframe name="formsubmit-frame" title="Assessment email submission" style="display:none;"></iframe>
           <div class="form-success" id="form-success">
-            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment complete — your preliminary results are below</span></div>
+            <div class="result-submitted-bar"><span class="result-submitted-check">✓</span><span class="result-submitted-text">Assessment submitted — your preliminary results are below and sent to your email</span></div>
             <div class="result-score-card">
               <div class="rsc-top"><div><div class="rsc-eyebrow">Nozomi 360 — Preliminary Result</div><div class="rsc-org" id="r-org-name">Your Organization</div></div><div class="rsc-badge" id="r-readiness-badge">—</div></div>
               <div class="rsc-score-row"><span class="rsc-score" id="r-score-display">—</span><span class="rsc-score-denom">&thinsp;/ 100</span></div>
@@ -2388,14 +2386,12 @@ if (assessForm) {
       sessionStorage.setItem('nozomiAssessmentResult', JSON.stringify(savedResult));
     } catch(err) { /* sessionStorage unavailable — results shown from current page state */ }
 
-    /* ── 8. Attempt email submission, then show the result immediately. ── */
+    /* ── 8. Submit normally to FormSubmit so email delivery and autoresponse can run. ── */
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
 
     setTimeout(function() {
       assessForm.submit();
-      if (overlay) overlay.classList.remove('show');
-      showResults(score, sw, org, email);
     }, 450);
   });
 
