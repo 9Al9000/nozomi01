@@ -26,6 +26,19 @@
 <!-- Analytics for Nozomy.ai in Plausible dashboard (plausible.io) -->
 <!-- Plausible is cookie-free and GDPR-compliant — appropriate for GCC and B2B audiences -->
 <script defer data-domain="nozomy.ai" src="https://plausible.io/js/script.js"></script>
+<!-- EmailJS sends the branded HTML result email directly to the submitter. -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  var EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';
+  var EMAILJS_SERVICE_ID  = 'YOUR_EMAILJS_SERVICE_ID';
+  var EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
+
+  (function() {
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2815,6 +2828,30 @@ function buildAssessmentAutoresponse(result) {
   + '</div></body></html>';
 }
 
+function buildAssessmentEmailHTML(result) {
+  return buildAssessmentAutoresponse(result);
+}
+
+function sendResultEmail(result) {
+  if (typeof emailjs === 'undefined') return;
+  if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') return;
+  if (EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID') return;
+  if (EMAILJS_TEMPLATE_ID === 'YOUR_EMAILJS_TEMPLATE_ID') return;
+  if (!result || !result.email) return;
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_email: result.email,
+    to_name: result.name || 'there',
+    score: result.score,
+    readiness: result.readiness,
+    org: result.org || '',
+    pattern: result.painPattern || '',
+    html_body: buildAssessmentEmailHTML(result)
+  }).catch(function(err) {
+    console.warn('Nozomy result email could not be sent through EmailJS:', err);
+  });
+}
+
 function copyTextToClipboard(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
   return new Promise(function(resolve, reject) {
@@ -2964,6 +3001,7 @@ if (assessForm) {
     var overlay = document.getElementById('sending-overlay');
     if (overlay) overlay.classList.add('show');
     showResults(result);
+    sendResultEmail(result);
     setTimeout(function() { assessForm.submit(); }, 600);
   });
   assessForm.querySelectorAll('input, select').forEach(function(inp) {
