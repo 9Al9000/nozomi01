@@ -92,6 +92,7 @@ button { font-family: inherit; }
 /* Logo */
 .logo-lockup { display: flex; align-items: center; gap: 0; text-decoration: none; flex-shrink: 0; }
 .logo-mark-img { display: block; width: 34px; height: 42px; object-fit: contain; flex-shrink: 0; }
+.brand-logo-img { display: block; width: clamp(160px, 18vw, 230px); height: auto; max-height: 54px; object-fit: contain; flex-shrink: 0; }
 .logo-divider-line {
   width: 1px; flex-shrink: 0;
   height: 28px;
@@ -808,6 +809,7 @@ section { scroll-margin-top: 68px; }
   nav.desk-nav  { display: none; }
   .hdr-actions .btn-hdr-ghost { display: none; }
   .menu-toggle  { display: block; }
+  .brand-logo-img { width: 150px; max-height: 50px; }
   .logo-tagline { display: none; }
   section       { padding: 72px 0; }
   #hero         { padding: 118px 0 72px; }
@@ -1067,12 +1069,7 @@ section { scroll-margin-top: 68px; }
   <div class="header-inner">
 
     <a href="#" class="logo-lockup" aria-label="Nozomy — home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-      <img class="logo-mark-img" src="assets/nozomy-logo-mark.svg" alt="" aria-hidden="true">
-      <div class="logo-divider-line" aria-hidden="true"></div>
-      <div class="logo-text-block">
-        <span class="logo-wordmark">Nozomy</span>
-        <span class="logo-tagline">Assess · Transform · Improve</span>
-      </div>
+      <img class="brand-logo-img" src="assets/nozomy-logo.png" alt="Nozomy — Assess. Transform. Improve.">
     </a>
 
     <!-- 5-item nav: Assessment · Advisory · Labs · Method · Contact -->
@@ -2265,9 +2262,7 @@ section { scroll-margin-top: 68px; }
 
       <div>
         <a href="#" class="logo-lockup" aria-label="Nozomy home" style="margin-bottom:0.9rem;display:inline-flex;" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-          <img class="logo-mark-img" src="assets/nozomy-logo-mark.svg" alt="" aria-hidden="true" style="width:29px;height:36px;">
-          <div class="logo-divider-line" style="height:24px;margin:0 11px;"></div>
-          <span class="logo-wordmark" style="font-size:16px;">Nozomy</span>
+          <img class="brand-logo-img" src="assets/nozomy-logo.png" alt="Nozomy — Assess. Transform. Improve." style="width:175px;max-height:58px;">
         </a>
         <p class="ft-brand-tag">Assessment-first transformation firm.<br>Assess. Transform. Improve.</p>
       </div>
