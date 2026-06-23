@@ -1378,7 +1378,7 @@ section { scroll-margin-top: 68px; }
           <div class="lf-title">Nozomy 360 Preliminary Operating Assessment</div>
           <div class="lf-subtitle">Answer 24 operating questions first. Then enter your details to receive your preliminary readout and request an optional assessment review.</div>
           <form id="assessment-form"
-                action="https://formsubmit.co/Info@nozomy.Ai"
+                action="https://formsubmit.co/info@nozomy.ai"
                 method="POST"
                 target="formsubmit-frame"
                 novalidate>
@@ -1429,7 +1429,7 @@ section { scroll-margin-top: 68px; }
             <input type="hidden" name="Q24 Future Readiness" id="h-q24">
             <input type="hidden" name="Submission Source" value="Nozomy.ai homepage assessment form">
             <input type="text" name="_honey" style="display:none">
-            <noscript><div style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:14px 18px;margin-bottom:1.25rem;font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65;">The interactive assessment requires JavaScript. Please enable JavaScript in your browser, or email us directly at <a href="mailto:Info@nozomy.Ai" style="color:var(--champagne);">Info@nozomy.Ai</a> to request an assessment review.</div></noscript>
+            <noscript><div style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:14px 18px;margin-bottom:1.25rem;font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65;">The interactive assessment requires JavaScript. Please enable JavaScript in your browser, or email us directly at <a href="mailto:info@nozomy.ai" style="color:var(--champagne);">info@nozomy.ai</a> to request an assessment review.</div></noscript>
             <!-- ── 24 NOZOMY 360 PRELIMINARY OPERATING ASSESSMENT QUESTIONS ── -->
             <div style="margin-top:1.5rem;margin-bottom:0.25rem;">
               <div style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Nozomy 360 Preliminary Operating Assessment — Rate each statement 1 to 5</div>
@@ -2145,7 +2145,7 @@ section { scroll-margin-top: 68px; }
         <button class="btn-cta-ghost" onclick="openAssessmentReview()">Request Assessment Review</button>
         <button class="btn-cta-ghost" onclick="toggleNozomyChat(true)">Message Nozomy</button>
       </div>
-      <p class="cta-contact"><a href="mailto:Info@nozomy.Ai">Info@nozomy.Ai</a> · Nozomy.ai</p>
+      <p class="cta-contact"><a href="mailto:info@nozomy.ai">info@nozomy.ai</a> · Nozomy.ai</p>
       <p class="cta-disclaimer">Nozomy does not provide legal, accounting, HR compliance, software development, advertising spend management, or regulated professional advice unless separately contracted through qualified specialists.</p>
     </div>
   </div>
@@ -2175,7 +2175,7 @@ section { scroll-margin-top: 68px; }
     <div class="nozomy-chat-msg bot"><div class="nozomy-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
 
     <div class="nozomy-chat-card" id="nozomy-chat-card">
-      <form id="nozomy-chat-form" action="https://formsubmit.co/Info@nozomy.Ai" method="POST" target="nozomy-chat-frame" novalidate>
+      <form id="nozomy-chat-form" action="https://formsubmit.co/info@nozomy.ai" method="POST" target="nozomy-chat-frame" novalidate>
         <input type="hidden" name="_subject" value="New Nozomy Assistant Contact Request">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
@@ -2235,7 +2235,7 @@ section { scroll-margin-top: 68px; }
         </div>
         <button class="nozomy-chat-submit" id="nozomy-chat-submit" type="submit">Send Message →</button>
         <div class="nozomy-chat-error" id="nozomy-chat-error">Please complete your name, work email, organization, need, message, and consent before sending.</div>
-        <div class="nozomy-chat-success" id="nozomy-chat-success">Message received. Nozomy will contact you within 24 hours or less. A copy has been routed to Info@nozomy.Ai.</div>
+        <div class="nozomy-chat-success" id="nozomy-chat-success">Message received. Nozomy will contact you within 24 hours or less. A copy has been routed to info@nozomy.ai.</div>
         <div class="nozomy-chat-fine">Protected by a basic anti-spam field. Review the <a href="#privacy-notice" onclick="toggleNozomyChat(false);document.getElementById('privacy-notice').style.display='block';setTimeout(function(){document.getElementById('privacy-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Privacy Notice</a> and <a href="#terms" onclick="toggleNozomyChat(false);document.getElementById('terms-notice').style.display='block';setTimeout(function(){document.getElementById('terms-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Terms</a>.</div>
       </form>
       <iframe name="nozomy-chat-frame" title="Nozomy Assistant message delivery" style="display:none;"></iframe>
@@ -2300,7 +2300,7 @@ section { scroll-margin-top: 68px; }
 
       <div>
         <div class="ft-col-head">Contact</div>
-        <a class="ft-email" href="mailto:Info@nozomy.Ai">Info@nozomy.Ai</a><span class="ft-domain">Nozomy.ai</span>
+        <a class="ft-email" href="mailto:info@nozomy.ai">info@nozomy.ai</a><span class="ft-domain">Nozomy.ai</span>
       </div>
 
     </div>
@@ -2364,7 +2364,7 @@ function requestAssessmentReview() {
   if (LAST_ASSESSMENT_RESULT) {
     body += '%0D%0AOrganization: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.org || '') + '%0D%0AOperating Score: ' + encodeURIComponent(String(LAST_ASSESSMENT_RESULT.score || '')) + '/100%0D%0ALikely Pattern: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.painPattern || '') + '%0D%0A';
   }
-  window.location.href = 'mailto:Info@nozomy.Ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  window.location.href = 'mailto:info@nozomy.ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
 }
 
 /* ── TABS ────────────────────────────────────────────── */
@@ -2790,7 +2790,7 @@ function buildAssessmentAutoresponse(result) {
   + '<div style="font-size:10px;font-weight:700;color:#C8A15A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Recommended Next Step</div>'
   + '<div style="font-size:17px;font-weight:800;color:#ffffff;margin-bottom:6px;font-family:\'Manrope\',sans-serif;">' + result.nextStepTitle + '</div>'
   + '<div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:16px;">' + result.nextStepDesc + '</div>'
-  + '<a href="mailto:Info@nozomy.Ai?subject=Assessment%20Review%20Request%20%E2%80%94%20Score%20' + result.score + '%2F100&body=Hello%20Nozomy%2C%0A%0AI%20completed%20the%20360%20Assessment%20and%20would%20like%20to%20discuss%20next%20steps.%0A%0AOrganization%3A%20' + encodeURIComponent(result.org || '') + '%0AScore%3A%20' + result.score + '%2F100%0ALikely%20Pattern%3A%20' + encodeURIComponent(result.painPattern || '') + '%0A" style="display:inline-block;background:#D4AF37;color:#0B1320;font-size:14px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;">Request Assessment Review →</a>'
+  + '<a href="mailto:info@nozomy.ai?subject=Assessment%20Review%20Request%20%E2%80%94%20Score%20' + result.score + '%2F100&body=Hello%20Nozomy%2C%0A%0AI%20completed%20the%20360%20Assessment%20and%20would%20like%20to%20discuss%20next%20steps.%0A%0AOrganization%3A%20' + encodeURIComponent(result.org || '') + '%0AScore%3A%20' + result.score + '%2F100%0ALikely%20Pattern%3A%20' + encodeURIComponent(result.painPattern || '') + '%0A" style="display:inline-block;background:#D4AF37;color:#0B1320;font-size:14px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;">Request Assessment Review →</a>'
   + '</div>'
 
   // Suggested package
@@ -2815,7 +2815,7 @@ function buildAssessmentAutoresponse(result) {
   // Footer
   + '<div style="background:#06101C;padding:24px 40px;text-align:center;">'
   + '<div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:6px;">Questions? Reply to this email or reach us at</div>'
-  + '<a href="mailto:Info@nozomy.Ai" style="color:#C8A15A;font-size:13px;text-decoration:none;">Info@nozomy.Ai</a>'
+  + '<a href="mailto:info@nozomy.ai" style="color:#C8A15A;font-size:13px;text-decoration:none;">info@nozomy.ai</a>'
   + '<div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:12px;">© 2026 Nozomy. Assessment-first transformation firm. · <a href="https://nozomy.ai" style="color:rgba(255,255,255,0.2);text-decoration:none;">nozomy.ai</a></div>'
   + '</div>'
 
@@ -3173,13 +3173,13 @@ document.addEventListener('keydown', function(e) {
         <strong style="color:rgba(255,255,255,0.8);">Form submission.</strong> Assessment and contact forms are processed through FormSubmit.co, a third-party form delivery service. Your submission data is transmitted to Nozomy via this service. Please review FormSubmit's own privacy policy at formsubmit.co if you have questions about their data handling.
       </div>
       <div>
-        <strong style="color:rgba(255,255,255,0.8);">Retention.</strong> We retain your contact information and assessment data only as long as necessary to respond to your inquiry or maintain an active advisory relationship. You may request deletion at any time by emailing <a href="mailto:Info@nozomy.Ai" style="color:var(--champagne);">Info@nozomy.Ai</a>.
+        <strong style="color:rgba(255,255,255,0.8);">Retention.</strong> We retain your contact information and assessment data only as long as necessary to respond to your inquiry or maintain an active advisory relationship. You may request deletion at any time by emailing <a href="mailto:info@nozomy.ai" style="color:var(--champagne);">info@nozomy.ai</a>.
       </div>
       <div>
         <strong style="color:rgba(255,255,255,0.8);">Cookies and analytics.</strong> This site may use lightweight analytics to understand page traffic. No advertising or cross-site tracking cookies are used.
       </div>
       <div>
-        <strong style="color:rgba(255,255,255,0.8);">Contact.</strong> For any privacy-related questions, write to <a href="mailto:Info@nozomy.Ai" style="color:var(--champagne);">Info@nozomy.Ai</a>.
+        <strong style="color:rgba(255,255,255,0.8);">Contact.</strong> For any privacy-related questions, write to <a href="mailto:info@nozomy.ai" style="color:var(--champagne);">info@nozomy.ai</a>.
       </div>
       <div style="font-size:12px;color:rgba(255,255,255,0.28);border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;">Last updated: June 2026.</div>
     </div>
@@ -3212,7 +3212,7 @@ document.addEventListener('keydown', function(e) {
         <strong style="color:rgba(255,255,255,0.8);">Limitation of liability.</strong> Nozomy's liability in connection with the use of this site or the free assessment is limited to the fullest extent permitted by applicable law.
       </div>
       <div>
-        <strong style="color:rgba(255,255,255,0.8);">Governing terms.</strong> These terms are subject to change. For questions, contact <a href="mailto:Info@nozomy.Ai" style="color:var(--champagne);">Info@nozomy.Ai</a>.
+        <strong style="color:rgba(255,255,255,0.8);">Governing terms.</strong> These terms are subject to change. For questions, contact <a href="mailto:info@nozomy.ai" style="color:var(--champagne);">info@nozomy.ai</a>.
       </div>
       <div style="font-size:12px;color:rgba(255,255,255,0.28);border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;">Last updated: June 2026.</div>
     </div>
