@@ -3,27 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nozomy — Assess. Transform. Improve.</title>
-<meta name="description" content="Nozomy is an assessment-first transformation firm helping businesses, teams, and institutions identify what is holding them back and build practical paths to measurable improvement.">
+<title>Nozomy.ai | Business, Operations, Digital & AI Readiness Assessment</title>
+<meta name="description" content="Nozomy.ai helps owner-led businesses, SMEs, and institutional teams diagnose operational, digital, and AI-readiness gaps before investing in transformation.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nozomy.ai/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nozomy.ai/">
-<meta property="og:title" content="Nozomy — Assess. Transform. Improve.">
-<meta property="og:description" content="Assessment-first transformation firm helping businesses, teams, and institutions identify what is holding them back and build practical paths to measurable improvement.">
+<meta property="og:title" content="Nozomy.ai | Business, Operations, Digital & AI Readiness Assessment">
+<meta property="og:description" content="Nozomy.ai helps owner-led businesses, SMEs, and institutional teams diagnose operational, digital, and AI-readiness gaps before investing in transformation.">
 <meta property="og:image" content="https://nozomy.ai/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Nozomy — Assessment-first transformation firm. Assess. Transform. Improve.">
-<meta property="og:site_name" content="Nozomy">
+<meta property="og:site_name" content="Nozomy.ai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@nozomyai">
-<meta name="twitter:title" content="Nozomy — Assess. Transform. Improve.">
-<meta name="twitter:description" content="Assessment-first transformation firm. Assess. Transform. Improve.">
+<meta name="twitter:title" content="Nozomy.ai | Business, Operations, Digital & AI Readiness Assessment">
+<meta name="twitter:description" content="Nozomy.ai helps owner-led businesses, SMEs, and institutional teams diagnose operational, digital, and AI-readiness gaps before investing in transformation.">
 <meta name="twitter:image" content="https://nozomy.ai/og-image.png">
 <meta name="twitter:image:alt" content="Nozomy — Assessment-first transformation firm">
 <link rel="icon" type="image/svg+xml" href="assets/nozomy-logo-mark.svg">
-<!-- Analytics: replace 'nozomy.ai' with your domain once set up in Plausible dashboard (plausible.io) -->
+<!-- Analytics for Nozomy.ai in Plausible dashboard (plausible.io) -->
 <!-- Plausible is cookie-free and GDPR-compliant — appropriate for GCC and B2B audiences -->
 <script defer data-domain="nozomy.ai" src="https://plausible.io/js/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2115,17 +2115,17 @@ section { scroll-margin-top: 68px; }
       <div class="ev-card">
         <div class="ev-source">External Signal</div>
         <div class="ev-head">AI value requires workflow redesign</div>
-        <div class="ev-body">Organizations capturing measurable AI value are redesigning workflows and placing senior leaders in governance roles — not just adopting tools.</div>
+        <div class="ev-body">Many organizations are learning that AI value depends on workflow redesign, governance, and leadership alignment — not just adopting tools.</div>
       </div>
       <div class="ev-card">
         <div class="ev-source">External Signal</div>
         <div class="ev-head">GenAI is moving into professional workflows</div>
-        <div class="ev-body">GenAI adoption nearly doubled in professional services, with organizations moving from experimentation toward structured workflow integration.</div>
+        <div class="ev-body">Across professional services and operating teams, GenAI is moving from experimentation toward more structured workflow integration.</div>
       </div>
       <div class="ev-card">
         <div class="ev-source">Regional Signal</div>
         <div class="ev-head">GCC transformation demand is structural</div>
-        <div class="ev-body">Saudi Arabia's national AI strategy is driving institutional modernization, workforce capability building, and AI governance investment across the GCC region.</div>
+        <div class="ev-body">Across GCC institutions, the risk is not ambition — it is misalignment between strategy, operating readiness, governance, and execution capacity.</div>
       </div>
     </div>
   </div>
@@ -2142,7 +2142,7 @@ section { scroll-margin-top: 68px; }
       <p class="cta-sub">Before your next consulting engagement, AI initiative, software investment, or transformation program — start with a structured diagnosis of what is actually holding your organization back.</p>
       <div class="cta-btns">
         <button class="btn-cta-primary" onclick="goToAssessment()">Take the Free Assessment</button>
-        <button class="btn-cta-ghost" onclick="openAssessmentReview()">Request Assessment Review</button>
+        <button class="btn-cta-ghost" onclick="requestAssessmentReview()">Request Assessment Review</button>
         <button class="btn-cta-ghost" onclick="toggleNozomyChat(true)">Message Nozomy</button>
       </div>
       <p class="cta-contact"><a href="mailto:info@nozomy.ai">info@nozomy.ai</a> · Nozomy.ai</p>
@@ -2349,22 +2349,15 @@ function openAssessmentReview() {
   }, 700);
 }
 
-/* Backward-compatible alias for any old CTA markup. */
-function openCalendly() { openAssessmentReview(); }
-
-var NOZOMY_REVIEW_CALENDAR_URL = '';
+var NOZOMY_REVIEW_CALENDAR_URL = 'PASTE_MY_CALENDLY_LINK_HERE';
 
 function requestAssessmentReview() {
-  if (NOZOMY_REVIEW_CALENDAR_URL) {
-    window.open(NOZOMY_REVIEW_CALENDAR_URL, '_blank', 'noopener');
+  var calendarUrl = (NOZOMY_REVIEW_CALENDAR_URL || '').trim();
+  if (calendarUrl && calendarUrl !== 'PASTE_MY_CALENDLY_LINK_HERE') {
+    window.open(calendarUrl, '_blank', 'noopener');
     return;
   }
-  var subject = 'Nozomy Assessment Review Request';
-  var body = 'Hello Nozomy,%0D%0A%0D%0AI completed the 360 Assessment and would like to request an assessment review.%0D%0A';
-  if (LAST_ASSESSMENT_RESULT) {
-    body += '%0D%0AOrganization: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.org || '') + '%0D%0AOperating Score: ' + encodeURIComponent(String(LAST_ASSESSMENT_RESULT.score || '')) + '/100%0D%0ALikely Pattern: ' + encodeURIComponent(LAST_ASSESSMENT_RESULT.painPattern || '') + '%0D%0A';
-  }
-  window.location.href = 'mailto:info@nozomy.ai?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  toggleNozomyChat(true);
 }
 
 /* ── TABS ────────────────────────────────────────────── */

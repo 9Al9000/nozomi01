@@ -1,6 +1,6 @@
-# Nozomi Website
+# Nozomy Website
 
-Single-page website for Nozomi.
+Single-page website for Nozomy.ai.
 
 ## Files
 
