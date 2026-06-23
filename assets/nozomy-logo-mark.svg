@@ -1,0 +1,17 @@
+<svg width="88" height="128" viewBox="0 0 88 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nozomyGold" x1="16" y1="8" x2="78" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F6D66B"/>
+      <stop offset="0.42" stop-color="#D4AF37"/>
+      <stop offset="1" stop-color="#9B7414"/>
+    </linearGradient>
+    <linearGradient id="nozomySheen" x1="18" y1="12" x2="74" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF0A7" stop-opacity="0.38"/>
+      <stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#7A560D" stop-opacity="0.28"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 8L67 52V22L84 7V95L35 52V111L52 94L65 108L18 127V8Z" fill="url(#nozomyGold)"/>
+  <path d="M18 8L67 52V22L84 7V95L35 52V111L52 94L65 108L18 127V8Z" fill="url(#nozomySheen)"/>
+  <path d="M34.5 52.5L50.5 66.8L50.5 84.7L34.5 101V52.5Z" fill="#06101C" fill-opacity="0.02"/>
+</svg>
