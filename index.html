@@ -1397,13 +1397,11 @@ section { scroll-margin-top: 68px; }
                 novalidate>
 
             <!-- FormSubmit configuration -->
-            <input type="hidden" name="_subject" id="h-subject" value="New Nozomy 360 Assessment Submission">
+            <input type="hidden" name="_subject" id="h-subject" value="New Nozomy 360 Assessment">
             <input type="hidden" name="_replyto" id="h-replyto">
-            <input type="hidden" name="_cc" id="h-cc">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" id="h-next" value="https://nozomy.ai/?submitted=1">
-            <input type="hidden" name="_autoresponse" id="h-autoresponse">
             <input type="hidden" name="Assessment Summary" id="h-summary">
             <input type="hidden" name="Confidence Level" id="h-confidence">
             <input type="hidden" name="Validation Focus" id="h-validation">
@@ -2193,7 +2191,6 @@ section { scroll-margin-top: 68px; }
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_replyto" id="chat-replyto">
-        <input type="hidden" name="_cc" id="chat-cc">
         <input type="hidden" name="Source" value="Nozomy Smart Intake Assistant">
         <input type="hidden" name="AI Suggested Route" id="chat-ai-route">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -2734,102 +2731,86 @@ function buildAssessmentSummary(result) {
   return lines.join('\n');
 }
 
-function buildAssessmentAutoresponse(result) {
+function escapeEmailHTML(value) {
+  return String(value || '').replace(/[&<>"']/g, function(ch) {
+    return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[ch];
+  });
+}
+
+function getCustomerOpportunity(result) {
+  var opportunity = result && result.weakness ? result.weakness : 'Operating cadence and execution rhythm';
+  if (result && result.score >= 80 && result.painPattern === 'Leadership Bottleneck') {
+    opportunity = 'Decision rhythm and leadership cadence';
+  }
+  return opportunity;
+}
+
+function getCustomerMeaning(result) {
+  if (!result) return '';
+  var strength = escapeEmailHTML(result.strength || 'your strongest operating dimensions');
+  var opportunity = escapeEmailHTML(getCustomerOpportunity(result));
+  if (result.score >= 80) {
+    return 'Based on your responses, your organization appears to have strong foundations in ' + strength + '. The main scaling focus appears to be ' + opportunity + ' as the organization continues to grow.';
+  }
+  if (result.score >= 61) {
+    return 'Based on your responses, your organization appears to have a workable foundation in ' + strength + '. The main opportunity appears to be strengthening ' + opportunity + ' before larger transformation investments.';
+  }
+  return 'Based on your responses, your organization may benefit from validating its strongest area, ' + strength + ', while addressing the primary opportunity around ' + opportunity + '.';
+}
+
+function buildCustomerSubject(result) {
+  return 'Your Nozomy 360 Preliminary Result for ' + ((result && result.org) ? result.org : 'Your Organization');
+}
+
+function buildCustomerConfirmationEmail(result) {
   if (!result) return '';
   var scoreColor = result.score <= 40 ? '#E05252' : result.score <= 60 ? '#E8A43C' : result.score <= 75 ? '#D4AF37' : '#4CAF80';
-  var urgency = result.score <= 40
-    ? 'Your score suggests the organization may need stabilization before larger transformation work begins. Acting now — before the next initiative — is the highest-leverage move.'
-    : result.score <= 60
-    ? 'Your score suggests meaningful constraints that, if left unvalidated, can quietly compound. A Diagnostic Blueprint turns this signal into a specific, evidence-based roadmap.'
-    : result.score <= 75
-    ? 'Your score shows a workable foundation with clear execution gaps. A focused 90-day roadmap built around your lowest dimensions can unlock the next stage of growth.'
-    : 'Your score suggests the organization is ready for targeted transformation, AI readiness, or strategic scaling work. The next step is validating your assumptions before investing.';
-  var pkg = result.score <= 60
-    ? { name: 'Diagnostic Blueprint', price: 'Starting at $12,500', desc: 'Validated operating score, bottleneck map, pain-pattern diagnosis, and 30/60/90-day roadmap.' }
-    : result.score <= 75
-    ? { name: '90-Day Transformation', price: 'From $66,000', desc: 'Roadmap execution, weekly cadence, KPI tracking, and accountability — not just recommendations.' }
-    : { name: 'Growth / AI Readiness Sprint', price: 'Scoped after assessment review', desc: 'Targeted transformation, digital improvement, or AI-readiness work once key assumptions are validated.' };
+  var name = escapeEmailHTML(result.name || 'there');
+  var org = escapeEmailHTML(result.org || 'your organization');
+  var readiness = escapeEmailHTML(result.readiness || 'preliminary');
+  var strength = escapeEmailHTML(result.strength || 'Not enough information');
+  var opportunity = escapeEmailHTML(getCustomerOpportunity(result));
+  var nextStep = escapeEmailHTML(result.nextStepTitle || 'Assessment Review');
+  var meaning = getCustomerMeaning(result);
 
   return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your Nozomy 360 Result</title></head><body style="margin:0;padding:0;background:#F7F7F5;font-family:\'Inter\',ui-sans-serif,system-ui,sans-serif;">'
   + '<div style="max-width:600px;margin:0 auto;background:#ffffff;">'
-
-  // Header
   + '<div style="background:#0B1320;padding:32px 40px 28px;">'
   + '<div style="font-family:\'Manrope\',sans-serif;font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.02em;">Nozomy</div>'
   + '<div style="font-size:10px;font-weight:600;color:#C8A15A;letter-spacing:0.14em;text-transform:uppercase;margin-top:4px;">Assessment-first transformation firm</div>'
   + '</div>'
-
-  // Score hero
   + '<div style="background:#0B1320;padding:0 40px 36px;border-bottom:2px solid #D4AF37;">'
   + '<div style="font-size:11px;font-weight:700;color:#C8A15A;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;">Your Nozomy 360 Preliminary Operating Score</div>'
   + '<div style="display:inline-block;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:20px 28px;">'
   + '<span style="font-family:\'Manrope\',sans-serif;font-size:56px;font-weight:800;color:#ffffff;line-height:1;letter-spacing:-0.05em;">' + result.score + '</span>'
   + '<span style="font-size:22px;color:rgba(255,255,255,0.3);font-weight:400;"> / 100</span>'
   + '</div>'
-  + '<div style="margin-top:14px;font-size:13px;font-weight:700;color:' + scoreColor + ';">' + result.readiness + '</div>'
+  + '<div style="margin-top:14px;font-size:13px;font-weight:700;color:' + scoreColor + ';">' + readiness + '</div>'
   + '</div>'
-
-  // Body
   + '<div style="padding:36px 40px;">'
-
-  // Key findings
-  + '<div style="font-size:12px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Key Findings</div>'
+  + '<p style="font-size:15px;color:#374151;line-height:1.75;margin:0 0 18px;">Hi ' + name + ',</p>'
+  + '<p style="font-size:15px;color:#374151;line-height:1.75;margin:0 0 22px;">Thank you for completing the Nozomy 360 Preliminary Operating Assessment for <strong style="color:#0B1320;">' + org + '</strong>.</p>'
+  + '<p style="font-size:15px;color:#374151;line-height:1.75;margin:0 0 26px;">Your preliminary operating score is <strong style="color:#0B1320;">' + result.score + '/100</strong>, which indicates a <strong style="color:#0B1320;">' + readiness + '</strong> operating profile.</p>'
   + '<table style="width:100%;border-collapse:collapse;margin-bottom:28px;">'
-  + '<tr><td style="padding:10px 14px;background:#F7F7F5;border:1px solid #E2E4E7;border-radius:6px 0 0 0;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;width:50%;">Top Strength</td>'
-  + '<td style="padding:10px 14px;background:#F7F7F5;border:1px solid #E2E4E7;border-left:none;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;">Lowest Dimension</td></tr>'
-  + '<tr><td style="padding:12px 14px;border:1px solid #E2E4E7;border-top:none;font-size:14px;font-weight:600;color:#1A1A1A;">' + result.strength + '</td>'
-  + '<td style="padding:12px 14px;border:1px solid #E2E4E7;border-top:none;border-left:none;font-size:14px;font-weight:600;color:#1A1A1A;">' + result.weakness + '</td></tr>'
+  + '<tr><td style="padding:11px 14px;background:#F7F7F5;border:1px solid #E2E4E7;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;width:42%;">Readiness Level</td><td style="padding:11px 14px;border:1px solid #E2E4E7;font-size:14px;font-weight:600;color:#1A1A1A;">' + readiness + '</td></tr>'
+  + '<tr><td style="padding:11px 14px;background:#F7F7F5;border:1px solid #E2E4E7;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;">Top Strength</td><td style="padding:11px 14px;border:1px solid #E2E4E7;font-size:14px;font-weight:600;color:#1A1A1A;">' + strength + '</td></tr>'
+  + '<tr><td style="padding:11px 14px;background:#F7F7F5;border:1px solid #E2E4E7;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;">Primary Opportunity</td><td style="padding:11px 14px;border:1px solid #E2E4E7;font-size:14px;font-weight:600;color:#1A1A1A;">' + opportunity + '</td></tr>'
+  + '<tr><td style="padding:11px 14px;background:#F7F7F5;border:1px solid #E2E4E7;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.08em;">Recommended Next Step</td><td style="padding:11px 14px;border:1px solid #E2E4E7;font-size:14px;font-weight:600;color:#1A1A1A;">' + nextStep + '</td></tr>'
   + '</table>'
-
-  // Pain pattern
-  + '<div style="background:#FFF8E7;border:1px solid #D4AF37;border-left:4px solid #D4AF37;border-radius:8px;padding:18px 20px;margin-bottom:28px;">'
-  + '<div style="font-size:10px;font-weight:700;color:#A8861A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Likely Pain Pattern</div>'
-  + '<div style="font-size:16px;font-weight:800;color:#0B1320;margin-bottom:8px;font-family:\'Manrope\',sans-serif;">' + result.painPattern + '</div>'
-  + '<div style="font-size:13px;color:#374151;line-height:1.65;">' + result.scoreMeaning + '</div>'
+  + '<div style="font-size:14px;color:#374151;line-height:1.75;margin-bottom:24px;">' + meaning + '</div>'
+  + '<div style="font-size:13px;color:#6B7280;line-height:1.7;border-top:1px solid #E2E4E7;padding-top:20px;margin-bottom:18px;">This result is based on self-reported responses and should be treated as a preliminary operating signal. A Diagnostic Blueprint or Strategic Scaling Review would validate the findings through interviews, workflow review, metrics review, document review, and operating evidence.</div>'
+  + '<div style="font-size:14px;color:#374151;line-height:1.75;margin-bottom:8px;">If you requested a review call, Nozomy will follow up within 24 hours or less.</div>'
   + '</div>'
-
-  // Urgency message
-  + '<div style="font-size:14px;color:#374151;line-height:1.75;margin-bottom:28px;">' + urgency + '</div>'
-
-  // Recommended next step
-  + '<div style="background:#0B1320;border-radius:10px;padding:22px 24px;margin-bottom:28px;">'
-  + '<div style="font-size:10px;font-weight:700;color:#C8A15A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Recommended Next Step</div>'
-  + '<div style="font-size:17px;font-weight:800;color:#ffffff;margin-bottom:6px;font-family:\'Manrope\',sans-serif;">' + result.nextStepTitle + '</div>'
-  + '<div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:16px;">' + result.nextStepDesc + '</div>'
-  + '<a href="mailto:info@nozomy.ai?subject=Assessment%20Review%20Request%20%E2%80%94%20Score%20' + result.score + '%2F100&body=Hello%20Nozomy%2C%0A%0AI%20completed%20the%20360%20Assessment%20and%20would%20like%20to%20discuss%20next%20steps.%0A%0AOrganization%3A%20' + encodeURIComponent(result.org || '') + '%0AScore%3A%20' + result.score + '%2F100%0ALikely%20Pattern%3A%20' + encodeURIComponent(result.painPattern || '') + '%0A" style="display:inline-block;background:#D4AF37;color:#0B1320;font-size:14px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;">Request Assessment Review →</a>'
-  + '</div>'
-
-  // Suggested package
-  + '<div style="border:1px solid #E2E4E7;border-radius:10px;padding:20px 22px;margin-bottom:28px;">'
-  + '<div style="font-size:10px;font-weight:700;color:#6B7280;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;">Suggested Engagement</div>'
-  + '<div style="font-size:16px;font-weight:800;color:#0B1320;margin-bottom:4px;font-family:\'Manrope\',sans-serif;">' + pkg.name + '</div>'
-  + '<div style="font-size:13px;font-weight:700;color:#D4AF37;margin-bottom:8px;">' + pkg.price + '</div>'
-  + '<div style="font-size:13px;color:#6B7280;line-height:1.65;margin-bottom:16px;">' + pkg.desc + '</div>'
-  + '<a href="https://nozomy.ai/#programs" style="display:inline-block;background:#0B1320;color:#ffffff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:7px;text-decoration:none;">View Engagement Details →</a>'
-  + '</div>'
-
-  // Validation focus
-  + '<div style="background:#F7F7F5;border-radius:8px;padding:16px 18px;margin-bottom:28px;">'
-  + '<div style="font-size:10px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">What Nozomy Would Validate Next</div>'
-  + '<div style="font-size:13px;color:#374151;line-height:1.65;">' + result.validationFocus + '</div>'
-  + '</div>'
-
-  // Disclaimer
-  + '<div style="font-size:11px;color:#9CA3AF;line-height:1.65;border-top:1px solid #E2E4E7;padding-top:20px;margin-bottom:8px;">This result is based on self-reported responses and should be treated as a preliminary operating signal. The Diagnostic Blueprint validates findings through interviews, workflow review, metrics review, and operating evidence.</div>'
-  + '</div>'
-
-  // Footer
   + '<div style="background:#06101C;padding:24px 40px;text-align:center;">'
-  + '<div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:6px;">Questions? Reply to this email or reach us at</div>'
+  + '<div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:6px;">Nozomy.ai</div>'
   + '<a href="mailto:info@nozomy.ai" style="color:#C8A15A;font-size:13px;text-decoration:none;">info@nozomy.ai</a>'
-  + '<div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:12px;">© 2026 Nozomy. Assessment-first transformation firm. · <a href="https://nozomy.ai" style="color:rgba(255,255,255,0.2);text-decoration:none;">nozomy.ai</a></div>'
+  + '<div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:12px;">© 2026 Nozomy. Assessment-first transformation firm.</div>'
   + '</div>'
-
   + '</div></body></html>';
 }
 
 function buildAssessmentEmailHTML(result) {
-  return buildAssessmentAutoresponse(result);
+  return buildCustomerConfirmationEmail(result);
 }
 
 function sendResultEmail(result) {
@@ -2842,6 +2823,7 @@ function sendResultEmail(result) {
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
     to_email: result.email,
     to_name: result.name || 'there',
+    subject: buildCustomerSubject(result),
     score: result.score,
     readiness: result.readiness,
     org: result.org || '',
@@ -2981,10 +2963,8 @@ if (assessForm) {
     };
     LAST_ASSESSMENT_RESULT = result;
     var summary = buildAssessmentSummary(result);
-    document.getElementById('h-subject').value = 'New Nozomy 360 Assessment Submission — ' + org;
+    document.getElementById('h-subject').value = 'New Nozomy 360 Assessment — ' + org + ' — ' + score + '/100';
     document.getElementById('h-replyto').value = email;
-    document.getElementById('h-cc').value = email;
-    document.getElementById('h-autoresponse').value = buildAssessmentAutoresponse(result);
     document.getElementById('h-summary').value = summary;
     document.getElementById('h-score').value = score + '/100';
     document.getElementById('h-readiness').value = result.readiness;
@@ -3118,7 +3098,6 @@ if (nozomyChatForm) {
     var error = document.getElementById('nozomy-chat-error');
     var submitBtn = document.getElementById('nozomy-chat-submit');
     var replyTo = document.getElementById('chat-replyto');
-    var chatCc = document.getElementById('chat-cc');
     updateNozomyChatRoute();
     var validEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
     var isValid = name && name.value.trim() && validEmail && org && org.value.trim() && interest && interest.value && message && message.value.trim() && consent && consent.checked;
@@ -3129,7 +3108,6 @@ if (nozomyChatForm) {
     }
     if (error) error.style.display = 'none';
     if (replyTo) replyTo.value = email.value.trim();
-    if (chatCc) chatCc.value = email.value.trim();
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
     // After a short delay (form submits to iframe), swap to thank-you screen
