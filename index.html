@@ -2196,7 +2196,7 @@ section { scroll-margin-top: 68px; }
     <div class="nozomy-chat-msg bot"><div class="nozomy-chat-bubble">This assistant collects your message and routes it to Nozomy. A member of the team will respond within 24 hours or less.</div></div>
     <div class="nozomy-chat-msg bot"><div class="nozomy-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
 
-    <div class="nozomy-chat-card">
+    <div class="nozomy-chat-card" id="nozomy-chat-card">
       <form id="nozomy-chat-form" action="https://formsubmit.co/Info@nozomy.Ai" method="POST" target="nozomy-chat-frame" novalidate>
         <input type="hidden" name="_subject" value="New Nozomy Assistant Contact Request">
         <input type="hidden" name="_template" value="table">
@@ -3140,10 +3140,10 @@ if (nozomyChatForm) {
 
     // After a short delay (form submits to iframe), swap to thank-you screen
     setTimeout(function() {
-      var chatBody = document.getElementById('nozomy-chat-body');
+      var chatCard = document.getElementById('nozomy-chat-card');
       var thankyou = document.getElementById('nozomy-chat-thankyou');
       var countdown = document.getElementById('nozomy-chat-countdown');
-      if (chatBody) chatBody.style.display = 'none';
+      if (chatCard) chatCard.style.display = 'none';
       if (thankyou) thankyou.style.display = 'flex';
 
       // Countdown from 15
@@ -3157,7 +3157,7 @@ if (nozomyChatForm) {
           toggleNozomyChat(false);
           // Reset everything after close
           setTimeout(function() {
-            if (chatBody) chatBody.style.display = '';
+            if (chatCard) chatCard.style.display = '';
             if (thankyou) thankyou.style.display = 'none';
             if (nozomyChatForm) nozomyChatForm.reset();
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message →'; }
@@ -3173,7 +3173,7 @@ if (nozomyChatForm) {
         panel._chatResetFn = function() {
           clearInterval(timer);
           setTimeout(function() {
-            if (chatBody) chatBody.style.display = '';
+            if (chatCard) chatCard.style.display = '';
             if (thankyou) thankyou.style.display = 'none';
             if (nozomyChatForm) nozomyChatForm.reset();
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message →'; }
