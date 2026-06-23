@@ -2266,10 +2266,10 @@ section { scroll-margin-top: 68px; }
     <!-- Thank-you screen — shown after successful submission -->
     <div id="nozomy-chat-thankyou" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:48px 28px;text-align:center;flex:1;min-height:320px;">
       <div style="width:56px;height:56px;border-radius:50%;background:rgba(212,175,55,0.15);border:1.5px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:22px;color:var(--gold);">✓</div>
-      <div style="font-family:'Manrope',sans-serif;font-size:19px;font-weight:800;color:#ffffff;margin-bottom:12px;letter-spacing:-0.01em;">Message received.</div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:6px;">Thank you for reaching out to Nozomy.</div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:32px;">A member of the team will contact you within <strong style="color:var(--champagne);">24 hours or less.</strong></div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.25);margin-bottom:18px;" id="nozomy-chat-countdown">This window will close in 10 seconds.</div>
+      <div style="font-family:'Manrope',sans-serif;font-size:19px;font-weight:800;color:#ffffff;margin-bottom:12px;letter-spacing:-0.01em;">Thank you.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:6px;">Your message has been received.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:32px;">Nozomy will get back to you within <strong style="color:var(--champagne);">24 hours or less.</strong></div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25);margin-bottom:18px;" id="nozomy-chat-countdown">This window will close in 15 seconds.</div>
       <button onclick="toggleNozomyChat(false)" style="padding:10px 24px;background:transparent;border:1px solid rgba(255,255,255,0.18);border-radius:7px;color:rgba(255,255,255,0.5);font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.2s;">Close now</button>
     </div>
   </div>
@@ -3146,8 +3146,8 @@ if (nozomyChatForm) {
       if (chatBody) chatBody.style.display = 'none';
       if (thankyou) thankyou.style.display = 'flex';
 
-      // Countdown from 10
-      var secs = 10;
+      // Countdown from 15
+      var secs = 15;
       if (countdown) countdown.textContent = 'This window will close in ' + secs + ' seconds.';
       var timer = setInterval(function() {
         secs--;
