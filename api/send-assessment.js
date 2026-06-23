@@ -1,7 +1,8 @@
 const { Resend } = require('resend');
 
 const INTERNAL_EMAIL = process.env.NOZOMY_INTERNAL_EMAIL || 'info@nozomy.ai';
-const FROM_EMAIL = process.env.NOZOMY_FROM_EMAIL || 'Nozomy <info@nozomy.ai>';
+const FROM_EMAIL = 'Nozomy <info@nozomy.ai>';
+const CUSTOMER_REPLY_TO = 'info@nozomy.ai';
 
 function escapeHtml(value) {
   return String(value || '').replace(/[&<>"']/g, (char) => ({
@@ -159,7 +160,7 @@ module.exports = async function handler(req, res) {
     await resend.emails.send({
       from: FROM_EMAIL,
       to: data.email,
-      reply_to: INTERNAL_EMAIL,
+      reply_to: CUSTOMER_REPLY_TO,
       subject: customerSubject,
       html: buildCustomerEmail(data),
     });
