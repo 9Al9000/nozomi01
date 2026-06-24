@@ -1750,9 +1750,9 @@ section { scroll-margin-top: 68px; }
               <div class="ff" id="ff-email"><label for="f-email">Work email</label><input type="email" id="f-email" name="email" placeholder="sarah@acmecorp.com" required autocomplete="email"></div>
             </div>
             <div class="form-row single">
-              <div class="ff">
+              <div class="ff" id="ff-role">
                 <label for="f-role">Your role</label>
-                <select id="f-role" name="Role">
+                <select id="f-role" name="Role" required>
                   <option value="" disabled selected>Select your role</option>
                   <option>CEO / Founder / Owner</option>
                   <option>COO / Operations Leader</option>
@@ -1770,6 +1770,7 @@ section { scroll-margin-top: 68px; }
               <input type="checkbox" id="f-consent" name="Consent">
               <label for="f-consent">I agree to be contacted by Nozomy about my assessment and related advisory services. I understand the assessment is self-reported and preliminary.</label>
             </div>
+            <p id="role-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please select your role to continue.</p>
             <p id="consent-error" style="display:none;font-size:11.5px;color:#E05252;margin-bottom:8px;margin-top:-4px;">Please confirm your consent to continue.</p>
             <button type="submit" class="btn-form-submit">Submit Assessment →</button>
             <p class="form-fine">Your preliminary result is emailed to you and shown after submission. Nozomy uses your information only to deliver the assessment result and respond to requested follow-up. Review the <a href="privacy.html" style="color:var(--champagne);">Privacy Notice</a> and <a href="terms.html" style="color:var(--champagne);">Terms</a>.</p>
@@ -2913,6 +2914,7 @@ function showResults(result) {
 
 var assessForm   = document.getElementById('assessment-form');
 var consentErrEl = document.getElementById('consent-error');
+var roleErrEl    = document.getElementById('role-error');
 var assessmentSubmitting = false;
 
 if (assessForm) {
@@ -2925,13 +2927,15 @@ if (assessForm) {
     var role    = document.getElementById('f-role').value;
     var consent = document.getElementById('f-consent').checked;
     var valid   = true;
-    ['ff-name','ff-org','ff-email'].forEach(function(id) { var el = document.getElementById(id); if (el) el.classList.remove('err'); });
+    ['ff-name','ff-org','ff-email','ff-role'].forEach(function(id) { var el = document.getElementById(id); if (el) el.classList.remove('err'); });
     if (consentErrEl) consentErrEl.style.display = 'none';
+    if (roleErrEl) roleErrEl.style.display = 'none';
     var assessErr = document.getElementById('assessment-error');
     if (assessErr) assessErr.style.display = 'none';
     if (!name)  { var e1 = document.getElementById('ff-name'); if (e1) e1.classList.add('err'); valid = false; }
     if (!org)   { var e2 = document.getElementById('ff-org');  if (e2) e2.classList.add('err'); valid = false; }
     if (!email || !email.includes('@')) { var e3 = document.getElementById('ff-email'); if (e3) e3.classList.add('err'); valid = false; }
+    if (!role) { var e4 = document.getElementById('ff-role'); if (e4) e4.classList.add('err'); if (roleErrEl) roleErrEl.style.display = 'block'; valid = false; }
     if (!consent) { if (consentErrEl) consentErrEl.style.display = 'block'; valid = false; }
     var allAnswered = QUESTIONS_DATA.every(function(_, i) { return Q_ANSWERS[i] !== undefined; });
     if (!allAnswered) {
@@ -2969,7 +2973,12 @@ if (assessForm) {
     });
   });
   assessForm.querySelectorAll('input, select').forEach(function(inp) {
-    inp.addEventListener('input', function() { var row = this.closest('.ff'); if (row) row.classList.remove('err'); if (this.id === 'f-consent' && consentErrEl) consentErrEl.style.display = 'none'; });
+    inp.addEventListener('input', function() {
+      var row = this.closest('.ff');
+      if (row) row.classList.remove('err');
+      if (this.id === 'f-consent' && consentErrEl) consentErrEl.style.display = 'none';
+      if (this.id === 'f-role' && roleErrEl) roleErrEl.style.display = 'none';
+    });
   });
 }
 
