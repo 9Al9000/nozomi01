@@ -2161,14 +2161,8 @@ section { scroll-margin-top: 68px; }
     <div class="nozomy-chat-msg bot"><div class="nozomy-chat-bubble">For urgent fit, tell us whether you need a 360 Assessment, Diagnostic Blueprint, AI / digital transformation support, an Operations Reset, or a custom GCC / institutional program.</div></div>
 
     <div class="nozomy-chat-card" id="nozomy-chat-card">
-      <form id="nozomy-chat-form" action="https://formsubmit.co/info@nozomy.ai" method="POST" target="nozomy-chat-frame" novalidate>
-        <input type="hidden" name="_subject" value="New Nozomy Assistant Contact Request">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_replyto" id="chat-replyto">
-        <input type="hidden" name="Source" value="Nozomy Smart Intake Assistant">
-        <input type="hidden" name="AI Suggested Route" id="chat-ai-route">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <form id="nozomy-chat-form" novalidate>
+        <input type="text" id="chat-honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <div class="nozomy-chat-grid">
           <div class="nozomy-chat-field">
@@ -2223,7 +2217,6 @@ section { scroll-margin-top: 68px; }
         <div class="nozomy-chat-success" id="nozomy-chat-success">Message received. Nozomy will contact you within 24 hours or less. A copy has been routed to info@nozomy.ai.</div>
         <div class="nozomy-chat-fine">Protected by a basic anti-spam field. Review the <a href="#privacy-notice" onclick="toggleNozomyChat(false);document.getElementById('privacy-notice').style.display='block';setTimeout(function(){document.getElementById('privacy-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Privacy Notice</a> and <a href="#terms" onclick="toggleNozomyChat(false);document.getElementById('terms-notice').style.display='block';setTimeout(function(){document.getElementById('terms-notice').scrollIntoView({behavior:'smooth'})},200);return false;">Terms</a>.</div>
       </form>
-      <iframe name="nozomy-chat-frame" title="Nozomy Assistant message delivery" style="display:none;"></iframe>
     </div>
 
     <!-- Thank-you screen — shown after successful submission -->
@@ -3080,36 +3073,52 @@ function updateNozomyChatRoute() {
 var nozomyChatForm = document.getElementById('nozomy-chat-form');
 if (nozomyChatForm) {
   nozomyChatForm.addEventListener('submit', function(e) {
-    var name = document.getElementById('chat-name');
-    var email = document.getElementById('chat-email');
-    var org = document.getElementById('chat-org');
-    var interest = document.getElementById('chat-interest');
-    var message = document.getElementById('chat-message');
-    var consent = document.getElementById('chat-consent');
-    var error = document.getElementById('nozomy-chat-error');
+    e.preventDefault();
+    var nameEl    = document.getElementById('chat-name');
+    var emailEl   = document.getElementById('chat-email');
+    var orgEl     = document.getElementById('chat-org');
+    var phoneEl   = document.getElementById('chat-phone');
+    var roleEl    = document.getElementById('chat-role');
+    var interestEl= document.getElementById('chat-interest');
+    var messageEl = document.getElementById('chat-message');
+    var consentEl = document.getElementById('chat-consent');
+    var error     = document.getElementById('nozomy-chat-error');
     var submitBtn = document.getElementById('nozomy-chat-submit');
-    var replyTo = document.getElementById('chat-replyto');
     updateNozomyChatRoute();
-    var validEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
-    var isValid = name && name.value.trim() && validEmail && org && org.value.trim() && interest && interest.value && message && message.value.trim() && consent && consent.checked;
+
+    var validEmail = emailEl && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+    var isValid = nameEl && nameEl.value.trim() && validEmail &&
+                  orgEl && orgEl.value.trim() && interestEl && interestEl.value &&
+                  messageEl && messageEl.value.trim() && consentEl && consentEl.checked;
     if (!isValid) {
-      e.preventDefault();
       if (error) error.style.display = 'block';
-      return false;
+      return;
     }
     if (error) error.style.display = 'none';
-    if (replyTo) replyTo.value = email.value.trim();
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
-    // After a short delay (form submits to iframe), swap to thank-you screen
-    setTimeout(function() {
+    fetch('/api/send-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:         nameEl ? nameEl.value.trim() : '',
+        email:        emailEl ? emailEl.value.trim() : '',
+        organization: orgEl ? orgEl.value.trim() : '',
+        phone:        phoneEl ? phoneEl.value.trim() : '',
+        role:         roleEl ? roleEl.value.trim() : '',
+        need:         interestEl ? interestEl.value : '',
+        message:      messageEl ? messageEl.value.trim() : '',
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (!data || data.success !== true) throw new Error('API error');
       var chatCard = document.getElementById('nozomy-chat-card');
       var thankyou = document.getElementById('nozomy-chat-thankyou');
       var countdown = document.getElementById('nozomy-chat-countdown');
       if (chatCard) chatCard.style.display = 'none';
       if (thankyou) thankyou.style.display = 'flex';
 
-      // Countdown from 15
       var secs = 15;
       if (countdown) countdown.textContent = 'This window will close in ' + secs + ' seconds.';
       var timer = setInterval(function() {
@@ -3118,7 +3127,6 @@ if (nozomyChatForm) {
         if (secs <= 0) {
           clearInterval(timer);
           toggleNozomyChat(false);
-          // Reset everything after close
           setTimeout(function() {
             if (chatCard) chatCard.style.display = '';
             if (thankyou) thankyou.style.display = 'none';
@@ -3129,7 +3137,6 @@ if (nozomyChatForm) {
         }
       }, 1000);
 
-      // Also reset if user manually closes
       var panel = document.getElementById('nozomy-chat-panel');
       if (panel) {
         panel._chatResetTimer = timer;
@@ -3144,7 +3151,12 @@ if (nozomyChatForm) {
           }, 400);
         };
       }
-    }, 700);
+    })
+    .catch(function(err) {
+      console.warn('Contact form error:', err);
+      if (error) { error.textContent = 'Something went wrong. Please email info@nozomy.ai directly.'; error.style.display = 'block'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message →'; }
+    });
   });
 }
 
